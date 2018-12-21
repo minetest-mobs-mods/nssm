@@ -591,8 +591,6 @@ minetest.register_abm({
 		end
 })
 
-<<<<<<< HEAD
-=======
 --tools
 
 minetest.register_tool('nssm:sun_sword', {
@@ -1644,7 +1642,6 @@ minetest.register_craft({
 	type = "shapeless",
 	recipe = {'nssm:sun_feather','nssm:night_feather'}
 })
->>>>>>> 8d4795a3e1da0b5ee801ac1f3eff38083434aa02
 
 --Eggs
 
