@@ -3,6 +3,10 @@
 -- This tends to be problematic on servers, so is replaced with a powerful tool instead
 -- if classic rainbow staff is not enabled
 
+-- How long the rainbow generating entity should remain in existence
+-- Used to be 10, really should not last so long, given that it adds rainbow on every server step...
+local max_rainbow_time = 1
+
 if nssm.classic_rainbow_staff then
     minetest.register_entity("nssm:rainbow", {
         textures = {"transparent.png"},
@@ -16,7 +20,7 @@ if nssm.classic_rainbow_staff then
                 return
             end
 
-            if os.time() - self.timer > 10 then
+            if os.time() - self.timer > max_rainbow_time then
                 minetest.set_node(pos, {name="nyancat:nyancat"})
                 self.object:remove()
             end
