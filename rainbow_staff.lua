@@ -54,18 +54,18 @@ else
     minetest.register_tool("nssm:rainbow_staff", {
         description = "Rainbow Bludgeon",
         inventory_image = "rainbow_staff.png",
-		tool_capabilities = {
-			full_punch_interval = 0.2,
-			max_drop_level=1,
-			groupcaps={
-				snappy={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=70, maxlevel=1},
-				crumbly={times={[1]=0.80, [2]=0.40, [3]=0.20}, uses=70, maxlevel=1},
-				choppy={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=70, maxlevel=1},
-				cracky={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=70, maxlevel=1},
-				fleshy={times={[1]=0.80, [2]=0.60, [3]=0.20},  uses=140, maxlevel=1}
-			},
-			damage_groups = {fleshy=20},
-		},
+        tool_capabilities = {
+            full_punch_interval = 0.2,
+            max_drop_level=1,
+            groupcaps={
+                snappy={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=300, maxlevel=4},
+                crumbly={times={[1]=0.80, [2]=0.40, [3]=0.20}, uses=300, maxlevel=4},
+                choppy={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=300, maxlevel=4},
+                cracky={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=300, maxlevel=4},
+                fleshy={times={[1]=0.80, [2]=0.60, [3]=0.20},  uses=220, maxlevel=4}
+            },
+            damage_groups = {fleshy=20}, 
+        },
 
         groups = {not_in_creative_inventory=1,}
     })

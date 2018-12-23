@@ -1,0 +1,7 @@
+* Check why ice snake and snow biter are not placing ice
+* Check why lava titan is not placing lava
+* Check difference between putting_ability and midas_ability
+* Rework the virulence/cryosave/affectbones safeguards
+* Make `_egg` marker consistent (probably just remove the `_egg` markers altogether?)
+* Ensure the masticone can be defeated by just klilling (use spawn 5, chance 1/6)
+* Split materials.lua into noddes, items, abms

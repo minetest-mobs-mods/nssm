@@ -338,18 +338,18 @@ local function nssm_register_weapon(name, def)
             return itemstack
         end,
         on_drop = def.on_drop or function(itemstack, user, pointed_thing)
-		end,
+        end,
     })
 
 
     minetest.register_craft({
-		output = 'nssm:'..name.."_hand 23",
-		recipe = {
-			{'nssm:great_energy_globe', 'nssm:great_energy_globe', 'nssm:great_energy_globe'},
+        output = 'nssm:'..name.."_hand 23",
+        recipe = {
+            {'nssm:great_energy_globe', 'nssm:great_energy_globe', 'nssm:great_energy_globe'},
             {'nssm:great_energy_globe', def.material, 'nssm:great_energy_globe'},
             {'nssm:great_energy_globe', 'nssm:great_energy_globe', 'nssm:great_energy_globe'}
-		}
-	})
+        }
+    })
 
 end
 
@@ -419,21 +419,21 @@ nssm_register_weapon("hellzone_grenade", {
         local vel = 1
 
         minetest.add_particlespawner({
-        	amount = 2,
-        	time = 0.01,
-        	minpos = pos,
-        	maxpos = pos,
-        	minvel = {x=3, y=3, z=3},
-        	maxvel = {x=-3, y=-3, z=-3},
-        	minacc = {x=0, y=0, z=0},
-        	maxacc = {x=0, y=0, z=0},
-        	minexptime = 0.5,
-        	maxexptime = 0.5,
-        	minsize = 3,
-        	maxsize = 3,
-        	collisiondetection = false,
-        	vertical = false,
-        	texture = "morparticle.png"
+            amount = 2,
+            time = 0.01,
+            minpos = pos,
+            maxpos = pos,
+            minvel = {x=3, y=3, z=3},
+            maxvel = {x=-3, y=-3, z=-3},
+            minacc = {x=0, y=0, z=0},
+            maxacc = {x=0, y=0, z=0},
+            minexptime = 0.5,
+            maxexptime = 0.5,
+            minsize = 3,
+            maxsize = 3,
+            collisiondetection = false,
+            vertical = false,
+            texture = "morparticle.png"
         })
 
         --Disappear after a certain time
@@ -646,7 +646,7 @@ function nssm_register_throwitem(name, descr, def)
             local velocity = 15
             local dir = placer:get_look_dir();
             local playerpos = placer:getpos();
-			posthrow = playerpos
+            posthrow = playerpos
             local obj = minetest.env:add_entity({x=playerpos.x+0+dir.x,y=playerpos.y+2+dir.y,z=playerpos.z+0+dir.z}, "nssm:"..name.."_bomb_flying")
             local vec = {x=dir.x*velocity,y=dir.y*velocity,z=dir.z*velocity}
             local acc = {x=0, y=-9.8, z=0}
@@ -659,8 +659,8 @@ function nssm_register_throwitem(name, descr, def)
 
     minetest.register_entity("nssm:"..name.."_bomb_flying",{
         textures = {name.."_bomb.png"},
-		hp_max = 20,
-		collisionbox = {-0.1,-0.1,-0.1, 0.1,0.1,0.1},
+        hp_max = 20,
+        collisionbox = {-0.1,-0.1,-0.1, 0.1,0.1,0.1},
         on_step = function(self, dtime)
             local pos = self.object:getpos()
             local node = minetest.get_node(pos)
@@ -689,12 +689,12 @@ nssm_register_throwitem("cobweb", "Cobweb Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:cobweb_bomb 8',
-	recipe = {
-		{'nssm:silk_gland', 'nssm:black_powder', 'nssm:silk_gland'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:silk_gland', 'nssm:black_powder', 'nssm:silk_gland'},
-	}
+    output = 'nssm:cobweb_bomb 8',
+    recipe = {
+        {'nssm:silk_gland', 'nssm:black_powder', 'nssm:silk_gland'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:silk_gland', 'nssm:black_powder', 'nssm:silk_gland'},
+    }
 })
 
 nssm_register_throwitem("ice", "Ice Bomb", {
@@ -703,12 +703,12 @@ nssm_register_throwitem("ice", "Ice Bomb", {
             for dy = 1,3 do
                 for dz = -1,1 do
                     local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-					local pos2 = {x = pos.x, y=pos.y+1, z=pos.z}
-					local pos3 = {x = pos.x, y=pos.y+2, z=pos.z}
+                    local pos2 = {x = pos.x, y=pos.y+1, z=pos.z}
+                    local pos3 = {x = pos.x, y=pos.y+2, z=pos.z}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
                         minetest.set_node(pos1, {name="default:ice"})
-						minetest.set_node(pos2, {name="air"})
-						minetest.set_node(pos3, {name="air"})
+                        minetest.set_node(pos2, {name="air"})
+                        minetest.set_node(pos3, {name="air"})
                     end
                 end
             end
@@ -717,41 +717,41 @@ nssm_register_throwitem("ice", "Ice Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:ice_bomb 8',
-	recipe = {
-		{'nssm:frosted_amphibian_heart', 'nssm:black_powder', 'nssm:frosted_amphibian_heart'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:frosted_amphibian_heart', 'nssm:black_powder', 'nssm:frosted_amphibian_heart'},
-	}
+    output = 'nssm:ice_bomb 8',
+    recipe = {
+        {'nssm:frosted_amphibian_heart', 'nssm:black_powder', 'nssm:frosted_amphibian_heart'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:frosted_amphibian_heart', 'nssm:black_powder', 'nssm:frosted_amphibian_heart'},
+    }
 })
 if minetest.get_modpath("nssb") then
-	nssm_register_throwitem("mantis", "Mantis Clay Bomb", {
-		hit_node = function(self,pos)
-			for dx = -1,1 do
-				for dy = 1,3 do
-					for dz = -1,1 do
-						local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-						local pos2 = {x = pos.x, y=pos.y+1, z=pos.z}
-						local pos3 = {x = pos.x, y=pos.y+2, z=pos.z}
-						if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-							minetest.set_node(pos1, {name="nssb:hardened_mantis_clay"})
-							minetest.set_node(pos2, {name="air"})
-							minetest.set_node(pos3, {name="air"})
-						end
-					end
-				end
-			end
-		end,
-	})
+    nssm_register_throwitem("mantis", "Mantis Clay Bomb", {
+        hit_node = function(self,pos)
+            for dx = -1,1 do
+                for dy = 1,3 do
+                    for dz = -1,1 do
+                        local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+                        local pos2 = {x = pos.x, y=pos.y+1, z=pos.z}
+                        local pos3 = {x = pos.x, y=pos.y+2, z=pos.z}
+                        if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
+                            minetest.set_node(pos1, {name="nssb:hardened_mantis_clay"})
+                            minetest.set_node(pos2, {name="air"})
+                            minetest.set_node(pos3, {name="air"})
+                        end
+                    end
+                end
+            end
+        end,
+    })
 
-	minetest.register_craft({
-		output = 'nssm:mantis_bomb 8',
-		recipe = {
-			{'nssm:mantis_meat', 'nssm:black_powder', 'nssm:mantis_meat'},
-			{'nssm:black_powder', 'nssb:hardened_mantis_clay', 'nssm:black_powder'},
-			{'nssm:mantis_meat', 'nssm:black_powder', 'nssm:mantis_meat'},
-		}
-	})
+    minetest.register_craft({
+        output = 'nssm:mantis_bomb 8',
+        recipe = {
+            {'nssm:mantis_meat', 'nssm:black_powder', 'nssm:mantis_meat'},
+            {'nssm:black_powder', 'nssb:hardened_mantis_clay', 'nssm:black_powder'},
+            {'nssm:mantis_meat', 'nssm:black_powder', 'nssm:mantis_meat'},
+        }
+    })
 end
 
 nssm_register_throwitem("lava", "Lava Bomb", {
@@ -770,12 +770,12 @@ nssm_register_throwitem("lava", "Lava Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:lava_bomb 12',
-	recipe = {
-		{'bucket:bucket_lava', 'nssm:black_powder', 'bucket:bucket_lava'},
-		{'nssm:black_powder', 'nssm:lava_titan_eye', 'nssm:black_powder'},
-		{'bucket:bucket_lava', 'nssm:black_powder', 'bucket:bucket_lava'},
-	}
+    output = 'nssm:lava_bomb 12',
+    recipe = {
+        {'bucket:bucket_lava', 'nssm:black_powder', 'bucket:bucket_lava'},
+        {'nssm:black_powder', 'nssm:lava_titan_eye', 'nssm:black_powder'},
+        {'bucket:bucket_lava', 'nssm:black_powder', 'bucket:bucket_lava'},
+    }
 })
 
 nssm_register_throwitem("water", "Water Bomb", {
@@ -794,12 +794,12 @@ nssm_register_throwitem("water", "Water Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:water_bomb 10',
-	recipe = {
-		{'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
-		{'nssm:black_powder', 'nssm:tentacle_curly', 'nssm:black_powder'},
-		{'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
-	}
+    output = 'nssm:water_bomb 10',
+    recipe = {
+        {'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
+        {'nssm:black_powder', 'nssm:tentacle_curly', 'nssm:black_powder'},
+        {'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
+    }
 })
 
 nssm_register_throwitem("fire", "Fire Bomb", {
@@ -809,7 +809,7 @@ nssm_register_throwitem("fire", "Fire Bomb", {
                 for dz = -1,1 do
                     local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-                        minetest.set_node(pos1, {name="fire:basic_flame"})
+                        minetest.set_node(pos1, {name=nssm.fire_node})
                     end
                 end
             end
@@ -818,38 +818,38 @@ nssm_register_throwitem("fire", "Fire Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:fire_bomb 6',
-	recipe = {
-		{'fire:flint_and_steel', 'nssm:black_powder', 'fire:flint_and_steel'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'fire:flint_and_steel', 'nssm:black_powder', 'fire:flint_and_steel'},
-	}
+    output = 'nssm:fire_bomb 6',
+    recipe = {
+        {'fire:flint_and_steel', 'nssm:black_powder', 'fire:flint_and_steel'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'fire:flint_and_steel', 'nssm:black_powder', 'fire:flint_and_steel'},
+    }
 })
 
 if minetest.get_modpath("nssb") then
-	nssm_register_throwitem("mornar", "Mornar Bomb", {
-		hit_node = function(self,pos)
-			for dx = -1,1 do
-				for dy = 1,1 do
-					for dz = -1,1 do
-						local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-						if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-							minetest.set_node(pos1, {name="nssb:mornar"})
-						end
-					end
-				end
-			end
-		end,
-	})
+    nssm_register_throwitem("mornar", "Mornar Bomb", {
+        hit_node = function(self,pos)
+            for dx = -1,1 do
+                for dy = 1,1 do
+                    for dz = -1,1 do
+                        local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+                        if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
+                            minetest.set_node(pos1, {name="nssb:mornar"})
+                        end
+                    end
+                end
+            end
+        end,
+    })
 
-	minetest.register_craft({
-		output = 'nssm:mornar_bomb 6',
-		recipe = {
-			{'nssm:wrathful_soul_fragment', 'nssm:black_powder', 'nssm:wrathful_soul_fragment'},
-			{'nssm:black_powder', 'nssm:wrathful_soul_fragment', 'nssm:black_powder'},
-			{'nssm:wrathful_soul_fragment', 'nssm:black_powder', 'nssm:wrathful_soul_fragment'},
-		}
-	})
+    minetest.register_craft({
+        output = 'nssm:mornar_bomb 6',
+        recipe = {
+            {'nssm:wrathful_soul_fragment', 'nssm:black_powder', 'nssm:wrathful_soul_fragment'},
+            {'nssm:black_powder', 'nssm:wrathful_soul_fragment', 'nssm:black_powder'},
+            {'nssm:wrathful_soul_fragment', 'nssm:black_powder', 'nssm:wrathful_soul_fragment'},
+        }
+    })
 end
 
 nssm_register_throwitem("hole", "Hole Bomb", {
@@ -868,12 +868,12 @@ nssm_register_throwitem("hole", "Hole Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:hole_bomb 10',
-	recipe = {
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:digested_sand', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-	}
+    output = 'nssm:hole_bomb 10',
+    recipe = {
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:digested_sand', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+    }
 })
 
 nssm_register_throwitem("food", "Food Bomb", {
@@ -884,7 +884,7 @@ nssm_register_throwitem("food", "Food Bomb", {
                     local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
                         minetest.set_node(pos1, {name="air"})
-						minetest.add_item(pos1, "nssm:roasted_duck_legs")
+                        minetest.add_item(pos1, "nssm:roasted_duck_legs")
                     end
                 end
             end
@@ -893,12 +893,12 @@ nssm_register_throwitem("food", "Food Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:food_bomb 8',
-	recipe = {
-		{'nssm:gluttonous_soul_fragment', 'nssm:black_powder', 'nssm:gluttonous_soul_fragment'},
-		{'nssm:black_powder', 'nssm:gluttonous_soul_fragment', 'nssm:black_powder'},
-		{'nssm:gluttonous_soul_fragment', 'nssm:black_powder', 'nssm:gluttonous_soul_fragment'},
-	}
+    output = 'nssm:food_bomb 8',
+    recipe = {
+        {'nssm:gluttonous_soul_fragment', 'nssm:black_powder', 'nssm:gluttonous_soul_fragment'},
+        {'nssm:black_powder', 'nssm:gluttonous_soul_fragment', 'nssm:black_powder'},
+        {'nssm:gluttonous_soul_fragment', 'nssm:black_powder', 'nssm:gluttonous_soul_fragment'},
+    }
 })
 
 nssm_register_throwitem("phoenix_fire", "Phoenix Fire Bomb", {
@@ -917,12 +917,12 @@ nssm_register_throwitem("phoenix_fire", "Phoenix Fire Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:phoenix_fire_bomb 10',
-	recipe = {
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:sun_feather', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-	}
+    output = 'nssm:phoenix_fire_bomb 10',
+    recipe = {
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:sun_feather', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+    }
 })
 
 nssm_register_throwitem("kaboom", "Explosive Bomb", {
@@ -935,37 +935,37 @@ nssm_register_throwitem("kaboom", "Explosive Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:kaboom_bomb 3',
-	recipe = {
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-	}
+    output = 'nssm:kaboom_bomb 3',
+    recipe = {
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+    }
 })
 
 nssm_register_throwitem("teleport", "Teleport Bomb", {
     hit_node = function(self,pos,placer)
                     local pos1 = {x = pos.x, y=pos.y+1, z=pos.z}
-					local pos2 = {x = pos.x, y=pos.y+2, z=pos.z}
-						if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-							for _,obj in ipairs(minetest.get_objects_inside_radius(posthrow, 2)) do
-								if obj:is_player() then
-									obj:setpos(pos1)
-									minetest.set_node(pos1, {name="air"})
-									minetest.set_node(pos2, {name="air"})
-								end
-							end
-						end
+                    local pos2 = {x = pos.x, y=pos.y+2, z=pos.z}
+                        if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
+                            for _,obj in ipairs(minetest.get_objects_inside_radius(posthrow, 2)) do
+                                if obj:is_player() then
+                                    obj:setpos(pos1)
+                                    minetest.set_node(pos1, {name="air"})
+                                    minetest.set_node(pos2, {name="air"})
+                                end
+                            end
+                        end
     end,
 })
 
 minetest.register_craft({
-	output = 'nssm:teleport_bomb 10',
-	recipe = {
-		{'nssm:slothful_soul_fragment', 'nssm:black_powder', 'nssm:slothful_soul_fragment'},
-		{'nssm:black_powder', 'nssm:slothful_soul_fragment', 'nssm:black_powder'},
-		{'nssm:slothful_soul_fragment', 'nssm:black_powder', 'nssm:slothful_soul_fragment'},
-	}
+    output = 'nssm:teleport_bomb 10',
+    recipe = {
+        {'nssm:slothful_soul_fragment', 'nssm:black_powder', 'nssm:slothful_soul_fragment'},
+        {'nssm:black_powder', 'nssm:slothful_soul_fragment', 'nssm:black_powder'},
+        {'nssm:slothful_soul_fragment', 'nssm:black_powder', 'nssm:slothful_soul_fragment'},
+    }
 })
 
 nssm_register_throwitem("boom", "Boom Bomb", {
@@ -978,63 +978,63 @@ nssm_register_throwitem("boom", "Boom Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:boom_bomb 10',
-	recipe = {
-		{'nssm:greedy_soul_fragment', 'nssm:black_powder', 'nssm:greedy_soul_fragment'},
-		{'nssm:black_powder', 'nssm:greedy_soul_fragment', 'nssm:black_powder'},
-		{'nssm:greedy_soul_fragment', 'nssm:black_powder', 'nssm:greedy_soul_fragment'},
-	}
+    output = 'nssm:boom_bomb 10',
+    recipe = {
+        {'nssm:greedy_soul_fragment', 'nssm:black_powder', 'nssm:greedy_soul_fragment'},
+        {'nssm:black_powder', 'nssm:greedy_soul_fragment', 'nssm:black_powder'},
+        {'nssm:greedy_soul_fragment', 'nssm:black_powder', 'nssm:greedy_soul_fragment'},
+    }
 })
 
 nssm_register_throwitem("smoke", "Smoke Bomb", {
     hit_node = function(self,pos)
                     local pos1 = {x = pos.x, y=pos.y, z=pos.z}
                     minetest.add_particlespawner({
-						amount = 6000,
-						time = 20,
-						minpos = {x=pos1.x-3, y=pos1.y+0.5, z=pos1.z-3},
-						maxpos = {x=pos1.x+3, y=pos1.y+0.5, z=pos1.z+3},
-						minvel = {x=0.2, y=0.2, z=0.2},
-						maxvel = {x=0.4, y=0.8, z=0.4},
-						minacc = {x=-0.2,y=0,z=-0.2},
-						maxacc = {x=0.2,y=0.1,z=0.2},
-						minexptime = 6,
-						maxexptime = 8,
-						minsize = 10,
-						maxsize = 12,
-						collisiondetection = false,
-						vertical = false,
-						texture = "tnt_smoke.png",})
+                        amount = 6000,
+                        time = 20,
+                        minpos = {x=pos1.x-3, y=pos1.y+0.5, z=pos1.z-3},
+                        maxpos = {x=pos1.x+3, y=pos1.y+0.5, z=pos1.z+3},
+                        minvel = {x=0.2, y=0.2, z=0.2},
+                        maxvel = {x=0.4, y=0.8, z=0.4},
+                        minacc = {x=-0.2,y=0,z=-0.2},
+                        maxacc = {x=0.2,y=0.1,z=0.2},
+                        minexptime = 6,
+                        maxexptime = 8,
+                        minsize = 10,
+                        maxsize = 12,
+                        collisiondetection = false,
+                        vertical = false,
+                        texture = "tnt_smoke.png",})
     end,
 })
 
 minetest.register_craft({
-	output = 'nssm:smoke_bomb 6',
-	recipe = {
-		{'nssm:proud_soul_fragment', 'nssm:black_powder', 'nssm:proud_soul_fragment'},
-		{'nssm:black_powder', 'nssm:proud_soul_fragment', 'nssm:black_powder'},
-		{'nssm:proud_soul_fragment', 'nssm:black_powder', 'nssm:proud_soul_fragment'},
-	}
+    output = 'nssm:smoke_bomb 6',
+    recipe = {
+        {'nssm:proud_soul_fragment', 'nssm:black_powder', 'nssm:proud_soul_fragment'},
+        {'nssm:black_powder', 'nssm:proud_soul_fragment', 'nssm:black_powder'},
+        {'nssm:proud_soul_fragment', 'nssm:black_powder', 'nssm:proud_soul_fragment'},
+    }
 })
 
 nssm_register_throwitem("thick_web", "Thick Web Bomb", {
     hit_node = function(self,pos)
                     local pos1 = {x = pos.x, y=pos.y+1, z=pos.z}
-					local pos2 = {x = pos.x, y=pos.y+2, z=pos.z}
+                    local pos2 = {x = pos.x, y=pos.y+2, z=pos.z}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-						minetest.set_node(pos1, {name="nssm:thick_web"})
-						minetest.set_node(pos2, {name="nssm:thick_web"})
+                        minetest.set_node(pos1, {name="nssm:thick_web"})
+                        minetest.set_node(pos2, {name="nssm:thick_web"})
                     end
     end,
 })
 
 minetest.register_craft({
-	output = 'nssm:thick_web_bomb 12',
-	recipe = {
-		{'nssm:super_silk_gland', 'nssm:black_powder', 'nssm:super_silk_gland'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:super_silk_gland', 'nssm:black_powder', 'nssm:super_silk_gland'},
-	}
+    output = 'nssm:thick_web_bomb 12',
+    recipe = {
+        {'nssm:super_silk_gland', 'nssm:black_powder', 'nssm:super_silk_gland'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:super_silk_gland', 'nssm:black_powder', 'nssm:super_silk_gland'},
+    }
 })
 
 nssm_register_throwitem("poison", "Poison Bomb", {
@@ -1053,12 +1053,12 @@ nssm_register_throwitem("poison", "Poison Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:poison_bomb 10',
-	recipe = {
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:snake_scute', 'nssm:black_powder'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-	}
+    output = 'nssm:poison_bomb 10',
+    recipe = {
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:snake_scute', 'nssm:black_powder'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+    }
 })
 
 nssm_register_throwitem("stone", "Cobblestone Bomb", {
@@ -1077,12 +1077,12 @@ nssm_register_throwitem("stone", "Cobblestone Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:stone_bomb 6',
-	recipe = {
-		{'default:stone', 'nssm:black_powder', 'default:stone'},
-		{'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
-		{'default:stone', 'nssm:black_powder', 'default:stone'},
-	}
+    output = 'nssm:stone_bomb 6',
+    recipe = {
+        {'default:stone', 'nssm:black_powder', 'default:stone'},
+        {'nssm:black_powder', 'nssm:black_powder', 'nssm:black_powder'},
+        {'default:stone', 'nssm:black_powder', 'default:stone'},
+    }
 })
 
 nssm_register_throwitem("fire_ring", "Fire Ring Bomb", {
@@ -1092,15 +1092,15 @@ nssm_register_throwitem("fire_ring", "Fire Ring Bomb", {
                 for dz = -2,2 do
                     local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-                        minetest.set_node(pos1, {name="fire:basic_flame"})
-						 for dx = -1,1 do
-							for dy = 1,2 do
-								for dz = -1,1 do
-									local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-									minetest.set_node(pos1, {name="air"})
-								end
-							end
-						end
+                        minetest.set_node(pos1, {name=nssm.fire_node})
+                         for dx = -1,1 do
+                            for dy = 1,2 do
+                                for dz = -1,1 do
+                                    local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+                                    minetest.set_node(pos1, {name="air"})
+                                end
+                            end
+                        end
                     end
                 end
             end
@@ -1109,48 +1109,48 @@ nssm_register_throwitem("fire_ring", "Fire Ring Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:fire_ring_bomb 3',
-	recipe = {
-		{'fire:flint_and_steel', 'fire:flint_and_steel', 'fire:flint_and_steel'},
-		{'fire:flint_and_steel', 'nssm:black_powder', 'fire:flint_and_steel'},
-		{'fire:flint_and_steel', 'fire:flint_and_steel', 'fire:flint_and_steel'},
-	}
+    output = 'nssm:fire_ring_bomb 3',
+    recipe = {
+        {'fire:flint_and_steel', 'fire:flint_and_steel', 'fire:flint_and_steel'},
+        {'fire:flint_and_steel', 'nssm:black_powder', 'fire:flint_and_steel'},
+        {'fire:flint_and_steel', 'fire:flint_and_steel', 'fire:flint_and_steel'},
+    }
 })
 
 if minetest.get_modpath("nssb") then
-	nssm_register_throwitem("cage", "Cage Bomb", {
-		hit_node = function(self,pos)
-			for dx = -2,2 do
-				for dy = 0,3 do
-					for dz = -2,2 do
-						local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-						if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-							minetest.set_node(pos1, {name="nssb:morentir"})
-							 for dx = -1,1 do
-								for dy = 1,2 do
-									for dz = -1,1 do
-										local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-										minetest.set_node(pos1, {name="air"})
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end,
-	})
+    nssm_register_throwitem("cage", "Cage Bomb", {
+        hit_node = function(self,pos)
+            for dx = -2,2 do
+                for dy = 0,3 do
+                    for dz = -2,2 do
+                        local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+                        if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
+                            minetest.set_node(pos1, {name="nssb:morentir"})
+                             for dx = -1,1 do
+                                for dy = 1,2 do
+                                    for dz = -1,1 do
+                                        local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+                                        minetest.set_node(pos1, {name="air"})
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end,
+    })
 
-	minetest.register_craft({
-		output = 'nssm:cage_bomb 10',
-		recipe = {
-			{'nssm:lustful_soul_fragment', 'nssm:black_powder', 'nssm:lustful_soul_fragment'},
-			{'nssm:black_powder', 'nssm:lustful_soul_fragment', 'nssm:black_powder'},
-			{'nssm:lustful_soul_fragment', 'nssm:black_powder', 'nssm:lustful_soul_fragment'},
-		}
-	})
+    minetest.register_craft({
+        output = 'nssm:cage_bomb 10',
+        recipe = {
+            {'nssm:lustful_soul_fragment', 'nssm:black_powder', 'nssm:lustful_soul_fragment'},
+            {'nssm:black_powder', 'nssm:lustful_soul_fragment', 'nssm:black_powder'},
+            {'nssm:lustful_soul_fragment', 'nssm:black_powder', 'nssm:lustful_soul_fragment'},
+        }
+    })
 end
-	
+    
 nssm_register_throwitem("water_column", "Water Column Bomb", {
     hit_node = function(self,pos)
         for dx = 0,0 do
@@ -1167,21 +1167,21 @@ nssm_register_throwitem("water_column", "Water Column Bomb", {
 })
 
 minetest.register_craft({
-	output = 'nssm:water_column_bomb 6',
-	recipe = {
-		{'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
-		{'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
-		{'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
-	}
+    output = 'nssm:water_column_bomb 6',
+    recipe = {
+        {'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
+        {'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
+        {'bucket:bucket_water', 'nssm:black_powder', 'bucket:bucket_water'},
+    }
 })
 
 minetest.register_craft({
-	output = 'nssm:empty_evocation_bomb 10',
-	recipe = {
-		{'nssm:envious_soul_fragment', 'nssm:black_powder', 'nssm:envious_soul_fragment'},
-		{'nssm:black_powder', 'nssm:envious_soul_fragment', 'nssm:black_powder'},
-		{'nssm:envious_soul_fragment', 'nssm:black_powder', 'nssm:envious_soul_fragment'},
-	}
+    output = 'nssm:empty_evocation_bomb 10',
+    recipe = {
+        {'nssm:envious_soul_fragment', 'nssm:black_powder', 'nssm:envious_soul_fragment'},
+        {'nssm:black_powder', 'nssm:envious_soul_fragment', 'nssm:black_powder'},
+        {'nssm:envious_soul_fragment', 'nssm:black_powder', 'nssm:envious_soul_fragment'},
+    }
 })
 
 function nssm_register_throwegg(name, descr, def)
@@ -1225,23 +1225,23 @@ nssm_register_throwegg(evomob, evodescr.." Bomb", {
                     local pos1 = {x = pos.x, y=pos.y+1, z=pos.z}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
                        for n=1,numbe do
-							minetest.add_entity(pos1, "nssm:".. evomob)
-					   end
+                            minetest.add_entity(pos1, "nssm:".. evomob)
+                       end
                     end
     end,
 })
 
 minetest.register_craft({
-	output = 'nssm:'..evomob.."_bomb",
-	type = "shapeless",
-	recipe = {'nssm:empty_evocation_bomb', 'nssm:'..evomob},
+    output = 'nssm:'..evomob.."_bomb",
+    type = "shapeless",
+    recipe = {'nssm:empty_evocation_bomb', 'nssm:'..evomob},
 
 })
 
 minetest.register_craft({
-	output = 'nssm:duckking_bomb',
-	type = "shapeless",
-	recipe = {'nssm:empty_evocation_bomb', 'nssm:duckking_egg'},
+    output = 'nssm:duckking_bomb',
+    type = "shapeless",
+    recipe = {'nssm:empty_evocation_bomb', 'nssm:duckking_egg'},
 
 })
 end
