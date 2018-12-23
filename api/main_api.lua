@@ -624,7 +624,7 @@ local function tnt_explode(pos, radius, ignore_protection, ignore_on_blast)
     local drops = {}
     local on_blast_queue = {}
 
-    local c_fire = minetest.get_content_id(nssm.fire_node)
+    local c_fire = minetest.get_content_id("fire:basic_flame")
     for z = -radius, radius do
     for y = -radius, radius do
     local vi = a:index(pos.x + (-radius), pos.y + y, pos.z + z)

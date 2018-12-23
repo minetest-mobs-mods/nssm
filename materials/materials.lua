@@ -1,8 +1,6 @@
 nssm:load("materials/craft_items.lua")
-
---ore generation
-
 nssm:load("materials/ores.lua")
+nssm:load("materials/energy_globes.lua")
 
 --nodes
 
@@ -166,31 +164,6 @@ minetest.register_node("nssm:dragons_mese", {
     light_source = 7,
 })
 
-minetest.register_node("nssm:squib_fire", {
-    description = "Fire!",
-    drawtype = "firelike",
-    tiles = {
-        {
-            name = "fire_basic_flame_animated.png",
-            animation = {
-                type = "vertical_frames",
-                aspect_w = 16,
-                aspect_h = 16,
-                length = 1
-            },
-        },
-    },
-    inventory_image = "fire_basic_flame.png",
-    paramtype = "light",
-    light_source = 13,
-    walkable = false,
-    buildable_to = true,
-    sunlight_propagates = true,
-    damage_per_second = 4,
-    groups = {dig_immediate = 3},
-    drop = "",
-})
-
 
 
 --abms
@@ -207,11 +180,11 @@ minetest.register_abm({
         --local under = {x=pos.x, y=pos.y-1, z=pos.z}
         --local n = minetest.env:get_node(under).name
         --if n~= "air" then
-        minetest.set_node({x=pos.x+1, y=pos.y, z=pos.z}, {name = nssm.fire_node})
-        minetest.set_node({x=pos.x-1, y=pos.y, z=pos.z}, {name = nssm.fire_node})
-        minetest.set_node({x=pos.x, y=pos.y, z=pos.z-1}, {name = nssm.fire_node})
-        minetest.set_node({x=pos.x, y=pos.y, z=pos.z+1}, {name = nssm.fire_node})
-        minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = nssm.fire_node})
+        minetest.set_node({x=pos.x+1, y=pos.y, z=pos.z}, {name = "fire:basic_flame"})
+        minetest.set_node({x=pos.x-1, y=pos.y, z=pos.z}, {name = "fire:basic_flame"})
+        minetest.set_node({x=pos.x, y=pos.y, z=pos.z-1}, {name = "fire:basic_flame"})
+        minetest.set_node({x=pos.x, y=pos.y, z=pos.z+1}, {name = "fire:basic_flame"})
+        minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "fire:basic_flame"})
 
     end
 })
@@ -310,7 +283,7 @@ minetest.register_tool('nssm:sun_sword', {
     minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
         if puncher:get_wielded_item():get_name() == 'nssm:sun_sword' then
             if node.name ~= "air" and not minetest.is_protected(pos, "") then
-                minetest.add_node(pointed_thing.above, {name = nssm.fire_node})
+                minetest.add_node(pointed_thing.above, {name = "fire:basic_flame"})
             end
         end
     end)

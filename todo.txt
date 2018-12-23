@@ -2,7 +2,14 @@ Mobs bugs + changes
 
 * Check why ice snake and snow biter are not placing ice
 * Check why lava titan is not placing lava
+
+Server-oriented changes
+
 * Ensure the masticone can be defeated by just klilling (use spawn 5, chance 1/6)
+* Find a way to ensure that fire does spread, without changing external mods...
+    * exploding mobs use generic mobs_redo explode attack
+    * mobs_redo uses tnt.explode which determines the fire type on its own
+    * for now, this is on an ABM in fire mod - it may be that for NSSM deployment we will need to add a fire override mod...
 
 API refactoring
 

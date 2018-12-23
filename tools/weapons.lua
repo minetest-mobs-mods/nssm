@@ -809,7 +809,7 @@ nssm_register_throwitem("fire", "Fire Bomb", {
                 for dz = -1,1 do
                     local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-                        minetest.set_node(pos1, {name=nssm.fire_node})
+                        minetest.set_node(pos1, {name="fire:basic_flame"})
                     end
                 end
             end
@@ -1092,7 +1092,7 @@ nssm_register_throwitem("fire_ring", "Fire Ring Bomb", {
                 for dz = -2,2 do
                     local pos1 = {x = pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     if not minetest.is_protected(pos1, "") or not minetest.get_item_group(minetest.get_node(pos1).name, "unbreakable") == 1 then
-                        minetest.set_node(pos1, {name=nssm.fire_node})
+                        minetest.set_node(pos1, {name="fire:basic_flame"})
                          for dx = -1,1 do
                             for dy = 1,2 do
                                 for dz = -1,1 do

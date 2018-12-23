@@ -14,4 +14,4 @@ nssm.multimobs (Multimobs) int 1000
 # Multiplier to raise life and damage of the mobs
 nssm.mob_difficulty (Mob difficulty) int 1
 
-nssm.classic_rainbow_staff (Use the classical rainbow staff) bool true
+nssm.classic_rainbow_staff (Use the classical rainbow staff) bool false
