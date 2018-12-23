@@ -1,8 +1,9 @@
 local path = minetest.get_modpath("nssm")
 nssm = {}
 
-nssm.mymapgenis = tonumber(minetest.setting_get('mymapgenis')) or 7
-nssm.multimobs = tonumber(minetest.setting_get('multimobs')) or 1000
+nssm.mymapgenis = tonumber(minetest.settings:get('nssm.mymapgenis')) or 7
+nssm.multimobs = tonumber(minetest.settings:get('nssm.multimobs')) or 1000
+nssm.init_rainbow_staff = minetest.settings:get_bool('nssm.classic_rainbow_staff')
 
 dofile(path.."/spawn.lua")
 
