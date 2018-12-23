@@ -48,36 +48,48 @@ local function set_player_boost(user, power)
 
     phys = round_physics(user:get_physics_override() )
 
-    local newphys = {
-        speed = phys.speed * coefficients.speed,
-        gravity = phys.gravity/(coefficients.gravity*power),
-    }
+    if phys.speed == 1 and phys.gravity == 1 then
+        local newphys = {
+            speed = phys.speed * coefficients.speed,
+            gravity = phys.gravity/(coefficients.gravity*power),
+        }
 
-    newphys = round_physics(newphys)
+        newphys = round_physics(newphys)
 
-    local diff = {
-        speed = newphys.speed - phys.speed,
-        gravity = newphys.gravity - phys.gravity,
-    }
+        local diff = {
+            speed = newphys.speed - phys.speed,
+            gravity = newphys.gravity - phys.gravity,
+        }
 
-    user:set_physics_override(newphys)
-    tell_player_physics(user:get_player_name(), newphys)
+        user:set_physics_override(newphys)
+        tell_player_physics(user:get_player_name(), newphys)
 
-    minetest.after(power * 2.5, function()
-        -- By the time we run the boost removal function, the player's physics
-        --  may have been further modified - get the current state of the player
-        local boosted_phys = round_physics(user:get_physics_override() )
+        stack_boost(user:get_player_name(), power*2.5, diff)
+    end
 
+    stack_boost(user:get_player_name(), power*2.5)
+end
+
+minetest.register_onstep(function(dtime)
+    -- Power down players with boosts
+    for -- get each boosted player, apply change
+
+    -- By the time we run the boost removal function, the player's physics
+    --  may have been further modified - get the current state of the player
+    local boosted_phys = round_physics(user:get_physics_override() )
+    local boostcount, gotdiff = unstack_boost(user:get_player_name())
+
+    if boostcount < 1 then
         -- Remove the value of the boost when it was set, leaving the additional boost in place
         local restored_phys = {
-            speed = boosted_phys.speed - diff.speed,
-            gravity = boosted_phys.gravity - diff.gravity,
+            speed = boosted_phys.speed - gotdiff.speed,
+            gravity = boosted_phys.gravity - gotdiff.gravity,
         }
         restored_phys = round_physics(restored_phys)
         user:set_physics_override(restored_phys)
         tell_player_physics(user:get_player_name(), restored_phys)
-    end)
-end
+    end
+end)
 
 local function eat_energy(itemstack, user, pointedthing)
 
