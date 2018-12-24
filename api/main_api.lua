@@ -336,7 +336,7 @@ local loss_prob = {}
 loss_prob["default:cobble"] = 3
 loss_prob["default:dirt"] = 4
 
-local tnt_radius = tonumber(minetest.setting_get("tnt_radius") or 3)
+local tnt_radius = tonumber(minetest.settings:get("tnt_radius") or 3)
 
 local cid_data = {}
 minetest.after(0, function()
@@ -657,7 +657,7 @@ local function tnt_explode(pos, radius, ignore_protection, ignore_on_blast)
         local s = vector.add(pos, rad)
         local r = vector.length(rad)
         if r / radius < 1.4 then
-            nodeupdate_single(s)
+            core.check_single_for_falling(s)
         end
     end
     end

@@ -29,13 +29,13 @@ minetest.register_node("nssm:invisible_light", {
     is_ground_content = false,
     groups = {unbreakable=1},
     drop = "",
-    light_source = 15,
+    light_source = LIGHT_MAX,
 })
 
 minetest.register_node("nssm:venomous_gas", {
     description = "Venomous Gas",
     inventory_image = minetest.inventorycube("venomous_gas.png"),
-    drawtype = "airlike",
+    drawtype = "glasslike",
     tiles = {
         {name="venomous_gas_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
     },
@@ -62,7 +62,7 @@ minetest.register_node("nssm:modders_block", {
 minetest.register_node("nssm:web", {
     description = "Web",
     inventory_image = "web.png",
-    tile_images = {"web.png"} ,
+    tiles = {"web.png"} ,
     drawtype = "plantlike",
     paramtype = "light",
     walkable = false,
@@ -83,7 +83,7 @@ minetest.register_node("nssm:web", {
 minetest.register_node("nssm:thick_web", {
     description = "Thick Web",
     inventory_image = "thick_web.png",
-    tile_images = {"thick_web.png"} ,
+    tiles = {"thick_web.png"} ,
     drawtype = "firelike",
     paramtype = "light",
     walkable = false,
@@ -137,7 +137,7 @@ minetest.register_node("nssm:ink", {
 
 minetest.register_node("nssm:mese_meteor", {
     description = "Mese Meteor",
-    tile_images = {"mese_meteor.png"} ,
+    tiles = {"mese_meteor.png"} ,
     paramtype = "light",
     drop = "",
     groups = {crumbly=1, falling_node=1, flammable = 2},
@@ -237,7 +237,7 @@ minetest.register_node("nssm:phoenix_fire", {
             aspect_w = 16, aspect_h = 16, length = 1},
     }},
     inventory_image = "phoenix_fire.png",
-    light_source = 15,
+    light_source = LIGHT_MAX,
     -- groups = {igniter = 1, snappy=1},
     groups = {snappy=1},
     drop = '',
@@ -364,7 +364,7 @@ minetest.register_node("nssm:rope", {
     sunlight_propagates = true,
     drawtype = "plantlike",
     drops = "nssm:rope",
-    tile_images = { "rope.png" },
+    tiles = { "rope.png" },
     groups = {snappy=1},
 })
 

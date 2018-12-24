@@ -117,7 +117,7 @@ function spears_register_spear(kind, desc, eq, toughness, material)
         }
     })
     
-    SPEAR_ENTITY=spears_set_entity(kind, eq, toughness)
+    local SPEAR_ENTITY=spears_set_entity(kind, eq, toughness)
     
     minetest.register_entity("nssm:spear_" .. kind .. "_entity", SPEAR_ENTITY)
     
