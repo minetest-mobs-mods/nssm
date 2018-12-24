@@ -2,6 +2,7 @@ Mobs bugs + changes
 
 * Check why ice snake and snow biter are not placing ice
 * Check why lava titan is not placing lava
+* Queen ant calls line_of_sight_water which no longer exists in mobs_redo
 
 Server-oriented changes
 
