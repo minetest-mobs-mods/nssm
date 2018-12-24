@@ -78,11 +78,15 @@ mobs:register_mob("nssm:masticone", {
                 false, --collisiondetection
                 "tnt_smoke.png" --texture
             )
-            for i = 1,2 do
-                local pos = {x=pos.x+math.random(-1,1), y=pos.y+0.5, z=pos.z+math.random(-1,1)}
-                local n = minetest.env:get_node(pos).name
-                if n == "air" then
-                    minetest.add_entity(pos, "nssm:masticone")
+            local respawn_count = 4
+            for i = 1,respawn_count do
+                local chance = math.random(1,math.ceil(respawn_count * 1.5))
+                if chance == 1 then
+                    local pos = {x=pos.x+math.random(-1,1), y=pos.y+0.5, z=pos.z+math.random(-1,1)}
+                    local n = minetest.env:get_node(pos).name
+                    if n == "air" then
+                        minetest.add_entity(pos, "nssm:masticone")
+                    end
                 end
             end
         end)

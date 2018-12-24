@@ -34,10 +34,10 @@ minetest.register_node("nssm:invisible_light", {
 
 minetest.register_node("nssm:venomous_gas", {
     description = "Venomous Gas",
-    inventory_image = minetest.inventorycube("venomous_gas.png"),
-    drawtype = "glasslike",
+    inventory_image = minetest.inventorycube("venomous_gas2.png"),
+    drawtype = "firelike",
     tiles = {
-        {name="venomous_gas_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}
+        {name="venomous_gas_animated2.png", animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=3.0}}
     },
     paramtype = "light",
     walkable = false,

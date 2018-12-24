@@ -54,6 +54,11 @@ if mm ~= 0 then
 
     else
 
+        -- ANTS
+        mobs:spawn_specific("nssm:ant_queen", {"nssm:ant_dirt"}, {"air"}, 0, 20, 60, 200000/mm, 1, -31000, 31000)
+        mobs:spawn_specific("nssm:ant_soldier", {"nssm:ant_dirt"}, {"air"}, 0, 20, 7, 30000/mm, 4, -31000, 31000)
+        mobs:spawn_specific("nssm:ant_worker", {"nssm:ant_dirt"}, {"air"}, 0, 20, 5, 10000/mm, 5, -31000, 31000)
+
         -- SPIDERS
         mobs:spawn_specific("nssm:black_widow", {"default:jungle_grass", "default:jungletree", "nssm:web" }, {"air"}, 0, 20, 30, 4400000/mm, 2, -31000, 31000)
         mobs:spawn_specific("nssm:daddy_long_legs", {"default:jungle_grass", "default:jungletree", "nssm:web" }, {"air"}, 0, 30, 10, 4400000/mm, 2, -31000, 31000)

@@ -5,8 +5,7 @@ Mobs bugs + changes
 
 Server-oriented changes
 
-* Ensure the masticone can be defeated by just klilling (use spawn 5, chance 1/6)
-* Find a way to ensure that fire does spread, without changing external mods...
+* Find a way to ensure that fire does not spread, without changing external mods...
     * exploding mobs use generic mobs_redo explode attack
     * mobs_redo uses tnt.explode which determines the fire type on its own
     * for now, this is on an ABM in fire mod - it may be that for NSSM deployment we will need to add a fire override mod...
@@ -25,5 +24,3 @@ Cleanup + misc enhancements
     * Check if mobs are ever registered as items
     * Perhaps remove `_egg` designations altogether
     * Perhaps remove duck egg building recipes
-* Implement speed on eating energy
-* Make brains drop from something
