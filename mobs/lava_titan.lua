@@ -95,7 +95,7 @@ mobs:register_mob("nssm:lava_titan", {
         p2.y = p2.y + 1.5
         s2.y = s2.y + 1.5
 
-        if line_of_sight_water(self, p2, s2) == true then
+        if mobs:line_of_sight(self, p2, s2) == true then
 
             -- play attack sound
             if self.sounds.attack then

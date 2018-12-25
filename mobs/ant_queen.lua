@@ -75,7 +75,7 @@ mobs:register_mob("nssm:ant_queen", {
 
             p.y = p.y + 1.5
             s.y = s.y + 1.5
-            if line_of_sight_water(self, p, s) == true then
+            if mobs:line_of_sight(self, p, s) == true then
                 -- play attack sound
                 if self.sounds.attack then
                     minetest.sound_play(self.sounds.attack, {
