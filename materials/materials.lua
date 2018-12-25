@@ -439,37 +439,37 @@ minetest.register_tool("nssm:felucco_knife", {
 
 if minetest.get_modpath("farming") then
 
-farming.register_hoe(":farming:felucco_hoe", {
-    description = "Felucco Hoe",
-    inventory_image = "felucco_hoe.png",
-    max_uses = 290,
-    material = "nssm:felucco_horn"
-})
+    farming.register_hoe(":farming:felucco_hoe", {
+        description = "Felucco Hoe",
+        inventory_image = "felucco_hoe.png",
+        max_uses = 290,
+        material = "nssm:felucco_horn"
+    })
 
-farming.register_hoe(":farming:ant_hoe", {
-    description = "Ant Hoe",
-    inventory_image = "ant_hoe.png",
-    max_uses = 350,
-    material = "nssm:ant_mandible"
-})
+    farming.register_hoe(":farming:ant_hoe", {
+        description = "Ant Hoe",
+        inventory_image = "ant_hoe.png",
+        max_uses = 350,
+        material = "nssm:ant_mandible"
+    })
 
-minetest.register_craft({
-    output = 'nssm:ant_hoe',
-    recipe = {
-        {'nssm:ant_mandible', 'nssm:ant_mandible'},
-        {'', 'group:stick'},
-        {'', 'group:stick'},
-    }
-})
+    minetest.register_craft({
+        output = 'nssm:ant_hoe',
+        recipe = {
+            {'nssm:ant_mandible', 'nssm:ant_mandible'},
+            {'', 'group:stick'},
+            {'', 'group:stick'},
+        }
+    })
 
-minetest.register_craft({
-    output = 'nssm:felucco_hoe',
-    recipe = {
-        {'nssm:felucco_horn', 'nssm:felucco_horn'},
-        {'', 'group:stick'},
-        {'', 'group:stick'},
-    }
-})
+    minetest.register_craft({
+        output = 'nssm:felucco_hoe',
+        recipe = {
+            {'nssm:felucco_horn', 'nssm:felucco_horn'},
+            {'', 'group:stick'},
+            {'', 'group:stick'},
+        }
+    })
 
 end
 
@@ -1292,35 +1292,6 @@ minetest.register_craft({
         {'group:stick'},
     }
 })
-
-function nssm_register_recip (ingredient, dish, tictac)
-    minetest.register_craft({
-        type = "cooking",
-        output = "nssm:"..dish,
-        recipe = "nssm:"..ingredient,
-        cooktime = tictac,
-    })
-end
-
-nssm_register_recip ('worm_flesh', 'roasted_worm_flesh', 12)
-nssm_register_recip ('duck_legs', 'roasted_duck_legs', 6)
-nssm_register_recip ('spider_leg', 'roasted_spider_leg', 6)
-nssm_register_recip ('felucco_steak', 'roasted_felucco_steak', 10)
-nssm_register_recip ('werewolf_leg', 'roasted_werewolf_leg', 10)
---nssm_register_recip ('brain', 'roasted_brain', 6)
-nssm_register_recip ('amphibian_heart', 'roasted_amphibian_heart', 6)
-nssm_register_recip ('tentacle', 'roasted_tentacle', 6)
-nssm_register_recip ('frosted_amphibian_heart', 'amphibian_heart', 8)
-nssm_register_recip ('heron_leg', 'chichibios_heron_leg', 20)
-nssm_register_recip ('raw_scrausics_wing', 'spicy_scrausics_wing', 12)
-nssm_register_recip ('ant_leg', 'roasted_ant_leg', 6)
-nssm_register_recip ('crocodile_tail', 'roasted_crocodile_tail', 16)
-nssm_register_recip ('dolidrosaurus_fin', 'roasted_dolidrosaurus_fin', 8)
-nssm_register_recip ('amphibian_ribs', 'roasted_amphibian_ribs', 12)
-nssm_register_recip ('mantis_meat', 'roasted_mantis_meat', 6)
-nssm_register_recip ('spider_meat', 'roasted_spider_meat', 6)
-nssm_register_recip ('silk_gland', 'roasted_silk_gland', 4)
-nssm_register_recip ('larva_juice', 'larva_soup', 20)
 
 
 

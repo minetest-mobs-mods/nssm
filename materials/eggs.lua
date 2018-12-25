@@ -1,4 +1,4 @@
--- Eggs recipes
+-- Craft eggs recipes
 -- To be deprecated with drops
 
 minetest.register_craft({

@@ -1,4 +1,6 @@
-# Not So Simple Mobs by NPX team
+# Not So Simple Mobs
+
+(C) 2016 NPX Team and Contributors , LGPLv2.1
 
 NSSM adds a wide variety of very hostile mobs, as well as new weapons, armours and foods.
 

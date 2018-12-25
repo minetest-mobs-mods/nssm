@@ -14,6 +14,15 @@ function nssm:register_eatcraftitems (name, descr, gnam)
     })
 end
 
+function nssm_register_recipe (ingredient, dish, tictac)
+    minetest.register_craft({
+        type = "cooking",
+        output = "nssm:"..dish,
+        recipe = "nssm:"..ingredient,
+        cooktime = tictac,
+    })
+end
+
 -- Materials
 
 nssm:register_noneatcraftitems ('sky_feather','Sky Feather')
@@ -119,3 +128,25 @@ nssm:register_eatcraftitems ('silk_gland','Silk Gland',-1)
 nssm:register_eatcraftitems ('roasted_silk_gland','Roasted Silk Gland',3)
 nssm:register_eatcraftitems ('super_silk_gland','Super Silk Gland',-8)
 nssm:register_eatcraftitems ('roasted_super_silk_gland','Roasted Super Silk Gland',2)
+
+-- Cooking
+
+nssm_register_recipe ('worm_flesh', 'roasted_worm_flesh', 12)
+nssm_register_recipe ('duck_legs', 'roasted_duck_legs', 6)
+nssm_register_recipe ('spider_leg', 'roasted_spider_leg', 6)
+nssm_register_recipe ('felucco_steak', 'roasted_felucco_steak', 10)
+nssm_register_recipe ('werewolf_leg', 'roasted_werewolf_leg', 10)
+nssm_register_recipe ('brain', 'roasted_brain', 6)
+nssm_register_recipe ('amphibian_heart', 'roasted_amphibian_heart', 6)
+nssm_register_recipe ('tentacle', 'roasted_tentacle', 6)
+nssm_register_recipe ('frosted_amphibian_heart', 'amphibian_heart', 8)
+nssm_register_recipe ('heron_leg', 'chichibios_heron_leg', 20)
+nssm_register_recipe ('raw_scrausics_wing', 'spicy_scrausics_wing', 12)
+nssm_register_recipe ('ant_leg', 'roasted_ant_leg', 6)
+nssm_register_recipe ('crocodile_tail', 'roasted_crocodile_tail', 16)
+nssm_register_recipe ('dolidrosaurus_fin', 'roasted_dolidrosaurus_fin', 8)
+nssm_register_recipe ('amphibian_ribs', 'roasted_amphibian_ribs', 12)
+nssm_register_recipe ('mantis_meat', 'roasted_mantis_meat', 6)
+nssm_register_recipe ('spider_meat', 'roasted_spider_meat', 6)
+nssm_register_recipe ('silk_gland', 'roasted_silk_gland', 4)
+nssm_register_recipe ('larva_juice', 'larva_soup', 20)
