@@ -47,6 +47,13 @@ local function set_player_boost(user, duration, power)
     local remaining = stack_boost(user:get_player_name(), duration)
 
     minetest.chat_send_player(user:get_player_name(), "You have "..(math.floor(remaining*10)/10).."s of boost")
+
+    local userpos = user:get_pos()
+    minetest.sound_play("nssm_energy_powerup", {
+        pos = userpos,
+        max_hear_distance = 20,
+        gain = 1,
+    })
 end
 
 minetest.register_globalstep(function(dtime)
