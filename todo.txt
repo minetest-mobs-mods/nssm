@@ -2,7 +2,6 @@ Mobs bugs + changes
 
 * Check why ice snake and snow biter are not placing ice
 * Check why lava titan is not placing lava
-* Queen ant calls line_of_sight_water which no longer exists in mobs_redo
 
 Server-oriented changes
 
@@ -15,6 +14,7 @@ API refactoring
 
 * Check difference between putting_ability and midas_ability
 * Rework the virulence/cryosave/affectbones safeguards
+    * These were all different measures to solve the same problem - mobs that place/transform blocks destroying bones...
 * Split materials.lua into nodes, items, abms
     * in-progress
     * did some further splitting to improve maintainability
@@ -25,3 +25,4 @@ Cleanup + misc enhancements
     * Check if mobs are ever registered as items
     * Perhaps remove `_egg` designations altogether
     * Perhaps remove duck egg building recipes
+* Revisit custom weapons and put them in a `weapons/` dir, including spears, special swords etc
