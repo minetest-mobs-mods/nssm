@@ -23,6 +23,6 @@ nssm_register_evocation ("bloco","Bloco Evocation", 3)
 nssm_register_evocation ("enderduck","Enderduck Evocation", 2)
 nssm_register_evocation ("flying_duck","Flying Duck Evocation", 3)
 nssm_register_evocation ("swimming_duck","Swimming Duck Evocation", 3)
-nssm_register_evocation ("duckking_egg","Duckking Evocation", 1)
+nssm_register_evocation ("duckking","Duckking Evocation", 1)
 nssm_register_evocation ("spiderduck","Spiderduck Evocation", 2)
 

@@ -11,6 +11,7 @@ end
 nssm:load("api/settings.lua")
 nssm:load("api/main_api.lua")
 nssm:load("api/darts.lua")
+nssm:load("api/item_hoover.lua")
 
 --Mobs
 
