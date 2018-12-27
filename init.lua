@@ -21,6 +21,8 @@ nssm:load("mobs/spawn.lua")
 
 nssm:load("materials/materials.lua")
 
+nssm:load("tools/basic.lua")
+nssm:load("tools/moranga_tools.lua")
 nssm:load("tools/spears.lua")
 nssm:load("tools/weapons.lua")
 nssm:load("tools/rainbow_staff.lua")
