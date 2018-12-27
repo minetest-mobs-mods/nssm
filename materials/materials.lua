@@ -598,6 +598,7 @@ minetest.register_tool("nssm:tarantula_warhammer", {
 })
 
 minetest.register_tool("nssm:axe_of_pride", {
+    -- Damage enemy, heal user by the same amount
     description = "Axe of Pride",
     inventory_image = "axe_of_pride.png",
     wield_scale= {x=2,y=2,z=1.5},
@@ -605,7 +606,7 @@ minetest.register_tool("nssm:axe_of_pride", {
         full_punch_interval =1.3 ,
         max_drop_level=1,
         groupcaps={
-            snappy={times={[1]=0.6, [2]=0.5, [3]=0.4}, uses=100, maxlevel=1},
+            choppy={times={[1]=0.6, [2]=0.5, [3]=0.4}, uses=100, maxlevel=1},
             fleshy={times={[2]=0.8, [3]=0.4}, uses=400, maxlevel=1}
         },
         damage_groups = {fleshy=16},
@@ -652,7 +653,10 @@ minetest.register_tool("nssm:axe_of_pride", {
                             if (obj:get_luaentity().health) then
                                 --minetest.chat_send_all("Entity")
                                 obj:get_luaentity().health = obj:get_luaentity().health -10
-                                check_for_death(obj:get_luaentity())
+
+                                if obj:get_luaentity().check_for_death then
+                                    obj:get_luaentity():check_for_death({type = "punch"})
+                                end
 
                                 dropper:set_hp(dropper:get_hp()+10)
                                 --flag = 1
@@ -693,6 +697,7 @@ minetest.register_tool("nssm:axe_of_pride", {
 })
 
 minetest.register_tool("nssm:gratuitousness_battleaxe", {
+    -- aka Battleaxe of Boom - causes and explosion at <epicenter_distance> nodes from player
     description = "Gratuitousness Battleaxe",
     inventory_image = "gratuitousness_battleaxe.png",
     wield_scale= {x=2.2,y=2.2,z=1.5},
@@ -706,13 +711,14 @@ minetest.register_tool("nssm:gratuitousness_battleaxe", {
         damage_groups = {fleshy=18},
     },
     on_drop = function(itemstack, dropper, pos)
+        local epicenter_distance = 10
         local objects = minetest.env:get_objects_inside_radius(pos, 10)
         local flag = 0
         local vec = dropper:get_look_dir()
         local pos = dropper:getpos()
         --vec.y = 0
 
-        for i=1,10 do
+        for i=1,epicenter_distance do
             pos = vector.add(pos, vec)
         end
 
@@ -740,6 +746,7 @@ minetest.register_tool("nssm:gratuitousness_battleaxe", {
 })
 
 minetest.register_tool("nssm:sword_of_eagerness", {
+    -- Cause enemies to be sent upwards y+20
     description = "Sword of Eagerness",
     inventory_image = "sword_of_eagerness.png",
     wield_scale= {x=2,y=2,z=1},
@@ -829,6 +836,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
 })
 
 minetest.register_tool("nssm:falchion_of_eagerness", {
+    -- Sends player 16m in the direction in which they are pointing...
     description = "Falchion of Eagerness",
     inventory_image = "falchion_of_eagerness.png",
     wield_scale= {x=2,y=2,z=1},
@@ -843,11 +851,11 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
     },
     on_drop = function(itemstack, dropper, pos)
         local vec = dropper:get_look_dir()
-        local pos = dropper:getpos()
+        local pos_destination = dropper:getpos()
         --vec.y = 0
 
         for i=1,16 do
-            pos = vector.add(pos, vec)
+            pos_destination = vector.add(pos_destination, vec)
         end
 
         local pname = dropper:get_player_name()
@@ -868,15 +876,20 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
                 end
             end
             if found == 0 then
-                minetest.chat_send_player(pname, "You haven't got enough life_energy!")
+                minetest.chat_send_player(pname, "You do not have enough life energy!")
                 return
+
+            elseif minetest.is_protected(pos_destination, pname) or nssm.unswappable_node(pos_destination) then
+                minetest.chat_send_player(pname, "You cannot go to that protected space!")
+                return
+
             else
-                local s = dropper:getpos()
+                local pos_particles = dropper:getpos()
                 minetest.add_particlespawner(
                     25, --amount
                     0.3, --time
-                    vector.subtract(s, 0.5), --minpos
-                    vector.add(s, 0.5), --maxpos
+                    vector.subtract(pos_particles, 0.5), --minpos
+                    vector.add(pos_particles, 0.5), --maxpos
                     {x=0, y=10, z=0}, --minvel
                     {x=0.1, y=11, z=0.1}, --maxvel
                     {x=0,y=1,z=0}, --minacc
@@ -888,19 +901,24 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
                     false, --collisiondetection
                     "slothful_soul_fragment.png" --texture
                 )
-                minetest.remove_node(pos)
-                pos.y=pos.y+1
-                minetest.remove_node(pos)
-                pos.y=pos.y-2
-                minetest.remove_node(pos)
-                dropper:setpos(pos)
-                s = pos
-                s.y = s.y+10
+
+                local dy, digpos
+                for dy = -1,1 do
+                    digpos = pos_destination + dy
+                    if not nssm.unswappable_node(digpos) then
+                        minetest.remove_node(digpos)
+                    end
+                end
+
+                dropper:setpos(pos_destination)
+
+                pos_particles = pos_destination
+                pos_particles.y = pos_particles.y+10
                 minetest.add_particlespawner(
                     25, --amount
                     0.3, --time
-                    vector.subtract(s, 0.5), --minpos
-                    vector.add(s, 0.5), --maxpos
+                    vector.subtract(pos_particles, 0.5), --minpos
+                    vector.add(pos_particles, 0.5), --maxpos
                     {x=0, y=-10, z=0}, --minvel
                     {x=0.1, y=-11, z=0.1}, --maxvel
                     {x=0,y=-1,z=0}, --minacc
@@ -912,6 +930,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
                     false, --collisiondetection
                     "slothful_soul_fragment.png" --texture
                 )
+
                 local items = player_inv:get_stack('main', found)
                 items:set_count(items:get_count()-5)
                 player_inv:set_stack('main', found, items)
@@ -921,6 +940,8 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
 })
 
 minetest.register_tool("nssm:sword_of_envy", {
+    -- Switch the health of the enemy with the health of the player
+    -- Particularly useful when enemy's health is over 20
     description = "Sword of Envy",
     inventory_image = "sword_of_envy.png",
     wield_scale= {x=2,y=2,z=1},
@@ -971,14 +992,18 @@ minetest.register_tool("nssm:sword_of_envy", {
                             end
                         else
                             if (obj:get_luaentity().health) then
-                                local hpp = obj:get_luaentity().health
+                                local obj_health = obj:get_luaentity().health
                                 obj:get_luaentity().health = dropper:get_hp()
-                                if hpp > 20 then
+
+                                if obj_health > 20 then
                                     dropper:set_hp(20)
                                 else
-                                    dropper:set_hp(hpp)
+                                    dropper:set_hp(obj_health)
                                 end
-                                check_for_death(obj:get_luaentity())
+
+                                if obj:get_luaentity().check_for_death then
+                                    obj:get_luaentity():check_for_death({type = "punch"})
+                                end
                                 flag = 1
 
                                 local items = player_inv:get_stack('main', found)
@@ -994,6 +1019,7 @@ minetest.register_tool("nssm:sword_of_envy", {
 })
 
 minetest.register_tool("nssm:sword_of_gluttony", {
+    -- Kills nearby monsters and causes them to drop roasted duck legs! :D
     description = "Sword of Gluttony",
     inventory_image = "sword_of_gluttony.png",
     wield_scale= {x=2,y=2,z=1},
@@ -1046,6 +1072,8 @@ minetest.register_tool("nssm:sword_of_gluttony", {
                                     local pos = obj:getpos()
                                     obj:remove()
 
+                                    -- We don't use check_for_death, as that would cause it to put regular drops
+                                    --  (FIXME - this means hydra hobs do not respawn...)
                                     --check_for_death(obj:get_luaentity())
                                     --flag = 1
                                     --take energy globe from inventory:
@@ -1055,7 +1083,7 @@ minetest.register_tool("nssm:sword_of_gluttony", {
 
                                     for i = 1,math.random(1,4) do
                                         drop = minetest.add_item(pos, "nssm:roasted_duck_legs 1")
-                                        drops(drop)
+                                        nssm.drops(drop)
                                     end
 
                                     local s = obj:getpos()
@@ -1089,6 +1117,8 @@ minetest.register_tool("nssm:sword_of_gluttony", {
 })
 
 minetest.register_tool("nssm:death_scythe", {
+    -- Kills everything around it
+    -- Casues dry grass, dry shrubs, and dead leaves, dropping lots of life eergy to drop too
     description = "Death Scythe",
     wield_scale= {x=3,y=3,z=1.3},
     inventory_image = "death_scythe.png",
@@ -1116,7 +1146,9 @@ minetest.register_tool("nssm:death_scythe", {
             else
                 if (obj:get_luaentity().health) then
                     obj:get_luaentity().health = obj:get_luaentity().health -40
-                    check_for_death(obj:get_luaentity())
+                    if obj:get_luaentity().check_for_death then
+                        obj:get_luaentity():check_for_death({type = "punch"})
+                    end
                     flag = 1
                 end
             end
@@ -1143,7 +1175,7 @@ minetest.register_tool("nssm:death_scythe", {
             if math.random(1,3)==1 then
                 v.y = v.y +2
                 drop = minetest.add_item(v, "nssm:life_energy 1")
-                drops(drop)
+                nssm.drops(drop)
             end
         end
 
@@ -1154,7 +1186,7 @@ minetest.register_tool("nssm:death_scythe", {
             if math.random(1,3)==1 then
                 v.y = v.y +2
                 drop = minetest.add_item(v, "nssm:life_energy 1")
-                drops(drop)
+                nssm.drops(drop)
             end
         end
 
@@ -1165,7 +1197,7 @@ minetest.register_tool("nssm:death_scythe", {
             if math.random(1,3)==1 then
                 v.y = v.y +2
                 drop = minetest.add_item(v, "nssm:life_energy 1")
-                drops(drop)
+                nssm.drops(drop)
             end
         end
     end,

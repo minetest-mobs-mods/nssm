@@ -1,7 +1,6 @@
 Mobs bugs + changes
 
-* Check why ice snake and snow biter are not placing ice
-* Check why lava titan is not placing lava
+* Ensure phoenix cannot burn through unswappable
 
 Server-oriented changes
 

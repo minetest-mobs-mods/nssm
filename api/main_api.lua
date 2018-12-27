@@ -5,22 +5,41 @@ local c_obsidian = minetest.get_content_id("default:obsidian")
 local c_brick = minetest.get_content_id("default:obsidianbrick")
 local c_chest = minetest.get_content_id("default:chest_locked")
 
-nssm.lessvirulent = minetest.settings:get_bool("nssm.lessvirulent")
-nssm.safebones = minetest.settings:get_bool("nssm.safebones")
-nssm.cryosave = minetest.settings:get_bool("nssm.cryosave")
+local no_swap_nodes = {
+    "bones:bones",
+    "air",
+    "ignore",
+    "default:chest_locked",
+}
 
-function nssm:virulence(mobe)
-    if not nssm.lessvirulent then
-        return 0
+nssm.unswappable_node = function (pos, node_list)
+    -- Return true if the original_node should not be swapped
+
+    local _, node, original_node
+    original_node = minetest.env:get_node(pos).name
+
+    if minetest.get_item_group(original_node) == "unbreakable" then
+        return true
     end
-    return math.ceil(100 / mobe.hp_max)
+
+    if minetest.is_protected(pos, "") then
+        return true
+    end
+
+    if node_list then
+        for _,node in pairs(node_list) do
+            if node == original_node then return true end
+        end
+    end
+
+    for _,node in pairs(no_swap_nodes) do
+        if node == original_node then return true end
+    end
+
+    return false
 end
 
-function nssm:affectbones(mobe) -- as function for adaptable heuristic
-    return not nssm.safebones
-end
-
-function drops(drop)
+nssm.drops = function(drop)
     if drop then
         drop:setvelocity({
             x = math.random(-10, 10) / 9,
@@ -83,32 +102,6 @@ function dist_pos(p, s)
     return r
 end
 
---check_for_death functions customized for monsters who respawns (Masticone)
-function check_for_death_hydra(self)
-    local hp = self.object:get_hp()
-    if hp > 0 then
-        self.health = hp
-        if self.sounds.damage ~= nil then
-            minetest.sound_play(self.sounds.damage,{
-                object = self.object,
-                max_hear_distance = self.sounds.distance
-            })
-        end
-        return false
-    end
-    local pos = self.object:getpos()
-    local obj = nil
-    if self.sounds.death ~= nil then
-        minetest.sound_play(self.sounds.death,{
-            object = self.object,
-            max_hear_distance = self.sounds.distance
-        })
-    end
-        self.object:remove()
-    return true
-end
-
-
 function round(n)
     if (n>0) then
         return n % 1 >= 0.5 and math.ceil(n) or math.floor(n)
@@ -145,7 +138,6 @@ function digging_attack(
     dim         --vector representing the dimensions of the mob
     )
 
-    --if math.random(1,nssm:virulence(self)) ~= 1 then return end
     if self.attack and self.attack:is_player() then
         local s = self.object:getpos()
         local p = self.attack:getpos()
@@ -155,53 +147,42 @@ function digging_attack(
         local per = perpendicular_vector(dir)
 
         local posp = vector.add(s,dir)
-
-        --minetest.chat_send_all("La mia posizione:"..minetest.pos_to_string(s))
-        --minetest.chat_send_all("La posizione davanti:"..minetest.pos_to_string(posp))
         posp = vector.subtract(posp,per)
 
+        if nssm.unswappable_node(posp) then
+            return
+        end
 
+        local j
         for j = 1,3 do
-            --minetest.chat_send_all("pos1:"..minetest.pos_to_string(posp).." per.y= "..dim.y)
-            if minetest.is_protected(posp, "") then
-                return
-            end
-            local pos1 = posp
+            local pos_to_dig = posp
 
-            for i = 0,dim.y do
-
-                --minetest.chat_send_all("pos2:"..minetest.pos_to_string(posp).." per.y= "..per.y)
-
-                local n = minetest.env:get_node(pos1).name
-                --local up = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-                if group == nil then
-                    if minetest.get_item_group(n, "unbreakable") == 1 or minetest.is_protected(pos1, "") or (n == "bones:bones" and not nssm:affectbones(self) ) then
-                    else
-                        --minetest.env:set_node(p, {name="air"})
-                        minetest.remove_node(pos1)
-                    end
-                else
-                    if ((minetest.get_item_group(n, group)==1) and (minetest.get_item_group(n, "unbreakable") ~= 1) and (n ~= "bones:bones") and not (minetest.is_protected(pos1, "")) ) then
-                        --minetest.env:set_node(p, {name="air"})
-                        minetest.remove_node(pos1)
-                    end
+            for i = 0,dim.y do -- from 0 to dy between mob and player altitude?
+                local target_node = minetest.env:get_node(pos_to_dig).name
+                if not nssm.unswappable_node(pos_to_dig) then
+                    minetest.remove_node(pos_to_dig)
                 end
-                pos1.y = pos1.y+1
+                pos_to_dig.y = pos_to_dig.y+1
             end
+
             posp.y=s.y
             posp=vector.add(posp,per)
-            --minetest.chat_send_all("pos3:"..minetest.pos_to_string(posp).." per.y= "..per.y)
         end
     end
 end
 
+local function safely_put_block(self, pos_under_mob, original_node, putting_block)
+    minetest.debug("Set node "..putting_block.." under "..minetest.pos_to_string(pos_under_mob))
+    if not nssm.unswappable_node(pos_under_mob, {putting_block}) then
+        minetest.env:set_node(pos_under_mob, {name = putting_block})
+    end
+end
 
-function putting_ability(        --puts under the mob the block defined as 'p_block'
-    self,        --the entity of the mob
-    p_block,     --definition of the block to use
-    max_vel    --max velocity of the mob
+function putting_ability(        --sets 'putting_block' under the mob, as well as in front
+    self,        -- the entity of the mob
+    putting_block,     -- itemstring of block to put
+    max_vel    -- max velocity of the mob
     )
-    --if math.random(1,nssm:virulence(self)) ~= 1 then return end
 
     local v = self.object:getvelocity()
 
@@ -222,39 +203,33 @@ function putting_ability(        --puts under the mob the block defined as 'p_bl
         end
     end
 
-    local pos = self.object:getpos()
-    local pos1
-    pos.y=pos.y-1
-    pos1 = {x = pos.x+dx, y = pos.y, z = pos.z+dz}
-    local n = minetest.env:get_node(pos).name
-    local n1 = minetest.env:get_node(pos1).name
-    local oldmetainf = {minetest.get_meta(pos):to_table(),minetest.get_meta(pos1):to_table() }
-    if n~=p_block and not minetest.is_protected(pos, "") and (n == "bones:bones" and nssm:affectbones(self) ) and n~="air" then
-        minetest.env:set_node(pos, {name=p_block})
-        if nssm.cryosave then
-            local metai = minetest.get_meta(pos)
-            metai:from_table(oldmetainf[1]) -- this is enough to save the meta
-            metai:set_string("nssm",n)
-        end
-    end
-    if n1~=p_block and not minetest.is_protected(pos1, "") and (n == "bones:bones" and nssm:affectbones(self) ) and n~="air" then
-        minetest.env:set_node(pos1, {name=p_block})
-        if nssm.cryosave then
-            local metai = minetest.get_meta(pos1)
-            metai:from_table(oldmetainf[2]) -- this is enough to save the meta
-            metai:set_string("nssm",n1)
-        end
-    end
-end
+    local pos_under_mob = self.object:getpos()
+    local pos_under_frontof_mob
 
+    pos_under_mob.y=pos_under_mob.y - 1
+    pos_under_frontof_mob = {
+        x = pos_under_mob.x + dx,
+        y = pos_under_mob.y,
+        z = pos_under_mob.z + dz
+    }
+
+    local node_under_mob = minetest.env:get_node(pos_under_mob).name
+    local node_under_frontof_mob = minetest.env:get_node(pos_under_frontof_mob).name
+
+    local oldmetainf = {
+        minetest.get_meta(pos_under_mob):to_table(),
+        minetest.get_meta(pos_under_frontof_mob):to_table()
+    }
+
+    safely_put_block(self, pos_under_mob, node_under_mob, putting_block)
+    safely_put_block(self, pos_under_frontof_mob, node_under_frontof_mob, putting_block)
+end
 
 function webber_ability(        --puts randomly around the block defined as w_block
     self,        --the entity of the mob
     w_block,     --definition of the block to use
     radius        --max distance the block can be put
     )
-
-    if (nssm:virulence(self)~=0) and (math.random(1,nssm:virulence(self)) ~= 1) then return end
 
     local pos = self.object:getpos()
     if (math.random(1,55)==1) then
@@ -264,7 +239,7 @@ function webber_ability(        --puts randomly around the block defined as w_bl
         local t = {x=pos.x+dx, y=pos.y, z=pos.z+dz}
         local n = minetest.env:get_node(p).name
         local k = minetest.env:get_node(t).name
-        if ((n~="air")and(k=="air")) and not minetest.is_protected(t, "") then
+        if not unswappable_node(p) then
             minetest.env:set_node(t, {name=w_block})
         end
     end
@@ -278,15 +253,13 @@ function midas_ability(        --ability to transform every blocks it touches in
     height         --height of the mob
     )
 
-    if math.random(1,nssm:virulence(self)) ~= 1 then return end
-
     local v = self.object:getvelocity()
     local pos = self.object:getpos()
-
+--[[
     if minetest.is_protected(pos, "") then
         return
     end
-
+--]]
     local max = 0
     local yaw = (self.object:getyaw() + self.rotate) or 0
     local x = math.sin(yaw)*-1
@@ -317,8 +290,7 @@ function midas_ability(        --ability to transform every blocks it touches in
                 local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                 local n = minetest.env:get_node(p).name
 
-                if minetest.get_item_group(n, "unbreakable") == 1 or minetest.is_protected(p, "") or n=="air" or (n == "bones:bones" and not nssm:affectbones(self)) then
-                else
+                if not unswappable_noed(p) then
                     minetest.env:set_node(p, {name=m_block})
                 end
             end

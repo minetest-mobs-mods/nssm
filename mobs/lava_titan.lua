@@ -82,12 +82,16 @@ mobs:register_mob("nssm:lava_titan", {
     },
     do_custom = function (self)
         digging_attack(self, nil, self.run_velocity, {x=0, y=4, z=0})
+
+        -- Deactivated because... non existent ?
         --digging_ability(self, nil, self.run_velocity, {x=0, y=5, z=0})
+
+        -- For now deactivate - it places lava under it, sinks, then places lava under it, sinks, etc ...
         --putting_ability(self, "default:lava_source", self.run_velocity)
     end,
     --[[
     custom_attack = function (self)
-        digging_attack
+        -- digging_attack
         mobs:set_animation(self, "punch")
         local p2 = p
         local s2 = s
@@ -113,5 +117,5 @@ mobs:register_mob("nssm:lava_titan", {
             }, nil)
         end
     end,
-    ]]--
+    --]]
 })
