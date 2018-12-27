@@ -1,5 +1,3 @@
-
---function
 function spears_shot (itemstack, player)
     local spear = itemstack:get_name() .. '_entity'
     local playerpos = player:getpos()
@@ -155,7 +153,7 @@ spears_register_spear('felucco_horn', 'Felucco Horn', 7, 9, 'nssm:felucco_horn')
 --Spear of peace
 minetest.register_tool("nssm:spear_of_peace", {
     description = "Spear of Peace",
-            wield_image = "spear_of_peace.png",
+    wield_image = "spear_of_peace.png",
     inventory_image = "spear_of_peace.png^[transform4",
     wield_scale= {x=4,y=2,z=2},
     on_drop = function(itemstack, user, pointed_thing)

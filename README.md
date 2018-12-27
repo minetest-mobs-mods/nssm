@@ -4,10 +4,6 @@
 
 NSSM adds a wide variety of very hostile mobs, as well as new weapons, armours and foods.
 
-Ideal for single-player games !
-
-The mobs are destructive of their environment, a server-oriented configuration will be added in due course.
-
 This mod is a continuation of NPX Team's Not So Simple Mobs. Notes from the original README are available below.
 
 ## License
@@ -19,15 +15,17 @@ This mod is a continuation of NPX Team's Not So Simple Mobs. Notes from the orig
 * License for individual artistic contributions:
     * `sounds/nssm_energy_powerup.ogg` - Tai Kedzierski, CC-BY-SA 4.0
 
-## Dependencies
+## Core Dependencies
 
-Starting from version 3.0 the mod depends the on `mobs_redo` api: <https://notabug.org/TenPlus1/mobs_redo/>
+This mod relies heavily on the features in TenPlus1's [`mobs_redo`](https://notabug.org/tenplus1/mobs_redo), which is developed independently.
+
+This version of NSSM was adjusted to run against commit `487e037cc9` (from 2018-12-20). If you are having problems with mod compatibility, please ensure you are using a version of `mobs_redo` close to that commit.
 
 ## Some notes from NPX Team !
 
 We suggest that you play nssm with:
 
-* nssb (Not So Simple Buildings, our second mod that adds many blocks and Morlendor, the new dimension):
+* [`NSSB`](https://github.com/taikedz-mt/nssb) (Not So Simple Buildings, NPX Team's second mod that adds many blocks and Morlendor, the new dimension!)
 * `3d_armors` (with which you can use nssm armors):
 * `unified_inventory` (useful to discover all the new recipes and to use the armors):
 * a throwing mod (a mod that add bows) if compatible with the Tenplus1's `damage_system`
