@@ -231,10 +231,13 @@ local function default_on_step(
                 if (obj:get_entity_name() ~= self.object:get_luaentity().name) and (obj:get_luaentity().name ~= "__builtin:item") then
                     if obj:is_player() then
                         obj:set_hp(obj:get_hp()-damage)
+
                     elseif obj:get_luaentity().health then
                         obj:get_luaentity().health = obj:get_luaentity().health - damage
-                        --minetest.chat_send_all("Danneggiato: "..obj:get_entity_name().." Vita: "..obj:get_luaentity().health)
-                        check_for_death(obj:get_luaentity())
+
+                        if obj:get_luaentity().check_for_death then
+                            obj:get_luaentity():check_for_death({type = "punch"})
+                        end
                     end
                 end
             end

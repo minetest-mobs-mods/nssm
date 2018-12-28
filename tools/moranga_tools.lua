@@ -178,7 +178,7 @@ minetest.register_tool("nssm:axe_of_pride", {
                         obj:set_hp(obj:get_hp()-10)
                         dropper:set_hp(dropper:get_hp()+10)
 
-                        eat_dropfuel(player, dropfuel)
+                        eat_dropfuel(dropper, dropfuel)
                         part = 1
                     end
                 else
@@ -299,7 +299,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
                             obj:setpos(pos)
                             --flag = 1
 
-                            eat_dropfuel(dropfuel)
+                            eat_dropfuel(dropper, dropfuel)
                         end
                     else
                         if (obj:get_luaentity().health) then
@@ -308,7 +308,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
                             part=1
                             --flag = 1
 
-                            eat_dropfuel(dropfuel)
+                            eat_dropfuel(dropper, dropfuel)
                         end
                     end
                     if part==1 then
