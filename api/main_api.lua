@@ -238,7 +238,7 @@ function webber_ability(        --puts randomly around the block defined as w_bl
         local t = {x=pos.x+dx, y=pos.y, z=pos.z+dz}
         local n = minetest.env:get_node(p).name
         local k = minetest.env:get_node(t).name
-        if not unswappable_node(p) then
+        if not nssm.unswappable_node(p) then
             minetest.env:set_node(t, {name=w_block})
         end
     end
@@ -289,7 +289,7 @@ function midas_ability(        --ability to transform every blocks it touches in
                 local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                 local n = minetest.env:get_node(p).name
 
-                if not unswappable_noed(p) then
+                if not nssm.unswappable_node(p) then
                     minetest.env:set_node(p, {name=m_block})
                 end
             end
