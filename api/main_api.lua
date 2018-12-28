@@ -171,8 +171,8 @@ function digging_attack(
 end
 
 local function safely_put_block(self, pos_under_mob, original_node, putting_block)
-    minetest.debug("Set node "..putting_block.." under "..minetest.pos_to_string(pos_under_mob))
-    if not nssm.unswappable_node(pos_under_mob, {putting_block}) then
+    --minetest.debug("Set node "..putting_block.." under "..minetest.pos_to_string(pos_under_mob))
+    if not nssm.unswappable_node(pos_under_mob, {putting_block, "air"}) then
         minetest.env:set_node(pos_under_mob, {name = putting_block})
     end
 end
