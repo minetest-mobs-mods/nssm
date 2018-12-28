@@ -30,9 +30,5 @@ nssm:load("tools/bomb_evocation.lua")
 nssm:load("tools/rainbow_staff.lua")
 nssm:load("tools/armor.lua")
 
--- Imported Code
-nssm:load("imported_code/xdecor_mechanisms.lua")
-nssm:load("imported_code/item_hoover.lua")
-
 -- Server
 nssm:load("materials/mob_protection.lua")
