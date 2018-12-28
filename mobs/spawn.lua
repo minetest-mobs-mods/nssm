@@ -86,6 +86,7 @@ if mm ~= 0 then
 
         -- FOREST
 
+        -- Mantis larvae
         mobs:spawn_specific("nssm:larva", {"default:dirt_with_grass"}, {"default:tree","default:aspen_tree"},
 			0, 20, 40, 200000/mm, 1, -31000, 140)
 
@@ -186,17 +187,12 @@ if mm ~= 0 then
 
         -- FOREST
 
+        -- Mantis larvae
         mobs:spawn_specific("nssm:larva", {"default:dirt_with_grass"}, {"default:tree","default:aspen_tree"},
 			0, 20, 40, 800000/mm, 1, -31000, 140)
 
         mobs:spawn_specific("nssm:masticone", {"default:dirt_with_grass"}, {"default:tree","default:aspen_tree"},
 			0, 20, 180, 6000000/mm, 2, -31000, 140)
-
-        mobs:spawn_specific("nssm:mantis", {"default:dirt_with_grass"}, {"default:tree","default:aspen_tree"},
-			0, 20, 40, 1000000/mm, 1, -31000, 140)
-
-        mobs:spawn_specific("nssm:mantis_beast", {"default:dirt_with_grass"}, {"default:tree","default:aspen_tree"},
-			0, 20, 40, 100000/mm, 1, -31000, 140)
 
         -- PINE FOREST
 

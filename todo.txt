@@ -1,6 +1,7 @@
 Mobs bugs + changes
 
 * Ensure phoenix cannot burn through unswappable
+* Check darts.lua - this is where phoenix "arrow" is defined, these routines do not have protection checks
 
 Server-oriented changes
 
