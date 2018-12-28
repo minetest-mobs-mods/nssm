@@ -11,9 +11,7 @@ This mod is a continuation of NPX Team's Not So Simple Mobs. Notes from the orig
 * License for the code: `LGPLv2.1 or later`
     * see [LICENSE.txt](LICENSE.txt) and [license_notes.md](license_notes.md) for info on the license update
     * Copyright NPX Team and contributors
-* License for all the models, textures and sounds, except those mentioned further: `CC-BY-SA 4.0`, attribution "NPX Team"
-* License for individual artistic contributions:
-    * `sounds/nssm_energy_powerup.ogg` - Tai Kedzierski, CC-BY-SA 4.0
+* License for non-code assets: see `LICENSE_ART.txt`
 
 ## Core Dependencies
 

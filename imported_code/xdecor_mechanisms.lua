@@ -191,7 +191,8 @@ minetest.register_node("nssm:lever_on", {
     sounds = default.node_sound_stone_defaults(),
     sunlight_propagates = true,
     on_rotate = screwdriver.rotate_simple,
-    drop = "nssm:lever_off"
+    drop = "nssm:lever_off",
+    paramtype2 = "facedir",
 })
 
 minetest.register_craft({

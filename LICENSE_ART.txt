@@ -1,0 +1,14 @@
+License for Artistic Assets
+===========================
+
+License for all the models, textures and sounds, except otherwise specified, are `CC-BY-SA 4.0`, attribution "NPX Team"
+
+* License for individual artistic contributions:
+    * `sounds/nssm_energy_powerup.ogg` - Tai Kedzierski, CC-BY-SA 4.0
+    * `sounds/nssm_inhibit.*.ogg` - Tai Kedzierski, CC-BY-SA 4.0
+
+
+* License for imported assets:
+    * `sounds/item_drop.*.ogg` - `PilzAdam`, originally WTFPL
+    * `textures/xdecor_*.png` - `kilbith <jeanpatrick.guerrero@gmail.com>`, originally WTFPL
+
