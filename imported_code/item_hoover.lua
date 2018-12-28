@@ -1,5 +1,4 @@
 local step_timer = 0
-local activate = true
 
 -- Code and sounds taken from PilzAdam's `item_drop` mod (WTFPL)
 -- https://github.com/PilzAdam/item_drop
@@ -8,7 +7,7 @@ local activate = true
 -- Ostensibly for testing for now
 -- Entities do not move within the expected radius
 
-if not minetest.get_modpath("itemdrop") and activate then
+if not minetest.get_modpath("itemdrop") then
     minetest.register_globalstep(function(dtime)
         step_timer = step_timer + dtime
         if step_timer >= 0.2 then
