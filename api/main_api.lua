@@ -7,7 +7,6 @@ local c_chest = minetest.get_content_id("default:chest_locked")
 
 local no_swap_nodes = {
     "bones:bones",
-    "air",
     "ignore",
     "default:chest_locked",
 }

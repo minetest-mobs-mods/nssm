@@ -1,7 +1,10 @@
 Mobs bugs + changes
 
 * Ensure phoenix cannot burn through unswappable
-* Check darts.lua - this is where phoenix "arrow" is defined, these routines do not have protection checks
+    * Started, test
+* Re-test mobs with midas and putting ability, as "air" was removed from the unswappable nodes list
+    * snow biter and icesnake may need to have it in their custom lists ?
+* Check ABMs respect protection?
 
 Server-oriented changes
 
