@@ -25,22 +25,22 @@ minetest.register_node("nssm:mob_inhibitor", {
 local function inhibit_effect(pos,radius)
     radius = radius or 1
 
-    minetest.add_particlespawner(
-            80, --amount
-            1, --time
-            {x=pos.x-radius/2, y=pos.y-radius/2, z=pos.z-radius/2}, --minpos
-            {x=pos.x+radius/2, y=pos.y+radius/2, z=pos.z+radius/2}, --maxpos
-            {x=-0, y=-0, z=-0}, --minvel
-            {x=1, y=1, z=1}, --maxvel
-            {x=-0.5,y=5,z=-0.5}, --minacc
-            {x=0.5,y=5,z=0.5}, --maxacc
-            0.1, --minexptime
-            1, --maxexptime
-            3, --minsize
-            4, --maxsize
-            false, --collisiondetection
-            "tnt_smoke.png^[colorize:yellow:200^[colorize:white:100" --texture
-    )
+    minetest.add_particlespawner({
+            amount = 80,
+            time = 1,
+            minpos = {x=pos.x-radius/2, y=pos.y-radius/2, z=pos.z-radius/2}, 
+            maxpos = {x=pos.x+radius/2, y=pos.y+radius/2, z=pos.z+radius/2}, 
+            minlevel = {x=-0, y=-0, z=-0}, 
+            maxlevel = {x=1, y=1, z=1}, 
+            minacc = {x=-0.5,y=5,z=-0.5}, 
+            maxacc = {x=0.5,y=5,z=0.5}, 
+            minexptime = 0.1, 
+            maxexptime = 1, 
+            minsieze = 3,
+            maxsieze = 4,
+            collisiondetection = false,
+            texture = "tnt_smoke.png^[colorize:yellow:200^[colorize:white:100"
+    })
 
     minetest.sound_play("nssm_inhibit", {
             pos = pos,
