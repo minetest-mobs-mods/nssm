@@ -18,7 +18,7 @@ minetest.register_node("nssm:mob_inhibitor", {
         "default_obsidian.png^phoenix_fire_bomb.png", --side
         "default_obsidian.png^phoenix_fire_bomb.png", --front
     },
-    groups = {cracky = 3, level = 2, not_in_creative_inventory = 1},
+    groups = {not_in_creative_inventory = 1},
     sounds = default.node_sound_stone_defaults(),
 })
 
