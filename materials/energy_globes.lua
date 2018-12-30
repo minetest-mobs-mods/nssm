@@ -90,6 +90,10 @@ local function eat_energy(itemstack, user, pointedthing)
     end
     --
 
+    if not nssm.energy_boosts then
+        return
+    end
+
     local nutrition = life_energy_ratings[itemstack:get_name()].nutrition
     local duration = life_energy_ratings[itemstack:get_name()].duration
 

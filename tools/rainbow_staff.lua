@@ -3,7 +3,7 @@
 -- This tends to be problematic on servers, so is replaced with a powerful tool instead
 --  if classic_rainbow_staff is not enabled
 
-if nssm.classic_rainbow_staff then
+if not nssm.server_rainbow_staff then
     -- How long the rainbow generating entity should remain in existence
     -- Used to be 10, really should not last so long, given that it adds rainbow on every server step...
     local max_rainbow_time = 1
@@ -68,7 +68,8 @@ else
                 cracky={times={[1]=0.80, [2]=0.40, [3]=0.20},  uses=300, maxlevel=4},
                 fleshy={times={[1]=0.80, [2]=0.60, [3]=0.20},  uses=220, maxlevel=4}
             },
-            damage_groups = {fleshy=40}, 
+            -- Ignores armor ?
+            damage_groups = {fleshy=20}, 
         },
 
         groups = {not_in_creative_inventory=1,}
