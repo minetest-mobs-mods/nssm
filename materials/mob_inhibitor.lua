@@ -6,8 +6,6 @@ Not in creative inventory, intended for admin use only.
 
 --]]
 
-local inhibition_radius = 32
-
 minetest.register_node("nssm:mob_inhibitor", {
     description = "NSSM Monster Ward",
     tiles = {
@@ -18,7 +16,7 @@ minetest.register_node("nssm:mob_inhibitor", {
         "default_obsidian.png^phoenix_fire_bomb.png", --side
         "default_obsidian.png^phoenix_fire_bomb.png", --front
     },
-    groups = {not_in_creative_inventory = 1},
+    groups = {unbreakable = 1, not_in_creative_inventory = 1},
     sounds = default.node_sound_stone_defaults(),
 })
 
@@ -44,7 +42,7 @@ local function inhibit_effect(pos,radius)
 
     minetest.sound_play("nssm_inhibit", {
             pos = pos,
-            max_hear_distance = inhibition_radius,
+            max_hear_distance = nssm.inhibition_radius,
     })
 end
 
@@ -57,7 +55,7 @@ minetest.register_abm({
     action = function(pos, node, active_object_count, active_object_count_wider)
         local obj, istring, lua_entity
 
-        for _,obj in pairs(minetest.get_objects_inside_radius(pos , inhibition_radius)) do
+        for _,obj in pairs(minetest.get_objects_inside_radius(pos , nssm.inhibition_radius)) do
             if not obj:is_player() and obj:get_luaentity() then
                 lua_entity = obj:get_luaentity()
                 istring = lua_entity["name"]

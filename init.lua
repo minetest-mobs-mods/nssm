@@ -31,4 +31,4 @@ nssm:load("tools/rainbow_staff.lua")
 nssm:load("tools/armor.lua")
 
 -- Server
-nssm:load("materials/mob_protection.lua")
+nssm:load("materials/mob_inhibitor.lua")
