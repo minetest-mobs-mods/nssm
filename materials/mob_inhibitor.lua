@@ -6,6 +6,8 @@ Not in creative inventory, intended for admin use only.
 
 --]]
 
+minetest.register_privilege("mob_inhibitor", {description="Allows placing mob inhibitor blocks"})
+
 minetest.register_node("nssm:mob_inhibitor", {
     description = "NSSM Monster Ward",
     tiles = {
@@ -18,6 +20,17 @@ minetest.register_node("nssm:mob_inhibitor", {
     },
     groups = {unbreakable = 1, not_in_creative_inventory = 1},
     sounds = default.node_sound_stone_defaults(),
+    drop = "",
+    on_place = function(itemstack, placer, pointed_thing)
+        local playername = placer:get_player_name()
+        local privs = minetest.get_player_privs(playername)
+        if privs.mob_inhibitor then
+            return minetest.item_place(itemstack, placer, pointed_thing)
+        else
+            itemstack:clear()
+            return
+        end
+    end
 })
 
 local function inhibit_effect(pos,radius)
