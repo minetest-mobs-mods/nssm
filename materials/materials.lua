@@ -585,25 +585,3 @@ minetest.register_node("nssm:morwa_statue", {
       fixed = {-1, -0.5, -1, 1, 3, 1}, -- Right, Bottom, Back, Left, Top, Front
     },
 })
---Abm to make the conversion between statue and the entity, caused by light
-
-minetest.register_abm({
-    nodenames = {"nssm:morwa_statue"},
-    neighbors = {"air"},
-    interval = 1,
-    chance = 1,
-    action =
-    function(pos, node)
-        local pos1 = {x=pos.x, y=pos.y+1, z=pos.z}
-        local n = minetest.env:get_node(pos1).name
-        if n ~= "air" then
-            return
-        end
-        if (minetest.get_node_light(pos1) > 8)
-        then
-        minetest.add_entity(pos1, "nssm:morwa")
-        minetest.remove_node(pos)
-        end
-    end
-})
-

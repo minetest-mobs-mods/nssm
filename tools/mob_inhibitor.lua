@@ -24,6 +24,7 @@ minetest.register_node("nssm:mob_inhibitor", {
     on_place = function(itemstack, placer, pointed_thing)
         local playername = placer:get_player_name()
         local privs = minetest.get_player_privs(playername)
+
         if privs.mob_inhibitor then
             return minetest.item_place(itemstack, placer, pointed_thing)
         else
@@ -33,7 +34,7 @@ minetest.register_node("nssm:mob_inhibitor", {
     end
 })
 
-local function inhibit_effect(pos,radius)
+function nssm:inhibit_effect(pos,radius)
     radius = radius or 1
 
     minetest.add_particlespawner({
@@ -58,28 +59,4 @@ local function inhibit_effect(pos,radius)
             max_hear_distance = nssm.inhibition_radius,
     })
 end
-
-minetest.register_abm({
-    label = "Monster Inhibition Block",
-    nodenames = {"nssm:mob_inhibitor"},
-    interval = 1,
-    chance = 1,
-    catch_up = false,
-    action = function(pos, node, active_object_count, active_object_count_wider)
-        local obj, istring, lua_entity
-
-        for _,obj in pairs(minetest.get_objects_inside_radius(pos , nssm.inhibition_radius)) do
-            if not obj:is_player() and obj:get_luaentity() then
-                lua_entity = obj:get_luaentity()
-                istring = lua_entity["name"]
-
-                -- We got a name, it's nssm and it is a mob
-                if istring and istring:sub(1,5) == "nssm:" and lua_entity.health then
-                    inhibit_effect(obj:get_pos())
-                    obj:remove()
-                end
-            end
-        end
-    end,
-})
 
