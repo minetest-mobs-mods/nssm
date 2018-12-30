@@ -130,9 +130,14 @@ minetest.register_entity("nssm:mortick", {
             self.object:remove()
         end
         ]]
-        --The mortick dies when he finds himself in the fire
+        --The mortick dies when he finds himself in fire
         local name = minetest.env:get_node(s1).name
-        if name == "fire:basic_flame" or name == "fire:permanent_flame" then
+        if name == "fire:basic_flame" or
+          name == "fire:permanent_flame" or
+          name == "nssm:phoenix_fire" or
+          name == "default:lava_source" or
+          name == "default:lava_flowing" then
+
             self.object:remove()
         end
 
