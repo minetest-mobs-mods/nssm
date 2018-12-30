@@ -27,7 +27,7 @@ minetest.register_node("nssm:mob_inhibitor", {
         if privs.mob_inhibitor then
             return minetest.item_place(itemstack, placer, pointed_thing)
         else
-            itemstack:clear()
+            minetest.log("action", playername.." prevented from using nssm:mob_inhibitor")
             return
         end
     end
