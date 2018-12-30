@@ -78,6 +78,17 @@ minetest.register_globalstep(function(dtime)
 end)
 
 local function eat_energy(itemstack, user, pointedthing)
+    -- Morvalar special
+    local pointednode
+    if pointedthing.type == "node" then
+        pointednode = minetest.get_node(pointedthing.under)
+    end
+
+    if pointednode and pointednode.name == "nssb:dis_morvalar_block" and itemstack:get_name() == "nssm:superior_energy_globe" then
+        minetest.set_node(pointedthing.under, {name="nssb:morvalar_block"})
+        return
+    end
+    --
 
     local nutrition = life_energy_ratings[itemstack:get_name()].nutrition
     local duration = life_energy_ratings[itemstack:get_name()].duration

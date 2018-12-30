@@ -114,6 +114,7 @@ minetest.register_entity("nssm:mortick", {
     armor = 100,
     visual = "mesh",
     mesh = "mortick.x",
+    collisionbox = {-0.2, -0.2, -0.2, 0.2, 0.2, 0.2},
     visual_size = {x=3, y=3},
     --lifetime = 10,
     damage = 1,

@@ -1,7 +1,7 @@
-local time_limit = 120
+local time_limit = 20
 posmorvalarblock = {x=827, y=-30094, z=-817}
 
-function respawn_block(self)
+function initiation_timeout(self)
     --start a timer if it doesn't exist
     self.stop_timer = self.stop_timer or os.time()
 
@@ -10,12 +10,12 @@ function respawn_block(self)
 
     if self.hp_record ~= self.health then
         self.stop_timer = os.time()
-        self.hp_record = self.health
     else
         if os.time() - self.stop_timer > time_limit then
-            minetest.chat_send_all("Time is over!")
+            -- FIXME should only send to players in 32 node radius
+            -- TODO play ominous sound...
+            minetest.chat_send_all("Summon me ... when you are ready to fight ...")
             self.object:remove()
-            minetest.set_node(posmorvalarblock, {name="nssb:morvalar_block"})
         end
     end
 end
@@ -66,8 +66,9 @@ mobs:register_mob("nssm:morvalar", {
         punch_end = 80,
     },
 
+    -- FIXME implement elsewhere
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
 
     custom_attack = function (self)
@@ -624,7 +625,7 @@ mobs:register_mob("nssm:morvalar2", {
                     end
                 end
             end
-            minetest.chat_send_all("Ne ho contati: "..counter)
+            --minetest.chat_send_all("Ne ho contati: "..counter)
             if counter < 2 then
                 mobs:set_animation(self, "punch")
 
@@ -856,7 +857,7 @@ minetest.register_entity("nssm:kamehameha_bad", {
         local objects = minetest.env:get_objects_inside_radius(pos, 2)
         for _,obj in ipairs(objects) do
             if obj:is_player() then
-                minetest.chat_send_all("Dentro il raggio grande")
+                --minetest.chat_send_all("Dentro il raggio grande")
                 obj:set_hp(obj:get_hp()-5)
             end
             if obj:get_luaentity() then
@@ -876,7 +877,7 @@ minetest.register_entity("nssm:kamehameha_bad", {
             if obj:is_player() then
                 tnt_boom_nssm(pos, {damage_radius=6,radius=5,ignore_protection=false})
                 self.object:remove()
-                minetest.chat_send_all("Dentro il raggio piccolo")
+                --minetest.chat_send_all("Dentro il raggio piccolo")
             end
             if obj:get_luaentity() then
                 local name = obj:get_luaentity().name

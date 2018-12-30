@@ -71,7 +71,7 @@ mobs:register_mob("nssm:morgut", {
             self.state = ""
             mobs:set_animation(self, "run")
             self.object:setyaw(self.dir)
-            set_velocity(self, 4)
+            self:set_velocity(4)
 
             if os.time() - self.morgut_timer > 3 then
                 self.flag = 0
@@ -158,7 +158,7 @@ mobs:register_mob("nssm:morgut", {
                             self.dir = pyaw
                             self.object:setyaw(pyaw)
                             if self then
-                                set_velocity(self, 4)
+                                self:set_velocity(4)
                             end
                         end
                     end
