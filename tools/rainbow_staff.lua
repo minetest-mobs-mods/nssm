@@ -56,7 +56,7 @@ if nssm.classic_rainbow_staff then
 
 else
     minetest.register_tool("nssm:rainbow_staff", {
-        description = "Rainbow Bludgeon",
+        description = "Rainbow Tool",
         inventory_image = "rainbow_staff.png",
         tool_capabilities = {
             full_punch_interval = 0.2,
