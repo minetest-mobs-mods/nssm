@@ -9,6 +9,7 @@ local no_swap_nodes = {
     "bones:bones",
     "ignore",
     "default:chest_locked",
+    "nssm:mob_inhibitor",
 }
 
 nssm.unswappable_node = function (pos, node_list)
