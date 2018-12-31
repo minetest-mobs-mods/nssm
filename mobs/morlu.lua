@@ -143,22 +143,22 @@ mobs:register_mob("nssm:morlu", {
                             end
                             --minetest.chat_send_all("Nome della texture: "..nname)
 
-                            minetest.add_particlespawner(
-                                1, --amount
-                                1, --time
-                                {x=p.x, y=p.y+1, z=p.z}, --minpos
-                                {x=p.x, y=p.y+1, z=p.z}, --maxpos
-                                {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --minvel
-                                {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --maxvel
-                                {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z}, --minacc
-                                {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z}, --maxacc
-                                0.5, --minexptime
-                                0.5, --maxexptime
-                                10, --minsize
-                                10, --maxsize
-                                false, --collisiondetection
-                                nname --texture
-                            )
+                            minetest.add_particlespawner({
+                                amount = 1,
+                                time = 1,
+                                minpos = {x=p.x, y=p.y+1, z=p.z},
+                                maxpos = {x=p.x, y=p.y+1, z=p.z},
+                                minvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                maxvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                minacc = {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z},
+                                maxacc = {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z},
+                                minexptime = 0.5,
+                                maxexptime = 0.5,
+                                minsize = 10,
+                                maxsize = 10,
+                                collisiondetection = false,
+                                texture = nname
+                            })
 
                             minetest.after(1, function (self)
                                 if self then

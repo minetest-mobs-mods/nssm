@@ -122,22 +122,22 @@ mobs:register_mob("nssm:morvalar", {
                                 nname = "3d_armor_inv_chestplate_diamond.png"
                             end
 
-                            minetest.add_particlespawner(
-                                1, --amount
-                                1, --time
-                                {x=p.x, y=p.y+1, z=p.z}, --minpos
-                                {x=p.x, y=p.y+1, z=p.z}, --maxpos
-                                {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --minvel
-                                {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --maxvel
-                                {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z}, --minacc
-                                {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z}, --maxacc
-                                0.5, --minexptime
-                                0.5, --maxexptime
-                                10, --minsize
-                                10, --maxsize
-                                false, --collisiondetection
-                                nname --texture
-                            )
+                            minetest.add_particlespawner({
+                                amount = 1,
+                                time = 1,
+                                minpos = {x=p.x, y=p.y+1, z=p.z},
+                                maxpos = {x=p.x, y=p.y+1, z=p.z},
+                                minvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                maxvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                minacc = {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z},
+                                maxacc = {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z},
+                                minexptime = 0.5,
+                                maxexptime = 0.5,
+                                minsize = 10,
+                                maxsize = 10,
+                                collisiondetection = false,
+                                texture = nname
+                            })
 
                             minetest.after(1, function (self)
 
@@ -231,7 +231,7 @@ mobs:register_mob("nssm:morvalar6", {
         punch_end = 162,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     custom_attack = function (self)
         self.morvalar6_timer = (self.morvalar6_timer or os.time())
@@ -274,22 +274,22 @@ mobs:register_mob("nssm:morvalar6", {
                             }, nil)
                         else
                             s.y = s.y+1.8
-                            minetest.add_particlespawner(
-                                1, --amount
-                                1, --time
-                                {x=p.x, y=p.y+1, z=p.z}, --minpos
-                                {x=p.x, y=p.y+1, z=p.z}, --maxpos
-                                {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --minvel
-                                {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --maxvel
-                                {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z}, --minacc
-                                {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z}, --maxacc
-                                0.5, --minexptime
-                                0.5, --maxexptime
-                                10, --minsize
-                                10, --maxsize
-                                false, --collisiondetection
-                                "roasted_duck_legs.png" --texture
-                            )
+                            minetest.add_particlespawner({
+                                amount = 1,
+                                time = 1,
+                                minpos = {x=p.x, y=p.y+1, z=p.z},
+                                maxpos = {x=p.x, y=p.y+1, z=p.z},
+                                minvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                maxvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                minacc = {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z},
+                                maxacc = {x=s.x-p.x, y=s.y-p.y-1, z=s.z-p.z},
+                                minexptime = 0.5,
+                                maxexptime = 0.5,
+                                minsize = 10,
+                                maxsize = 10,
+                                collisiondetection = false,
+                                texture = "roasted_duck_legs.png"
+                            })
                         end
                         self.morvalar6_timer = os.time()
                     end
@@ -352,7 +352,7 @@ mobs:register_mob("nssm:morvalar5", {
         punch_end = 245,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     custom_attack = function (self)
         self.morvalar5_timer = (self.morvalar5_timer or os.time())
@@ -423,7 +423,7 @@ mobs:register_mob("nssm:morvalar4", {
         punch_end = 320,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     custom_attack = function(self)
         self.morvalar4_timer = (self.morvalar4_timer or os.time())
@@ -551,7 +551,7 @@ mobs:register_mob("nssm:morvalar3", {
         shoot_end = 450,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     on_die = function(self)
         local pos = self.object:getpos()
@@ -606,7 +606,7 @@ mobs:register_mob("nssm:morvalar2", {
         punch_end = 545,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     custom_attack = function(self)
         self.morvalar2_timer = (self.morvalar2_timer or os.time())
@@ -706,7 +706,7 @@ mobs:register_mob("nssm:morvalar1", {
         punch_end = 640,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     custom_attack = function (self)
         self.morvalar1_timer = (self.morvalar1_timer or os.time())
@@ -796,7 +796,7 @@ mobs:register_mob("nssm:morvalar0", {
         punch_end = 750,
     },
     do_custom = function(self)
-        respawn_block(self)
+        initiation_timeout(self)
     end,
     custom_attack = function (self)
         self.morvalar1_timer = (self.morvalar1_timer or os.time())

@@ -92,22 +92,22 @@ mobs:register_mob("nssm:morgut", {
                 mobs:set_animation(self, "punch")
                 local m = 2
 
-                minetest.add_particlespawner(
-                    6, --amount
-                    1, --time
-                    {x=p.x-0.5, y=p.y-0.5, z=p.z-0.5}, --minpos
-                    {x=p.x+0.5, y=p.y+0.5, z=p.z+0.5}, --maxpos
-                    {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --minvel
-                    {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --maxvel
-                    {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}, --minacc
-                    {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}, --maxacc
-                    0.2, --minexptime
-                    0.3, --maxexptime
-                    2, --minsize
-                    3, --maxsize
-                    false, --collisiondetection
-                    "roasted_duck_legs.png" --texture
-                )
+                minetest.add_particlespawner({
+                    amount = 6,
+                    time = 1,
+                    minpos = {x=p.x-0.5, y=p.y-0.5, z=p.z-0.5},
+                    maxpos = {x=p.x+0.5, y=p.y+0.5, z=p.z+0.5},
+                    minvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                    maxvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                    minacc = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z},
+                    maxacc = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z},
+                    minexptime = 0.2,
+                    maxexptime = 0.3,
+                    minsize = 2,
+                    maxsize = 3,
+                    collisiondetection = false,
+                    texture = "roasted_duck_legs.png"
+                })
 
                 minetest.after(1, function (self)
                     if self then

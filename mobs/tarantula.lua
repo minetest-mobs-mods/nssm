@@ -56,22 +56,22 @@ mobs:register_mob("nssm:tarantula", {
     },
     on_die = function(self, pos)
         self.object:remove()
-        minetest.add_particlespawner(
-            200, --amount
-            0.1, --time
-            {x=pos.x-1, y=pos.y-1, z=pos.z-1}, --minpos
-            {x=pos.x+1, y=pos.y+1, z=pos.z+1}, --maxpos
-            {x=-0, y=-0, z=-0}, --minvel
-            {x=1, y=1, z=1}, --maxvel
-            {x=-0.5,y=5,z=-0.5}, --minacc
-            {x=0.5,y=5,z=0.5}, --maxacc
-            0.1, --minexptime
-            1, --maxexptime
-            3, --minsize
-            4, --maxsize
-            false, --collisiondetection
-            "tnt_smoke.png" --texture
-        )
+        minetest.add_particlespawner({
+            amount = 200,
+            time = 0.1,
+            minpos = {x=pos.x-1, y=pos.y-1, z=pos.z-1},
+            maxpos = {x=pos.x+1, y=pos.y+1, z=pos.z+1},
+            minvel = {x=-0, y=-0, z=-0},
+            maxvel = {x=1, y=1, z=1},
+            minacc = {x=-0.5,y=5,z=-0.5},
+            maxacc = {x=0.5,y=5,z=0.5},
+            minexptime = 0.1,
+            maxexptime = 1,
+            minsize = 3,
+            maxsize = 4,
+            collisiondetection = false,
+            texture = "tnt_smoke.png"
+        })
         minetest.add_entity(pos, "nssm:tarantula_propower")
     end,
 })

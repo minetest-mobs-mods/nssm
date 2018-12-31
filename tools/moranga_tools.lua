@@ -202,22 +202,22 @@ minetest.register_tool("nssm:axe_of_pride", {
                     local p = obj:getpos()
                     local m = 2
 
-                    minetest.add_particlespawner(
-                        3, --amount
-                        0.1, --time
-                        {x=p.x-0.5, y=p.y-0.5, z=p.z-0.5}, --minpos
-                        {x=p.x+0.5, y=p.y+0.5, z=p.z+0.5}, --maxpos
-                        {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --minvel
-                        {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --maxvel
-                        {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}, --minacc
-                        {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}, --maxacc
-                        0.5, --minexptime
-                        1, --maxexptime
-                        3, --minsize
-                        4, --maxsize
-                        false, --collisiondetection
-                        "heart.png" --texture
-                    )
+                    minetest.add_particlespawner({
+                        amount = 3,
+                        time = 0.1,
+                        minpos = {x=p.x-0.5, y=p.y-0.5, z=p.z-0.5},
+                        maxpos = {x=p.x+0.5, y=p.y+0.5, z=p.z+0.5},
+                        minvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                        maxvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                        minacc = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z},
+                        maxacc = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z},
+                        minexptime = 0.5,
+                        maxexptime = 1,
+                        minsize = 3,
+                        maxsize = 4,
+                        collisiondetection = false,
+                        texture = "heart.png"
+                    })
                 end
             end
         end
@@ -314,22 +314,22 @@ minetest.register_tool("nssm:sword_of_eagerness", {
                     if part==1 then
                         local s = pos
                         s.y = s.y - 15
-                        minetest.add_particlespawner(
-                            25, --amount
-                            0.3, --time
-                            vector.subtract(s, 0.5), --minpos
-                            vector.add(s, 0.5), --maxpos
-                            {x=0, y=10, z=0}, --minvel
-                            {x=0.1, y=11, z=0.1}, --maxvel
-                            {x=0,y=1,z=0}, --minacc
-                            {x=0,y=1,z=0}, --maxacc
-                            0.5, --minexptime
-                            1, --maxexptime
-                            1, --minsize
-                            2, --maxsize
-                            false, --collisiondetection
-                            "slothful_soul_fragment.png" --texture
-                        )
+                        minetest.add_particlespawner({
+                            amount = 25,
+                            time = 0.3,
+                            minpos = vector.subtract(s, 0.5),
+                            maxpos = vector.add(s, 0.5),
+                            minvel = {x=0, y=10, z=0},
+                            maxvel = {x=0.1, y=11, z=0.1},
+                            minacc = {x=0,y=1,z=0},
+                            maxacc = {x=0,y=1,z=0},
+                            minexptime = 0.5,
+                            maxexptime = 1,
+                            minsize = 1,
+                            maxsize = 2,
+                            collisiondetection = false,
+                            texture = "slothful_soul_fragment.png"
+                        })
                     end
                 end
             end
@@ -376,22 +376,22 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
 
             else
                 local pos_particles = dropper:getpos()
-                minetest.add_particlespawner(
-                    25, --amount
-                    0.3, --time
-                    vector.subtract(pos_particles, 0.5), --minpos
-                    vector.add(pos_particles, 0.5), --maxpos
-                    {x=0, y=10, z=0}, --minvel
-                    {x=0.1, y=11, z=0.1}, --maxvel
-                    {x=0,y=1,z=0}, --minacc
-                    {x=0,y=1,z=0}, --maxacc
-                    0.5, --minexptime
-                    1, --maxexptime
-                    1, --minsize
-                    2, --maxsize
-                    false, --collisiondetection
-                    "slothful_soul_fragment.png" --texture
-                )
+                minetest.add_particlespawner({
+                    amount = 25,
+                    time = 0.3,
+                    minpos = vector.subtract(pos_particles, 0.5),
+                    maxpos = vector.add(pos_particles, 0.5),
+                    minvel = {x=0, y=10, z=0},
+                    maxvel = {x=0.1, y=11, z=0.1},
+                    minacc = {x=0,y=1,z=0},
+                    maxacc = {x=0,y=1,z=0},
+                    minexptime = 0.5,
+                    maxexptime = 1,
+                    minsize = 1,
+                    maxsize = 2,
+                    collisiondetection = false,
+                    texture = "slothful_soul_fragment.png"
+                })
 
                 local dy, digpos
                 for dy = -1,1 do
@@ -405,7 +405,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
 
                 pos_particles = pos_destination
                 pos_particles.y = pos_particles.y+10
-                minetest.add_particlespawner(
+                minetest.add_particlespawner({
                     25, --amount
                     0.3, --time
                     vector.subtract(pos_particles, 0.5), --minpos
@@ -420,7 +420,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
                     2, --maxsize
                     false, --collisiondetection
                     "slothful_soul_fragment.png" --texture
-                )
+                })
 
                 eat_dropfuel(dropper, dropfuel)
             end
@@ -554,22 +554,22 @@ minetest.register_tool("nssm:sword_of_gluttony", {
                                     local p = dropper:getpos()
                                     local m = 3
 
-                                    minetest.add_particlespawner(
-                                        10, --amount
-                                        0.1, --time
-                                        {x=p.x-0.5, y=p.y-0.5, z=p.z-0.5}, --minpos
-                                        {x=p.x+0.5, y=p.y+0.5, z=p.z+0.5}, --maxpos
-                                        {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --minvel
-                                        {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m}, --maxvel
-                                        {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}, --minacc
-                                        {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}, --maxacc
-                                        0.5, --minexptime
-                                        1, --maxexptime
-                                        1, --minsize
-                                        2, --maxsize
-                                        false, --collisiondetection
-                                        "gluttonous_soul_fragment.png" --texture
-                                    )
+                                    minetest.add_particlespawner({
+                                        amount = 10,
+                                        time = 0.1,
+                                        minpos = {x=p.x-0.5, y=p.y-0.5, z=p.z-0.5},
+                                        maxpos = {x=p.x+0.5, y=p.y+0.5, z=p.z+0.5},
+                                        minvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                        maxvel = {x=(s.x-p.x)*m, y=(s.y-p.y)*m, z=(s.z-p.z)*m},
+                                        minacc = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z},
+                                        maxacc = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z},
+                                        minexptime = 0.5,
+                                        maxexptime = 1,
+                                        minsize = 1,
+                                        maxsize = 2,
+                                        collisiondetection = false,
+                                        texture = "gluttonous_soul_fragment.png"
+                                    })
                                 end
                             end
                         end
