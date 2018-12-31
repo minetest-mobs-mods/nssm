@@ -1,12 +1,10 @@
 -- The Rainbow Staff is a reward for defeating the final boss
--- Classic implementation produces ranbow blocks in any direction it is pointed at and used
+-- Classic implementation produces rainbow blocks in any direction it is pointed at and used
 -- This tends to be problematic on servers, so is replaced with a powerful tool instead
 --  if classic_rainbow_staff is not enabled
 
 if not nssm.server_rainbow_staff and minetest.registered_nodes["nyancat:nyancat_rainbow"] then
-    -- How long the rainbow generating entity should remain in existence
-    -- Used to be 10, really should not last so long, given that it adds rainbow on every server step...
-    local max_rainbow_time = 1
+    local max_rainbow_time = 5
 
     minetest.register_entity("nssm:rainbow", {
         textures = {"transparent.png"},
