@@ -51,7 +51,7 @@ function nssm:inhibit_effect(pos,radius)
             minsieze = 3,
             maxsieze = 4,
             collisiondetection = false,
-            texture = "tnt_smoke.png^[colorize:yellow:200^[colorize:white:100"
+            texture = "morparticle.png^[colorize:yellow:200^[colorize:white:100"
     })
 
     minetest.sound_play("nssm_inhibit", {

@@ -3,7 +3,7 @@
 -- This tends to be problematic on servers, so is replaced with a powerful tool instead
 --  if classic_rainbow_staff is not enabled
 
-if not nssm.server_rainbow_staff then
+if not nssm.server_rainbow_staff and minetest.registered_nodes["nyancat:nyancat_rainbow"] then
     -- How long the rainbow generating entity should remain in existence
     -- Used to be 10, really should not last so long, given that it adds rainbow on every server step...
     local max_rainbow_time = 1
@@ -31,7 +31,7 @@ if not nssm.server_rainbow_staff then
                     if n=="air" then
                         minetest.set_node(pos, {name="nyancat:nyancat_rainbow"})
                     else
-                        minetest.chat_send_all("Nome:"..n)
+                        -- minetest.chat_send_all("Nome:"..n)
                         minetest.set_node(pos, {name="nyancat:nyancat"})
                         self.object:remove()
                     end
@@ -53,6 +53,8 @@ if not nssm.server_rainbow_staff then
         end,
         groups = {not_in_creative_inventory=1,}
     })
+
+    print("NYAN !!!")
 
 else
     minetest.register_tool("nssm:rainbow_staff", {
