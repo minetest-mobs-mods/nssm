@@ -1,10 +1,34 @@
 -- The Rainbow Staff is a reward for defeating the final boss
--- Classic implementation produces rainbow blocks in any direction it is pointed at and used
+-- Classic implementation produces Nyancat rainbow blocks in any direction it is pointed at and used
 -- This tends to be problematic on servers, so is replaced with a powerful tool instead
---  if classic_rainbow_staff is not enabled
+--  if server_rainbow_staff is enabled
 
-if not nssm.server_rainbow_staff and minetest.registered_nodes["nyancat:nyancat_rainbow"] then
+-- The `nyancat` mod was removed in Minetest 0.4.16+
+-- The alternative blocks are used when this mod is not/no longer present
+
+local head_block = "nyancat:nyancat"
+local tail_block = "nyancat:nyancat_rainbow"
+
+local head_replacement = "nssm:great_energy_globe"
+local tail_replacement = "nssm:superior_energy_globe"
+
+if not nssm.energy_lights then
+    head_replacement = "nssm:modders_block"
+    tail_replacement = "nssm:invisible_light"
+end
+
+if not nssm.server_rainbow_staff then
     local max_rainbow_time = 5
+
+    if not minetest.registered_nodes["nyancat:nyancat_rainbow"] then
+        minetest.register_alias(head_block, head_replacement)
+        minetest.register_alias(tail_block, tail_replacement)
+        head_block = head_replacement
+        tail_block = tail_replacement
+        print("NYARRWRW !!!")
+    else
+        print("NYAN !!!")
+    end
 
     minetest.register_entity("nssm:rainbow", {
         textures = {"transparent.png"},
@@ -19,18 +43,17 @@ if not nssm.server_rainbow_staff and minetest.registered_nodes["nyancat:nyancat_
             end
 
             if os.time() - self.timer > max_rainbow_time then
-                minetest.set_node(pos, {name="nyancat:nyancat"})
+                minetest.set_node(pos, {name=head_block})
                 self.object:remove()
             end
 
             if minetest.get_node(pos) then
                 local n = minetest.get_node(pos).name
-                if n ~= "nyancat:nyancat_rainbow" then
+                if n ~= tail_block then
                     if n=="air" then
-                        minetest.set_node(pos, {name="nyancat:nyancat_rainbow"})
+                        minetest.set_node(pos, {name=tail_block})
                     else
-                        -- minetest.chat_send_all("Nome:"..n)
-                        minetest.set_node(pos, {name="nyancat:nyancat"})
+                        minetest.set_node(pos, {name=head_block})
                         self.object:remove()
                     end
                 end
@@ -52,7 +75,6 @@ if not nssm.server_rainbow_staff and minetest.registered_nodes["nyancat:nyancat_
         groups = {not_in_creative_inventory=1,}
     })
 
-    print("NYAN !!!")
 
 else
     minetest.register_tool("nssm:rainbow_staff", {

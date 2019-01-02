@@ -19,6 +19,17 @@ This mod relies heavily on the features in TenPlus1's [`mobs_redo`](https://nota
 
 This version of NSSM was adjusted to run against commit `487e037cc9` (from 2018-12-20). If you are having problems with mod compatibility, please ensure you are using a version of `mobs_redo` close to that commit.
 
+## Settings
+
+This mod provides some extra settings for fine tuning the experience:
+
+* `nssm.server_rainbow_staff` - Rainbow Staff is a powerful tool instead of a block placer
+
+* `nssm.energy_boosts` - allows player to eat energy for a stats bost
+
+* `nssm.energy_lights` - allows placing energy as temporary light sources
+
+
 ## Some notes from NPX Team !
 
 We suggest that you play nssm with:

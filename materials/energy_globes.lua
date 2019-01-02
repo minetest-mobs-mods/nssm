@@ -116,61 +116,48 @@ local function register_energy(name, descr, nodesize, nutrition, duration)
     local ns = nodesize
     local div = 64
 
-    --[[
-    minetest.register_craftitem("nssm:"..name, {
-        description = descr,
-        image = name..".png",
-        on_use = eat_energy,
-    })
-    --]]
-
-    minetest.register_node("nssm:"..name, {
-        description = descr,
-        tiles = {
-            {
-                name="venomous_gas_animated2.png",
-                animation={
-                    type="vertical_frames",
-                    aspect_w=64,
-                    aspect_h=64,
-                    length=3.0
+    if nssm.energy_lights then
+        minetest.register_node("nssm:"..name, {
+            description = descr,
+            tiles = {
+                {
+                    name="venomous_gas_animated2.png",
+                    animation={
+                        type="vertical_frames",
+                        aspect_w=64,
+                        aspect_h=64,
+                        length=3.0
+                    }
                 }
-            }
-        },
-        --[[
-        tiles = {
-            {
-                name = "default_water_source_animated.png^[colorize:yellow:100",
-                animation = {
-                    type = "vertical_frames",
-                    aspect_w = 16,
-                    aspect_h = 16,
-                    length = 2.0,
+            },
+
+            wield_image = name..".png",
+            inventory_image = name..".png",
+            drawtype = "nodebox",
+            node_box = {
+                type = "fixed",
+                fixed = {
+                    {-ns / div, -ns / div, -ns / div, ns / div, ns / div, ns / div},
                 },
             },
-        }, --]]
-
-        wield_image = name..".png",
-        inventory_image = name..".png",
-        drawtype = "nodebox",
-        node_box = {
-            type = "fixed",
-            fixed = {
-                {-ns / div, -ns / div, -ns / div, ns / div, ns / div, ns / div},
-            },
-        },
-        paramtype = "light",
-        light_source = nodesize,
-        sunlight_propagates = true,
-        is_ground_content = false,
-        groups = {dig_immediate = 3},
-        pointable = false,
-        drop = "",
-        buildable_to = true,
-        on_use = eat_energy,
-        walkable = false,
-        -- TODO add node timer so it disappears after N seconds ...
-    })
+            paramtype = "light",
+            light_source = nodesize,
+            sunlight_propagates = true,
+            is_ground_content = false,
+            groups = {dig_immediate = 3},
+            pointable = false,
+            drop = "",
+            buildable_to = true,
+            on_use = eat_energy,
+            walkable = false,
+        })
+    else
+        minetest.register_craftitem("nssm:"..name, {
+            description = descr,
+            image = name..".png",
+            on_use = eat_energy,
+        })
+    end
 end
 
 local function register_energy_craft(smaller,bigger)

@@ -30,6 +30,3 @@ nssm:load("tools/bomb_materials.lua")
 nssm:load("tools/bomb_evocation.lua")
 nssm:load("tools/rainbow_staff.lua")
 nssm:load("tools/armor.lua")
-
--- Server
-nssm:load("tools/mob_inhibitor.lua")

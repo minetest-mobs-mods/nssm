@@ -112,27 +112,11 @@ minetest.register_abm({
     end
 })
 
--- Inhibition block - place in spawn buildings on servers
 minetest.register_abm({
-    label = "Monster Inhibition Block",
-    nodenames = {"nssm:mob_inhibitor"},
-    interval = 1,
-    chance = 1,
-    catch_up = false,
-    action = function(pos, node, active_object_count, active_object_count_wider)
-        local obj, istring, lua_entity
-
-        for _,obj in pairs(minetest.get_objects_inside_radius(pos , nssm.inhibition_radius)) do
-            if not obj:is_player() and obj:get_luaentity() then
-                lua_entity = obj:get_luaentity()
-                istring = lua_entity["name"]
-
-                -- We got a name, it's nssm and it is a mob
-                if istring and istring:sub(1,5) == "nssm:" and lua_entity.health then
-                    nssm:inhibit_effect(obj:get_pos())
-                    obj:remove()
-                end
-            end
-        end
-    end,
+    nodenames = {"nssm:life_energy", "nssm:energy_globe", "nssm:great_energy_globe", "nssm:superior_energy_globe"},
+    interval = 10,
+    chance = 10,
+    action = function(pos, node)
+        minetest.set_node({x = pos.x, y = pos.y , z = pos.z}, {name = "air"})
+    end
 })
