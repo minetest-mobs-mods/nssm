@@ -1,0 +1,8 @@
+License for Artistic Assets
+===========================
+
+License for all the models, textures and sounds, except otherwise specified, are `CC-BY-SA 4.0`, attribution "NPX Team"
+
+* License for individual artistic contributions:
+    * Tai Kedzierski, CC-BY-SA 4.0
+        * `sounds/nssm_energy_powerup.ogg`

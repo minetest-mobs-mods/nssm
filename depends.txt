@@ -1,6 +1,9 @@
 default
 mobs
-farming?
-3d_armor?
 fire
 tnt
+farming?
+3d_armor?
+shields?
+itemdrop?
+nyancat?

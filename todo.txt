@@ -1,0 +1,26 @@
+Mobs bugs + changes
+
+* Ensure phoenix cannot burn through unswappable
+    * Started, test
+* Re-test mobs with midas and putting ability, as "air" was removed from the unswappable nodes list
+    * snow biter and icesnake may need to have it in their custom lists ?
+* Check ABMs respect protection?
+
+Server-oriented changes
+
+* Find a way to ensure that fire does not spread, without changing external mods...
+    * exploding mobs use generic mobs_redo explode attack
+    * mobs_redo uses tnt.explode which determines the fire type on its own
+    * for now, this is on an ABM in fire mod - it may be that for NSSM deployment we will need to add a fire override mod...
+
+API refactoring
+
+* Split materials.lua into nodes, items, abms
+    * in-progress
+
+Cleanup + misc enhancements
+
+* Make `_egg` marker consistent
+    * Check if mobs are ever registered as items
+    * Perhaps remove `_egg` designations altogether
+    * Perhaps remove duck egg building recipes
