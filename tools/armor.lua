@@ -183,7 +183,7 @@ if minetest.get_modpath("shields") then
         minetest.register_tool("nssm:shield_"..k, {
             description = v.name.." Shield",
             inventory_image ="inv_shield_"..k..".png",
-            groups = {armor_head=math.floor(5*v.armor), armor_heal=v.heal, armor_use=v.use},
+            groups = {armor_shield=math.floor(5*v.armor), armor_heal=v.heal, armor_use=v.use},
             wear = 0,
         })
 
