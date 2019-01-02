@@ -69,7 +69,7 @@ minetest.register_node("nssm:web", {
     pointable = true,
     diggable = true,
     buildable_to = false,
-    drop = "",
+    drop = "farming:cotton",
     drowning = 0,
     liquid_renewable = false,
     liquidtype = "source",
@@ -90,7 +90,7 @@ minetest.register_node("nssm:thick_web", {
     pointable = true,
     diggable = true,
     buildable_to = false,
-    drop = "",
+    drop = "farming:cotton 8",
     drowning = 2,
     liquid_renewable = false,
     liquidtype = "source",
@@ -98,7 +98,7 @@ minetest.register_node("nssm:thick_web", {
     liquid_alternative_flowing = "nssm:thick_web",
     liquid_alternative_source = "nssm:thick_web",
     liquid_viscosity = 30,
-    groups = {flammable=2, liquid=1},
+    groups = {flammable=2, snappy=1, liquid=1},
 })
 
 minetest.register_node("nssm:ink", {

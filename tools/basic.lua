@@ -60,7 +60,7 @@ minetest.register_tool("nssm:mantis_sword", {
         max_drop_level=1,
         groupcaps={
             fleshy={times={[2]=1.0, [3]=0.4}, uses=30, maxlevel=1},
-            snappy={times={[2]=0.80, [3]=0.3}, uses=40, maxlevel=1},
+            snappy={times={[1]=1.0, [2]=0.80, [3]=0.3}, uses=40, maxlevel=1},
         },
         damage_groups = {fleshy=7},
     },
