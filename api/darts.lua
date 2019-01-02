@@ -174,8 +174,9 @@ function explosion_web(pos, webtype)
                 local k = {x=i,y=j+1,z=k}
                 local current = minetest.env:get_node(p).name
                 local ontop  = minetest.env:get_node(k).name
-                if not nssm.unswappable_node(k) then
-                    minetest.set_node(k, {name=webtype})
+                if current == "air" then
+                --if not nssm.unswappable_node(p) then -- replaces to many nodes
+                    minetest.set_node(p, {name=webtype})
                 end
             end
         end
