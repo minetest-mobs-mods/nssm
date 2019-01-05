@@ -154,7 +154,7 @@ mobs:register_mob("nssm:morgut", {
                             self.morgut_timer = os.time()
                             self.curr_attack = self.attack
                             self.state = ""
-                            local pyaw = self.curr_attack: get_look_yaw()
+                            local pyaw = self.curr_attack: get_look_horizontal()
                             self.dir = pyaw
                             self.object:setyaw(pyaw)
                             if self then

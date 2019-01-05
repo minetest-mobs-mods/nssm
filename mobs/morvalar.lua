@@ -1,7 +1,7 @@
-local time_limit = 20
+local first_hit_timelimit = 120
 posmorvalarblock = {x=827, y=-30094, z=-817}
 
-function initiation_timeout(self)
+local function initiation_timeout(self)
     --start a timer if it doesn't exist
     self.stop_timer = self.stop_timer or os.time()
 
@@ -11,10 +11,23 @@ function initiation_timeout(self)
     if self.hp_record ~= self.health then
         self.stop_timer = os.time()
     else
-        if os.time() - self.stop_timer > time_limit then
-            -- FIXME should only send to players in 32 node radius
-            -- TODO play ominous sound...
-            minetest.chat_send_all("Summon me ... when you are ready to fight ...")
+        if os.time() - self.stop_timer > first_hit_timelimit then
+            local shout_distance = 64
+            local message = "Summon me ... when you are ready to fight ..."
+            local pos = self.object:getpos()
+            local objs = minetest.get_objects_inside_radius(pos, shout_distance)
+
+            for k, obj in pairs(objs) do
+                if obj:is_player() then
+                    minetest.chat_send_player(obj:get_player_name(), message)
+
+                    minetest.sound_play(self.sounds.attack, {
+                        to_player = obj:get_player_name(),
+                        gain = 1.0,
+                    })
+                end
+            end
+
             self.object:remove()
         end
     end

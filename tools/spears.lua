@@ -30,7 +30,7 @@ local function spears_shot(itemstack, player)
 
     obj:setvelocity({x=dir.x*speed, y=dir.y*speed, z=dir.z*speed})
     obj:setacceleration({x=-dir.x*drag, y=-gravity, z=-dir.z*drag})
-    obj:setyaw(player:get_look_yaw()+math.pi)
+    obj:setyaw(player:get_look_horizontal()+math.pi)
     minetest.sound_play("spears_sound", {pos=playerpos})
     obj:get_luaentity().wear = itemstack:get_wear()
     obj:get_luaentity().shooter = player
