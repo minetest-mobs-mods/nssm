@@ -775,9 +775,6 @@ mobs:register_mob("nssm:morvalar0", {
     damage = 4,
     runaway = true,
     jump = true,
-    sounds = {
-        random = "kamehameha",
-    },
     drops = {
         {name = "nssm:death_scythe",
         chance = 1,
@@ -813,21 +810,28 @@ mobs:register_mob("nssm:morvalar0", {
     end,
     custom_attack = function (self)
         self.morvalar1_timer = (self.morvalar1_timer or os.time())
-        if (os.time() - self.morvalar1_timer) > 1 then
+        if (os.time() - self.morvalar1_timer) > 3 then
             self.morvalar1_timer = os.time()
 
-            local s = self.object:getpos()
-            local p = self.attack:getpos()
+            minetest.sound_play("kamehameha", {
+                pos = self.object:getpos(),
+                gain = 1.0,
+            })
 
-            mobs:set_animation(self, "punch")
+            minetest.after(1, function()
+                local s = self.object:getpos()
+                local p = self.attack:getpos()
 
-            local m = 5     --velocity of the kamehameha
-            local obj = minetest.add_entity(s, "nssm:kamehameha_bad")
+                mobs:set_animation(self, "punch")
 
-            s.y = s.y+0.5
-            p.y = p.y+0.9
-            local dir = {x=(p.x-s.x)*m, y=(p.y-s.y)*m, z=(p.z-s.z)*m} --direction of the kamehameha
-            obj:setvelocity(dir)
+                local m = 5     --velocity of the kamehameha
+                local obj = minetest.add_entity(s, "nssm:kamehameha_bad")
+
+                s.y = s.y+0.5
+                p.y = p.y+0.9
+                local dir = {x=(p.x-s.x)*m, y=(p.y-s.y)*m, z=(p.z-s.z)*m} --direction of the kamehameha
+                obj:setvelocity(dir)
+            end)
         end
     end,
     on_die = function(self)
@@ -850,8 +854,6 @@ mobs:register_mob("nssm:morvalar0", {
             vertical = false,
             texture = "morparticle.png",
         })
-        minetest.set_node(posmorvalarblock, {name="nssb:dis_morvalar_block"})
-        --minetest.add_entity(pos, "nssm:morvalar3")
     end,
 })
 
@@ -867,6 +869,7 @@ minetest.register_entity("nssm:kamehameha_bad", {
             self.object:remove()
         end
 
+        -- Damage things around the entity
         local objects = minetest.env:get_objects_inside_radius(pos, 2)
         for _,obj in ipairs(objects) do
             if obj:is_player() then
@@ -885,27 +888,24 @@ minetest.register_entity("nssm:kamehameha_bad", {
                 end
             end
         end
+
+        -- Explode things near to the entity
         local objects = minetest.env:get_objects_inside_radius(pos, 1)
         for _,obj in ipairs(objects) do
             if obj:is_player() then
-                tnt_boom_nssm(pos, {damage_radius=6,radius=5,ignore_protection=false})
+                tnt_boom_nssm(pos, {damage_radius=6,radius=5})
                 self.object:remove()
                 --minetest.chat_send_all("Dentro il raggio piccolo")
             end
             if obj:get_luaentity() then
                 local name = obj:get_luaentity().name
                 if name ~= "nssm:morvalar0" and name ~="nssm:kamehameha_bad" then
-                    tnt_boom_nssm(pos, {damage_radius=6,radius=5,ignore_protection=false})
+                    tnt_boom_nssm(pos, {damage_radius=6,radius=5})
                     self.object:remove()
                 end
             end
         end
 
-        local nodename = minetest.env:get_node(pos).name
-        if nodename ~= "air" then
-            explosion(pos, 5, 0, 1, true)
-            self.object:remove()
-        end
     end,
     life_time = 40,
     timer = 0,
