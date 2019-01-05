@@ -8,3 +8,8 @@ nssm.inhibition_radius = tonumber(minetest.settings:get('nssm.inhibition_radius'
 nssm.energy_boosts = minetest.settings:get_bool('nssm.energy_boosts')
 
 nssm.energy_lights = minetest.settings:get_bool('nssm.energy_lights')
+
+nssm.unswappable_nodes = minetest.settings:get('nssm.unswappable_nodes') or ""
+nssm.unswappable_nodes = nssm.unswappable_nodes:split(",")
+
+minetest.debug( "------------> "..dump(nssm.unswappable_nodes) )

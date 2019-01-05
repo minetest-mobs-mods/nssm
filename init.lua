@@ -7,8 +7,10 @@ function nssm:load(filepath)
     dofile(nssm.path.."/"..filepath)
 end
 
--- General API
+-- Load before all others
 nssm:load("api/settings.lua")
+
+-- General API
 nssm:load("api/main_api.lua")
 nssm:load("api/darts.lua")
 nssm:load("api/abms.lua")

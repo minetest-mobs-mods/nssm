@@ -5,13 +5,8 @@ local c_obsidian = minetest.get_content_id("default:obsidian")
 local c_brick = minetest.get_content_id("default:obsidianbrick")
 local c_chest = minetest.get_content_id("default:chest_locked")
 
-local no_swap_nodes = {
-    "bones:bones",
-    "ignore",
-    "default:chest_locked",
-    "nssm:mob_inhibitor",
-    "nssm_server:mob_inhibitor",
-}
+nssm.unswappable_nodes[#nssm.unswappable_nodes+1] = "bones:bones"
+nssm.unswappable_nodes[#nssm.unswappable_nodes+1] = "default:chest_locked"
 
 nssm.unswappable_node = function (pos, node_list)
     -- Return true if the original_node should not be swapped
@@ -33,7 +28,7 @@ nssm.unswappable_node = function (pos, node_list)
         end
     end
 
-    for _,node in pairs(no_swap_nodes) do
+    for _,node in pairs(nssm.unswappable_nodes) do
         if node == original_node then return true end
     end
 
@@ -173,9 +168,26 @@ function digging_attack(
 end
 
 local function safely_put_block(self, pos_under_mob, original_node, putting_block)
-    --minetest.debug("Set node "..putting_block.." under "..minetest.pos_to_string(pos_under_mob))
     if not nssm.unswappable_node(pos_under_mob, {putting_block, "air"}) then
-        minetest.env:set_node(pos_under_mob, {name = putting_block})
+
+        -- walkable, non-buildable, or liquid
+        if minetest.registered_nodes[original_node]
+          and (
+            minetest.registered_nodes[original_node].walkable
+            and not minetest.registered_nodes[original_node].buildable_to
+          )
+          or (
+            minetest.registered_nodes[original_node].drawtype == "liquid"
+            or minetest.registered_nodes[original_node].drawtype == "flowingliquid"
+          ) then
+            minetest.env:set_node(pos_under_mob, {name = putting_block})
+
+        -- buildable to (snow, torch)
+        elseif minetest.registered_nodes[original_node].buildable_to then
+            minetest.env:set_node(pos_under_mob, {name = "air"})
+            minetest.add_item(pos_under_mob, {name = original_node})
+
+        end
     end
 end
 
@@ -528,7 +540,7 @@ local function add_drop(drops, item)
 end
 
 local function destroy(drops, npos, cid, c_air, c_fire, on_blast_queue, ignore_protection, ignore_on_blast)
-    if not ignore_protection and minetest.is_protected(npos, "") then
+    if minetest.is_protected(npos, "") then
         return cid
     end
 
