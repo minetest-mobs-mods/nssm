@@ -38,7 +38,7 @@ if not nssm.server_rainbow_staff then
             self.timer = self.timer or os.time()
 
             local pos = self.object:getpos()
-            if minetest.is_protected(pos, "") then
+            if nssm.unswappable_node(pos) then
                 return
             end
 

@@ -9,12 +9,22 @@ nssm.unswappable_nodes[#nssm.unswappable_nodes+1] = "bones:bones"
 nssm.unswappable_nodes[#nssm.unswappable_nodes+1] = "default:chest_locked"
 
 nssm.unswappable_node = function (pos, node_list)
-    -- Return true if the original_node should not be swapped
-
     local _, node, original_node
     original_node = minetest.env:get_node(pos).name
 
-    if minetest.get_item_group(original_node) == "unbreakable" then
+    -- Return true if the original_node should not be swapped
+    if original_node ~= "air" and not minetest.registered_nodes[original_node] then
+        -- remnant unknown block
+        return true
+    end
+
+    local node_def = minetest.registered_nodes[original_node]
+
+    if original_node == "nssb:indistructible_morentir" then
+        minetest.debug(">>> "..dump(node_def))
+    end
+
+    if node_def and node_def.groups and node_def.groups.unbreakable then
         return true
     end
 
