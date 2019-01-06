@@ -120,7 +120,7 @@ if minetest.get_modpath("3d_armor") then
         minetest.register_tool("nssm:helmet_"..k, {
             description = v.name.." ",
             inventory_image ="inv_helmet_"..k..".png",
-            groups = {armor_shield=math.floor(5*v.armor), armor_heal=v.heal, armor_use=v.use},
+            groups = {armor_head=math.floor(5*v.armor), armor_heal=v.heal, armor_use=v.use},
             wear = 0,
         })
     end
