@@ -1,5 +1,30 @@
 local creative_mode = minetest.settings:get_bool("creative_mode")
 
+-- Adjustable speed physics
+-- To deal with server lag
+
+local base_spear_velocity = 16
+local base_gravity = 9.8
+local base_drag = 0.3
+local statmodifier = nssm.spearmodifier
+
+--[[
+Spears thrown on servers have to contend with lag between spear movement and mob movement
+
+The more lag, the slower the spear needs to move -- the move step of the mob and spear is not as fluid
+as it is locally.
+--]]
+minetest.register_chatcommand("setspearstat",{
+    description = "Set spear stats modifier - default 1 (somewhat fast)",
+    params = "<(float)>",
+    privs = {server = 1},
+    func = function(playername, params)
+        statmodifier = tonumber(params) or 1
+
+        minetest.chat_send_player(playername, "Spear stat modifier set to "..tostring(statmodifier))
+    end,
+})
+
 local function is_walkable(node_name)
     if not minetest.registered_nodes[node_name] then
         return true -- non-existent, we should stop the spear !
@@ -16,13 +41,13 @@ local function spears_shot(itemstack, player)
     local spear = itemstack:get_name() .. '_entity'
 
     if spear == "nssm:spear_of_peace_entity" then
-        speed = 32
-        gravity = 9.8
+        speed = base_spear_velocity * statmodifier * 2
+        gravity = base_gravity
     else
-        speed = 16
-        gravity = 9.8
+        speed = base_spear_velocity * statmodifier
+        gravity = base_gravity * statmodifier
     end
-    local drag = .3
+    local drag = base_drag * statmodifier
 
     local playerpos = player:getpos()
     local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, spear)
@@ -30,7 +55,7 @@ local function spears_shot(itemstack, player)
 
     obj:setvelocity({x=dir.x*speed, y=dir.y*speed, z=dir.z*speed})
     obj:setacceleration({x=-dir.x*drag, y=-gravity, z=-dir.z*drag})
-    obj:setyaw(player:get_look_horizontal()+math.pi)
+    obj:setyaw(player:get_look_horizontal()+(math.pi*1.5))
     minetest.sound_play("spears_sound", {pos=playerpos})
     obj:get_luaentity().wear = itemstack:get_wear()
     obj:get_luaentity().shooter = player
@@ -101,7 +126,7 @@ local function spears_set_entity(kind, eq, toughness, breadth)
                     if obj:get_luaentity() ~= nil then
                         if obj:get_luaentity().name ~= spearentityname and obj:get_luaentity().name ~= "__builtin:item" then
                             if not (obj:is_player() and obj:get_luaentity().shooter:get_player_name() == obj:get_player_name() ) then
-                                local speed = vector.length(self.object:getvelocity())
+                                local speed = vector.length(self.object:getvelocity()) / statmodifier
                                 local damage = (speed + eq)^1.12-20
 
                                 obj:punch(self.object, 1.0, {

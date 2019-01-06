@@ -14,4 +14,9 @@ nssm.multimobs (Multimobs) int 1000
 # Multiplier to raise life and damage of the mobs
 nssm.mob_difficulty (Mob difficulty) int 1
 
-nssm.classic_rainbow_staff (Use the classical rainbow staff) bool false
+nssm.server_rainbow_staff (Use the server-mode rainbow staff) bool false
+
+nssm.energy_boosts (Eat energy for stats boost) bool false
+nssm.energy_lights (Place energy for light) bool false
+
+nssm.spearmodifier (Spear speed modifier, 1=normal, 0.5 is half speed) string 1.0
