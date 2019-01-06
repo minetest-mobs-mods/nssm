@@ -52,7 +52,7 @@ local function set_player_boost(user, duration, power)
     minetest.sound_play("nssm_energy_powerup", {
         pos = userpos,
         max_hear_distance = 20,
-        gain = 1,
+        gain = 0.5,
     })
 end
 
