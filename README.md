@@ -11,7 +11,7 @@ This mod is a continuation of NPX Team's Not So Simple Mobs. Notes from the orig
 * License for the code: `LGPLv2.1 or later`
     * see [LICENSE.txt](LICENSE.txt) and [license_notes.md](license_notes.md) for info on the license update
     * Copyright NPX Team and contributors
-* License for non-code assets: see `LICENSE_ART.txt`
+* License for non-code assets: see `LICENSE_MEDIA.txt`
 
 ## Core Dependencies
 
@@ -29,8 +29,15 @@ This mod provides some extra settings for fine tuning the experience:
 
 * `nssm.energy_lights` - allows placing energy as temporary light sources
 
+* `nssm.unswappable_nodes` - Various mobs and tools replace nodes int he environment as part of their attacks and movements.
+    * This list defines nodes that cannot be swapped by such activities
+    * `bones:bones` and `default:chest_locked` are always unswappable
 
-## Some notes from NPX Team !
+* `nssm.spearmodifier` - Allows slowing down spears. `1` for default speed, `0.5` for half speed
+    * Impact is still preserved
+    * Use this setting if the server experiences lag ; fast spears on laggy servers rarely get collision-detected
+
+## The original notes from NPX Team ! --¬
 
 We suggest that you play nssm with:
 
@@ -54,3 +61,5 @@ Here are the trailers of the mod:
 
 * nssm 2.1: <https://www.youtube.com/watch?v=ccLUt58mo0k>
 * nssm 3.0: <https://www.youtube.com/watch?v=ZBuAi1sQJxQ>
+
+NPX Team ~
