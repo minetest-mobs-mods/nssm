@@ -266,11 +266,11 @@ function webber_ability(        --puts randomly around the block defined as w_bl
     if (math.random(1,55)==1) then
         local dx=math.random(1,radius)
         local dz=math.random(1,radius)
-        local p = {x=pos.x+dx, y=pos.y-1, z=pos.z+dz}
+        --local p = {x=pos.x+dx, y=pos.y-1, z=pos.z+dz}
         local t = {x=pos.x+dx, y=pos.y, z=pos.z+dz}
-        local n = minetest.env:get_node(p).name
+        --local n = minetest.env:get_node(p).name
         local k = minetest.env:get_node(t).name
-        if not nssm.unswappable_node(p) then
+        if k == "air" and not nssm.unswappable_node(t) then
             minetest.env:set_node(t, {name=w_block})
         end
     end
