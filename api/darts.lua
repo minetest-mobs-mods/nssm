@@ -197,7 +197,7 @@ mobs:register_arrow("nssm:thickwebball", {
     -- direct hit
     hit_player = function(self, player)
         local p = player:getpos()
-        explosion_thickweb(p, "nssm:thick_web")
+        explosion_web(p, "nssm:thick_web")
     end,
 
     hit_mob = function(self, player)
@@ -208,7 +208,7 @@ mobs:register_arrow("nssm:thickwebball", {
     end,
 
     hit_node = function(self, pos, node)
-        explosion_thickweb(pos, "nssm:thick_web")
+        explosion_web(pos, "nssm:thick_web")
     end
 })
 
