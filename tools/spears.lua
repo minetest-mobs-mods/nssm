@@ -213,18 +213,18 @@ function spears_register_spear(kind, desc, eq, toughness, material, scale)
 end
 
 
-spears_register_spear('ant', 'Ant', 6, 25, 'nssm:ant_mandible')
+spears_register_spear('duck_beak', 'Duck Beak', 5, 12, 'nssm:duck_beak')
 
-spears_register_spear('mantis', 'Mantis', 6, 10, 'nssm:mantis_claw')
+spears_register_spear('manticore', 'Manticore', 8, 16, 'nssm:manticore_spine')
 
-spears_register_spear('manticore', 'Manticore', 8, 8, 'nssm:manticore_spine')
+spears_register_spear('felucco_horn', 'Felucco Horn', 7, 18, 'nssm:felucco_horn')
+
+spears_register_spear('mantis', 'Mantis', 6, 20, 'nssm:mantis_claw')
+
+spears_register_spear('little_ice_tooth', 'Little Ice Tooth', 7, 20, 'nssm:little_ice_tooth')
+
+spears_register_spear('ant', 'Ant', 6, 50, 'nssm:ant_mandible')
 
 spears_register_spear('ice_tooth', 'Ice Tooth', 16, 200, 'nssm:ice_tooth')
-
-spears_register_spear('little_ice_tooth', 'Little Ice Tooth', 7, 10, 'nssm:little_ice_tooth')
-
-spears_register_spear('duck_beak', 'Duck Beak', 5, 6, 'nssm:duck_beak')
-
-spears_register_spear('felucco_horn', 'Felucco Horn', 7, 9, 'nssm:felucco_horn')
 
 spears_register_spear('of_peace', 'Grand Peace', 30, 300, 'nssm:wrathful_moranga', 2)
