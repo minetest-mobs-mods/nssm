@@ -111,46 +111,50 @@ end
 
 -- Define energies
 
+local function register_energy_light(name, descr, ns, div, nici)
+    minetest.register_node("nssm:"..name, {
+        description = descr,
+        tiles = {
+            {
+                name="venomous_gas_animated2.png",
+                animation={
+                    type="vertical_frames",
+                    aspect_w=64,
+                    aspect_h=64,
+                    length=3.0
+                }
+            }
+        },
+
+        wield_image = name..".png",
+        inventory_image = name..".png",
+        drawtype = "nodebox",
+        node_box = {
+            type = "fixed",
+            fixed = {
+                {-ns / div, -ns / div, -ns / div, ns / div, ns / div, ns / div},
+            },
+        },
+        paramtype = "light",
+        light_source = ns,
+        sunlight_propagates = true,
+        is_ground_content = false,
+        groups = {dig_immediate = 1},
+        pointable = false,
+        drop = "",
+        buildable_to = true,
+        on_use = eat_energy,
+        walkable = false,
+        groups = {not_in_creative_inventory = nici}
+    })
+end
+
 local function register_energy(name, descr, nodesize, nutrition, duration)
     life_energy_ratings["nssm:"..name] = {nutrition = nutrition, duration = duration}
-    local ns = nodesize
     local div = 64
 
     if nssm.energy_lights then
-        minetest.register_node("nssm:"..name, {
-            description = descr,
-            tiles = {
-                {
-                    name="venomous_gas_animated2.png",
-                    animation={
-                        type="vertical_frames",
-                        aspect_w=64,
-                        aspect_h=64,
-                        length=3.0
-                    }
-                }
-            },
-
-            wield_image = name..".png",
-            inventory_image = name..".png",
-            drawtype = "nodebox",
-            node_box = {
-                type = "fixed",
-                fixed = {
-                    {-ns / div, -ns / div, -ns / div, ns / div, ns / div, ns / div},
-                },
-            },
-            paramtype = "light",
-            light_source = nodesize,
-            sunlight_propagates = true,
-            is_ground_content = false,
-            groups = {dig_immediate = 3},
-            pointable = false,
-            drop = "",
-            buildable_to = true,
-            on_use = eat_energy,
-            walkable = false,
-        })
+        register_energy_light(name, descr, nodesize, div)
     else
         minetest.register_craftitem("nssm:"..name, {
             description = descr,
@@ -178,9 +182,13 @@ local function register_energy_craft(smaller,bigger)
 end
 
 register_energy('life_energy', 'Life Energy', 6, 2, 1)
-register_energy('energy_globe', 'Energy Sphere', 9, 5, 2.5)
-register_energy('great_energy_globe', 'Great Energy Sphere', 12, 12, 5)
-register_energy('superior_energy_globe', 'Awesome Energy Sphere', 15, 18, 10)
+register_energy('energy_globe', 'Energy Globe', 9, 5, 2.5)
+register_energy('great_energy_globe', 'Great Energy Globe', 12, 12, 5)
+register_energy('superior_energy_globe', 'Awesome Energy Globe', 15, 18, 10)
+
+-- Always available
+-- never obtainable
+register_energy_light('light_energy', 'Light Energy', 12, 64, 1)
 
 register_energy_craft("nssm:life_energy", "nssm:energy_globe")
 register_energy_craft("nssm:energy_globe", "nssm:great_energy_globe")

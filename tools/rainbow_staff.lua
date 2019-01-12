@@ -9,12 +9,19 @@
 local head_block = "nyancat:nyancat"
 local tail_block = "nyancat:nyancat_rainbow"
 
-local head_replacement = "nssm:great_energy_globe"
-local tail_replacement = "nssm:superior_energy_globe"
+local head_replacement = "nssm:modders_block"
+local tail_replacement = "nssm:light_energy"
 
-if not nssm.energy_lights then
-    head_replacement = "nssm:modders_block"
-    tail_replacement = "nssm:invisible_light"
+local function drop_rainbow_staff(itemstack, dropper, pos)
+    local extents = 16
+    local airnodes = minetest.env:find_nodes_in_area(
+        {x=pos.x-extents , y=pos.y-extents, z=pos.z-extents},
+        {x=pos.x+extents , y=pos.y+extents, z=pos.z+extents},
+        {"air"}
+    )
+    for _,p in ipairs(airnodes) do
+        minetest.set_node(pos, {name="nssm:light_energy"})
+    end
 end
 
 if not nssm.server_rainbow_staff then
@@ -64,6 +71,7 @@ if not nssm.server_rainbow_staff then
     minetest.register_tool("nssm:rainbow_staff", {
         description = "Rainbow Staff",
         inventory_image = "rainbow_staff.png",
+        groups = {not_in_creative_inventory=1,},
         on_use = function(itemstack, placer, pointed_thing)
             local dir = placer:get_look_dir();
             local playerpos = placer:getpos();
@@ -72,7 +80,7 @@ if not nssm.server_rainbow_staff then
             obj:setvelocity(vec)
             return itemstack
         end,
-        groups = {not_in_creative_inventory=1,}
+        --on_drop = drop_rainbow_staff,
     })
 
 
@@ -94,6 +102,7 @@ else
             damage_groups = {fleshy=20}, 
         },
 
-        groups = {not_in_creative_inventory=1,}
+        groups = {not_in_creative_inventory=1,},
+        on_drop = drop_rainbow_staff,
     })
 end

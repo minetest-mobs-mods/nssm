@@ -113,7 +113,7 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-    nodenames = {"nssm:life_energy", "nssm:energy_globe", "nssm:great_energy_globe", "nssm:superior_energy_globe"},
+    nodenames = {"nssm:light_energy", "nssm:life_energy", "nssm:energy_globe", "nssm:great_energy_globe", "nssm:superior_energy_globe"},
     interval = 10,
     chance = 10,
     action = function(pos, node)
