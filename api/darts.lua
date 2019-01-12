@@ -366,7 +366,7 @@ mobs:register_arrow("nssm:lava_arrow", {
                 for dz=-1, 1, 2 do
                     local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     local n = minetest.env:get_node(p).name
-                    if n~="default:lava_flowing" and not nssm.unswapable_node(p) then
+                    if n~="default:lava_flowing" and not nssm.unswappable_node(p) then
                         minetest.set_node(p, {name="default:lava_flowing"})
                     end
                 end
