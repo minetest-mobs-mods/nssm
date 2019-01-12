@@ -13,11 +13,13 @@ This mod is a continuation of NPX Team's Not So Simple Mobs. Notes from the orig
     * Copyright NPX Team and contributors
 * License for non-code assets: see `LICENSE_MEDIA.txt`
 
-## Core Dependencies
+## Version Dependencies
 
 This mod relies heavily on the features in TenPlus1's [`mobs_redo`](https://notabug.org/tenplus1/mobs_redo), which is developed independently.
 
 This version of NSSM was adjusted to run against commit `487e037cc9` (from 2018-12-20). If you are having problems with mod compatibility, please ensure you are using a version of `mobs_redo` close to that commit.
+
+For some NSSB mobs, there is a dependency on the `3d_armor` API itself. This mod has been adjusted to work with version at tag `version-0.4.12` (June 2018) ; most later versions should work too.
 
 ## Settings
 

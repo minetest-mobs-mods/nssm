@@ -96,10 +96,11 @@ mobs:register_mob("nssm:morlu", {
 
             if self.attack:is_player() then
                 if minetest.get_modpath("3d_armor") then
-                    local pname, player_inv, armor_inv, ppos = armor:get_valid_player(self.attack, "[set_player_armor]")
+                    local pname, player_inv = armor:get_valid_player(self.attack, "[set_player_armor]")
                     local pname = self.attack:get_player_name()
                     local player_inv = minetest.get_inventory({type='player', name = pname})
-                    if player_inv:is_empty('armor') then
+                    local armor_inv = minetest.get_inventory({type='detached', name=pname.."_armor"})
+                    if armor_inv:is_empty('armor') then
                         -- punch player if he doesn't own an armor
                         self.attack:punch(self.object, 1.0, {
                             full_punch_interval = 1.0,
@@ -111,7 +112,7 @@ mobs:register_mob("nssm:morlu", {
                         local steal_pos
 
                         for i=1,6 do
-                            local armor_stack = player_inv:get_stack("armor", i)
+                            local armor_stack = armor_inv:get_stack("armor", i)
                             local armor_item = armor_stack:get_name()
                             if armor_stack:get_count() > 0 then
                                 armor_elements[armor_num]={name=armor_item, pos=i}
@@ -121,27 +122,23 @@ mobs:register_mob("nssm:morlu", {
                         if armor_num > 0 then
                             steal_pos = math.random(1,armor_num)
                             steal_pos = steal_pos-1
-                            --[[for i=0,armor_num-1 do
-                                minetest.chat_send_all("Posizione: "..armor_elements[i].pos.." Oggetto: "..armor_elements[i].name)
-                            end
-                            ]]
 
-                            --minetest.chat_send_all("Selezionato: pos: "..armor_elements[steal_pos].pos.." nome: "..armor_elements[steal_pos].name)
                             local cpos = string.find(armor_elements[steal_pos].name, ":")
-                            --minetest.chat_send_all("Posizione dei due punti: "..cpos)
 
-                            local mod_name = string.sub(armor_elements[steal_pos].name, 0, cpos-1)
-                            local nname = string.sub(armor_elements[steal_pos].name, cpos+1)
-                            --minetest.chat_send_all("Armor Mod name: "..mod_name)
+                            local target_armor = armor_elements[steal_pos].name
+                            local mod_name = string.sub(target_armor, 0, cpos-1)
+                            local nname = string.sub(target_armor, cpos+1)
 
-                            if mod_name == "3d_armor" then
+                            -- Set the name of the texture for the steal "particle"
+                            if target_armor:find("admin") then
+                                nname = "greedy_soul_fragment.png"
+                            elseif mod_name == "3d_armor" then
                                 nname = "3d_armor_inv_"..nname..".png"
                             elseif mod_name == "nssm" then
                                 nname = "inv_"..nname..".png"
                             else
                                 nname = "3d_armor_inv_chestplate_diamond.png"
                             end
-                            --minetest.chat_send_all("Nome della texture: "..nname)
 
                             minetest.add_particlespawner({
                                 amount = 1,
@@ -160,12 +157,16 @@ mobs:register_mob("nssm:morlu", {
                                 texture = nname
                             })
 
+                            if target_armor:find("admin") then
+                                return
+                            end
+
                             minetest.after(1, function (self)
                                 if self then
 
-                                    local armor_stack = player_inv:get_stack("armor", armor_elements[steal_pos].pos)
+                                    local armor_stack = armor_inv:get_stack("armor", armor_elements[steal_pos].pos)
                                     armor_stack:take_item()
-                                    player_inv:set_stack('armor', armor_elements[steal_pos].pos, armor_stack)
+                                    armor_inv:set_stack('armor', armor_elements[steal_pos].pos, armor_stack)
 
                                     armor_stack = armor_inv:get_stack("armor", armor_elements[steal_pos].pos)
                                     armor_stack:take_item()
