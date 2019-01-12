@@ -154,7 +154,7 @@ minetest.register_entity("nssm:mortick", {
         --If found a player follow him
         if self.attack ~= 0 then
             local p = self.attack:getpos()
-            local yawp = self.attack:get_look_horizontal()
+            local yawp = self.attack:get_look_horizontal()+math.pi/2
             local pi = math.pi
 
             p.y = p.y + 1
