@@ -78,6 +78,30 @@ minetest.register_node("nssm:web", {
     liquid_alternative_source = "nssm:web",
     liquid_viscosity = 20,
     groups = {flammable=2, snappy=1, liquid=1},
+    on_dig = function(pos, node, digger)
+        local winame = digger:get_wielded_item():get_name()
+        local wi = minetest.registered_tools[winame]
+
+        if wi and wi.groups and wi.groups.webdigger then
+            local range = (4-wi.groups.webdigger)/2
+            local webnodes = minetest.find_nodes_in_area(
+                {x=pos.x-range, y=pos.y-range, z=pos.z-range},
+                {x=pos.x+range, y=pos.y+range, z=pos.z+range},
+                {"nssm:web"}
+            )
+
+            for _,nodepos in ipairs(webnodes) do
+                if not minetest.is_protected(nodepos, digger:get_player_name()) then
+                    minetest.remove_node(nodepos)
+                    if math.random(1,range*4) == 1 then
+                        minetest.add_item(nodepos, "farming:cotton")
+                    end
+                end
+            end
+        else
+            minetest.node_dig(pos, node, digger)
+        end
+    end
 })
 
 minetest.register_node("nssm:thick_web", {
