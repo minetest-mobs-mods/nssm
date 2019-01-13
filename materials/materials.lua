@@ -93,7 +93,9 @@ minetest.register_node("nssm:web", {
             for _,nodepos in ipairs(webnodes) do
                 if not minetest.is_protected(nodepos, digger:get_player_name()) then
                     minetest.remove_node(nodepos)
-                    minetest.add_item(nodepos, "farming:cotton")
+                    if math.random(1,range*4) == 1 then
+                        minetest.add_item(nodepos, "farming:cotton")
+                    end
                 end
             end
         else
