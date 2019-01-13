@@ -55,7 +55,7 @@ mobs:register_mob("nssm:spiderduck", {
     attack_type = "dogshoot",
     arrow = "nssm:webball",
     reach = 2,
-    shoot_interval = 2,
+    shoot_interval = 5,
     shoot_offset = 2,
     animation = {
         speed_normal = 25,
