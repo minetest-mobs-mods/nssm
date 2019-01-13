@@ -174,7 +174,11 @@ function digging_attack(
             for i = 0,dim.y do -- from 0 to dy between mob and player altitude?
                 local target_node = minetest.env:get_node(pos_to_dig).name
                 if not nssm.unswappable_node(pos_to_dig) then
-                    minetest.remove_node(pos_to_dig)
+                    local nodename = minetest.env:get_node(posp).name
+                    local nodedef = minetest.registered_nodes[nodename]
+                    if nodedef.groups and nodedef.groups.stone then
+                        minetest.remove_node(pos_to_dig)
+                    end
                 end
                 pos_to_dig.y = pos_to_dig.y+1
             end
