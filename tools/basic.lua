@@ -310,38 +310,25 @@ minetest.register_tool("nssm:crab_heavy_mace", {
 -- Farming hoes
 
 if minetest.get_modpath("farming") then
+    local function register_nssm_hoe(name, description, material, range)
+        farming.register_hoe(":farming:"..name.."_hoe", {
+            description = description.." Hoe",
+            inventory_image = name.."_hoe.png",
+            max_uses = range*80,
+            material = material
+        })
 
-    farming.register_hoe(":farming:felucco_hoe", {
-        description = "Felucco Hoe",
-        inventory_image = "felucco_hoe.png",
-        max_uses = 290,
-        material = "nssm:felucco_horn"
-    })
+        minetest.register_craft({
+            output = 'nssm:ant_hoe',
+            recipe = {
+                {material, material},
+                {'', 'group:stick'},
+                {'', 'group:stick'},
+            }
+        })
+    end
 
-    farming.register_hoe(":farming:ant_hoe", {
-        description = "Ant Hoe",
-        inventory_image = "ant_hoe.png",
-        max_uses = 350,
-        material = "nssm:ant_mandible"
-    })
-
-    minetest.register_craft({
-        output = 'nssm:ant_hoe',
-        recipe = {
-            {'nssm:ant_mandible', 'nssm:ant_mandible'},
-            {'', 'group:stick'},
-            {'', 'group:stick'},
-        }
-    })
-
-    minetest.register_craft({
-        output = 'nssm:felucco_hoe',
-        recipe = {
-            {'nssm:felucco_horn', 'nssm:felucco_horn'},
-            {'', 'group:stick'},
-            {'', 'group:stick'},
-        }
-    })
+    register_nssm_hoe("ant", "Ant", "nssm:ant_mandible", 4)
+    register_nssm_hoe("felucco", "Felucco", "nssm:felucco_horn", 3)
 
 end
-
