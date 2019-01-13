@@ -307,28 +307,35 @@ minetest.register_tool("nssm:crab_heavy_mace", {
     },
 })
 
--- Farming hoes
+-- Cobweb scickles
 
-if minetest.get_modpath("farming") then
-    local function register_nssm_hoe(name, description, material, range)
-        farming.register_hoe(":farming:"..name.."_hoe", {
-            description = description.." Hoe",
-            inventory_image = name.."_hoe.png",
-            max_uses = range*80,
-            material = material
-        })
+local function register_nssm_scickle(name, description, material, diggerlevel)
+    minetest.register_tool("nssm:"..name.."_scickle", {
+        description = description.." Scickle",
+        inventory_image = "nssm_"..name.."_scickle.png",
+        groups = {webdigger = diggerlevel},
+        tool_capabilities = {
+            full_punch_interval =0.7 ,
+            max_drop_level=1,
+            groupcaps={
+                fleshy={times={[2]=1.0, [3]=0.4}, uses=30, maxlevel=1},
+                snappy={times={[1]=1.0, [2]=0.80, [3]=0.3}, uses=60, maxlevel=1},
+            },
+            damage_groups = {fleshy=4},
+        },
+    })
 
-        minetest.register_craft({
-            output = 'nssm:ant_hoe',
-            recipe = {
-                {material, material},
-                {'', 'group:stick'},
-                {'', 'group:stick'},
-            }
-        })
-    end
+    minetest.register_craft({
+        output = 'nssm:'..name..'_scickle',
+        recipe = {
+            {material, material},
+            {'', 'group:stick'},
+        }
+    })
 
-    register_nssm_hoe("ant", "Ant", "nssm:ant_mandible", 4)
-    register_nssm_hoe("felucco", "Felucco", "nssm:felucco_horn", 3)
-
+    minetest.register_alias("nssm:"..name.."_hoe", "nssm:"..name.."_scickle")
 end
+
+register_nssm_scickle("ant", "Ant", "nssm:ant_mandible", 1)
+register_nssm_scickle("felucco", "Felucco", "nssm:felucco_horn", 2)
+

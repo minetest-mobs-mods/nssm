@@ -169,7 +169,6 @@ function spears_register_spear(kind, desc, eq, toughness, material, scale)
         wield_image = "spear_" .. kind .. ".png",
         inventory_image = "spear_" .. kind .. ".png^[transform4",
         wield_scale= {x=2*scale, y=1*scale, z=1*scale},
-        groups = {webdigger = 1},
         on_drop = function(itemstack, user, pointed_thing)
             spears_shot(itemstack, user)
             if not creative_mode then
