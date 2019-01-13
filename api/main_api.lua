@@ -176,7 +176,7 @@ function digging_attack(
                 if not nssm.unswappable_node(pos_to_dig) then
                     local nodename = minetest.env:get_node(posp).name
                     local nodedef = minetest.registered_nodes[nodename]
-                    if nodedef.groups and nodedef.groups.stone then
+                    if nodedef.groups and nodedef.groups[group] then
                         minetest.remove_node(pos_to_dig)
                     end
                 end
