@@ -10,7 +10,7 @@ mobs:register_mob("nssm:dolidrosaurus", {
     makes_footstep_sound = true,
     view_range = 30,
     fly = true,
-    fly_in = "default:water_source",
+    fly_in = {"default:water_source", "default:water_flowing"},
     fall_speed = -20,
     walk_velocity = 1.5,
     run_velocity = 3.3,

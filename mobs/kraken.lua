@@ -11,7 +11,7 @@ mobs:register_mob("nssm:kraken", {
     inker = false,
     view_range = 50,
     fly = true,
-    fly_in = "default:water_source",
+    fly_in = {"default:water_source", "default:water_flowing"},
     fall_speed = -1,
     walk_velocity = 3.5,
     run_velocity = 4.5,

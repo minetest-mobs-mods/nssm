@@ -12,7 +12,7 @@ mobs:register_mob("nssm:scrausics", {
     walk_velocity = 2,
     run_velocity = 3,
     fall_speed = 0,
-     stepheight = 3,
+    stepheight = 3,
     floats=1,
     sounds = {
         random = "scrausics",
@@ -32,7 +32,6 @@ mobs:register_mob("nssm:scrausics", {
     },
     armor = 80,
     drawtype = "front",
-    water_damage = 5,
     lava_damage = 5,
     light_damage = 0,
     group_attack=true,
