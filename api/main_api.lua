@@ -325,7 +325,7 @@ function midas_ability(        --ability to transform every blocks it touches in
                 local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                 local n = minetest.env:get_node(p).name
 
-                if not nssm.unswappable_node(p) then
+                if not nssm.unswappable_node(p, {"air"}) then
                     minetest.env:set_node(p, {name=m_block})
                 end
             end
