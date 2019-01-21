@@ -39,6 +39,7 @@ end
 
 local function spears_shot(itemstack, player)
     local spear = itemstack:get_name() .. '_entity'
+    local speed, gravity
 
     if spear == "nssm:spear_of_peace_entity" then
         speed = base_spear_velocity * statmodifier * 2
