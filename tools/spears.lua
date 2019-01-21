@@ -177,6 +177,7 @@ function spears_register_spear(kind, desc, eq, toughness, material, scale)
             end
             return itemstack
         end,
+        groups = {webdigger = 3},
         tool_capabilities = {
             full_punch_interval = 1.3,
             max_drop_level=1,
@@ -221,4 +222,4 @@ spears_register_spear('ant', 'Ant', 6, 50, 'nssm:ant_mandible')
 
 spears_register_spear('ice_tooth', 'Ice Tooth', 16, 200, 'nssm:ice_tooth')
 
-spears_register_spear('of_peace', 'Grand Peace', 30, 300, 'nssm:wrathful_moranga', 2)
+spears_register_spear('of_peace', 'Serenity', 30, 300, 'nssm:wrathful_moranga', 2)

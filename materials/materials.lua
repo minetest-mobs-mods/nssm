@@ -83,7 +83,7 @@ minetest.register_node("nssm:web", {
         local wi = minetest.registered_tools[winame]
 
         if wi and wi.groups and wi.groups.webdigger then
-            local range = (4-wi.groups.webdigger)/2
+            local range = (5-wi.groups.webdigger)/2
             local webnodes = minetest.find_nodes_in_area(
                 {x=pos.x-range, y=pos.y-range, z=pos.z-range},
                 {x=pos.x+range, y=pos.y+range, z=pos.z+range},
