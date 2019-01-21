@@ -130,7 +130,7 @@ mobs:register_mob("nssm:night_master_2", {
     end,
 })
 
-mobs:register_mob("nssm:night_master_1", {
+nssm:register_mob("nssm:night_master_1", "Night Master", {
     type = "monster",
     hp_max = 70,
     hp_min = 70,
@@ -187,5 +187,4 @@ mobs:register_mob("nssm:night_master_1", {
         punch_start = 130,
         punch_end = 160,
     },
-    on_die=  __NSSM_kill_count,
 })

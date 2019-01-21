@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:lava_titan", {
+nssm:register_mob("nssm:lava_titan", "Lava Titan", {
     type = "monster",
     hp_max = 180,
     hp_min = 180,
@@ -89,7 +89,6 @@ mobs:register_mob("nssm:lava_titan", {
         -- For now deactivate - it places lava under it, sinks, then places lava under it, sinks, etc ...
         --putting_ability(self, "default:lava_source", self.run_velocity)
     end,
-    on_die=  __NSSM_kill_count,
     --[[
     custom_attack = function (self)
         -- digging_attack

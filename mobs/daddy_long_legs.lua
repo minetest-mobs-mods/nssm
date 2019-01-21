@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:daddy_long_legs", {
+nssm:register_mob("nssm:daddy_long_legs", "Daddy Long Legs", {
     type = "monster",
     hp_max = 22,
     hp_min = 16,
@@ -56,5 +56,4 @@ mobs:register_mob("nssm:daddy_long_legs", {
         punch_start = 140,
         punch_end = 165,
     },
-    on_die=  __NSSM_kill_count,
 })

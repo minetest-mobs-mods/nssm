@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:moonheron", {
+nssm:register_mob("nssm:moonheron", "Moon Heron", {
     type = "monster",
     hp_max = 33,
     hp_min = 22,
@@ -52,5 +52,4 @@ mobs:register_mob("nssm:moonheron", {
         punch_start = 80,
         punch_end = 120,
     },
-    on_die=  __NSSM_kill_count,
 })

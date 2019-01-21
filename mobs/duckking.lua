@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:duckking", {
+nssm:register_mob("nssm:duckking", "Duck King", {
     type = "monster",
     hp_max = 180,
     hp_min = 180,
@@ -75,5 +75,4 @@ mobs:register_mob("nssm:duckking", {
         shoot_start = 160,
         shoot_end = 180,
     },
-    on_die=  __NSSM_kill_count,
 })

@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:icesnake", {
+nssm:register_mob("nssm:icesnake", "Ice Snake", {
     type = "monster",
     hp_max = 27,
     hp_min = 17,
@@ -64,5 +64,4 @@ mobs:register_mob("nssm:icesnake", {
     do_custom = function(self)
         putting_ability(self, "default:ice", self.run_velocity)
     end,
-    on_die=  __NSSM_kill_count,
 })

@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:mese_dragon", {
+nssm:register_mob("nssm:mese_dragon", "Mese Dragon", {
     type = "monster",
     hp_max = 666,
     hp_min = 666,
@@ -113,5 +113,4 @@ mobs:register_mob("nssm:mese_dragon", {
             end
         end
     end,
-    on_die=  __NSSM_kill_count,
 })

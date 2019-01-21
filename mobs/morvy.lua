@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:morvy", {
+nssm:register_mob("nssm:morvy", "Morvy", {
     type = "monster",
     hp_max = 39,
     hp_min = 21,
@@ -125,7 +125,7 @@ mobs:register_mob("nssm:morvy", {
 
 --Morbats
 
-mobs:register_mob("nssm:morbat1", {
+nssm:register_mob("nssm:morbat1", "Morbat I", {
     type = "monster",
     hp_max = 15,
     hp_min = 13,
@@ -175,7 +175,7 @@ mobs:register_mob("nssm:morbat1", {
     }
 })
 
-mobs:register_mob("nssm:morbat2", {
+nssm:register_mob("nssm:morbat2", "Morbat II", {
     type = "monster",
     hp_max = 13,
     hp_min = 5,
@@ -227,7 +227,7 @@ mobs:register_mob("nssm:morbat2", {
 })
 
 
-mobs:register_mob("nssm:morbat3", {
+nssm:register_mob("nssm:morbat3", "Morbat III", {
     type = "monster",
     hp_max = 13,
     hp_min = 12,
@@ -277,5 +277,4 @@ mobs:register_mob("nssm:morbat3", {
         punch_start = 100,
         punch_end = 115,
     },
-    on_die=  __NSSM_kill_count,
 })

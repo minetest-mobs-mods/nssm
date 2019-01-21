@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:duck", {
+nssm:register_mob("nssm:duck", "Duck", {
     type = "monster",
     hp_max = 12,
     hp_min = 7,
@@ -60,6 +60,5 @@ mobs:register_mob("nssm:duck", {
         punch_start = 40,
         punch_end = 60,
     },
-    on_die=  __NSSM_kill_count,
     --pathfinding = 1,
 })

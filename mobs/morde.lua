@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:morde", {
+nssm:register_mob("nssm:morde", "Morde", {
     type = "monster",
     hp_max = 47,
     hp_min = 37,
@@ -104,7 +104,6 @@ mobs:register_mob("nssm:morde", {
         local pos = self.object:getpos()
         self.object:remove()
         minetest.add_entity(pos, "nssm:mortick")
-        __NSSM_kill_count(self,pos)
     end,
 })
 

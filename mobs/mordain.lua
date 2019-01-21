@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:mordain", {
+nssm:register_mob("nssm:mordain", "Mordain", {
     type = "monster",
     hp_max = 32,
     hp_min = 23,
@@ -120,5 +120,4 @@ mobs:register_mob("nssm:mordain", {
             end)
         end
     end,
-    on_die=  __NSSM_kill_count,
 })

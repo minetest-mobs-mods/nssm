@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:morgut", {
+nssm:register_mob("nssm:morgut", "Morgut", {
     type = "monster",
     hp_max = 35,
     hp_min = 28,
@@ -183,6 +183,5 @@ mobs:register_mob("nssm:morgut", {
             end
         end
         self.object:remove()
-        __NSSM_kill_count(self, pos)
     end,
 })

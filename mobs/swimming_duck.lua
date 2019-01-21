@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:swimming_duck", {
+nssm:register_mob("nssm:swimming_duck", "Swimming Duck", {
     type = "monster",
     hp_max = 25,
     hp_min = 15,
@@ -60,5 +60,4 @@ mobs:register_mob("nssm:swimming_duck", {
         punch_start = 140,
         punch_end = 160,
     },
-    on_die=  __NSSM_kill_count,
 })

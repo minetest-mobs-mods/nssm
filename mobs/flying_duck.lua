@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:flying_duck", {
+nssm:register_mob("nssm:flying_duck", "Flying Duck", {
     type = "monster",
     hp_max = 20,
     hp_min = 10,
@@ -60,5 +60,4 @@ mobs:register_mob("nssm:flying_duck", {
         punch_start = 110,
         punch_end = 140,
     },
-    on_die=  __NSSM_kill_count,
 })

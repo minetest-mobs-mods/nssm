@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:manticore", {
+nssm:register_mob("nssm:manticore", "Manticore", {
     type = "monster",
     hp_max = 55,
     hp_min = 34,
@@ -62,5 +62,4 @@ mobs:register_mob("nssm:manticore", {
         shoot_start =180,
         shoot_end=230,
     },
-    on_die=  __NSSM_kill_count,
 })

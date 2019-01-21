@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:larva", {
+nssm:register_mob("nssm:larva", "Mantis Larva", {
     type = "monster",
     hp_max = 12,
     hp_min = 8,
@@ -84,5 +84,4 @@ mobs:register_mob("nssm:larva", {
             return
         end
     end,
-    on_die=  __NSSM_kill_count,
 })

@@ -1,4 +1,4 @@
-nssm:load("mobs/_kill_count.lua")
+nssm:load("mobs/_nssm_mobs.lua")
 
 nssm:load("mobs/ant_queen.lua")
 nssm:load("mobs/ant_soldier.lua")

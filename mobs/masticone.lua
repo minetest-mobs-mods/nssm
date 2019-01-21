@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:masticone", {
+nssm:register_mob("nssm:masticone", "Masticone", {
     type = "monster",
     hp_max = 25,
     hp_min = 24,
@@ -61,7 +61,6 @@ mobs:register_mob("nssm:masticone", {
     },
     on_die = function(self, pos)
         self.object:remove()
-        __NSSM_kill_count(self,pos)
 
         core.after(2, function()
             minetest.add_particlespawner({

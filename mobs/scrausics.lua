@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:scrausics", {
+nssm:register_mob("nssm:scrausics", "Scrausics", {
     type = "monster",
     hp_max = 33,
     hp_min = 22,
@@ -53,5 +53,4 @@ mobs:register_mob("nssm:scrausics", {
         punch_start = 20,
         punch_end = 50,
     },
-    on_die=  __NSSM_kill_count,
 })

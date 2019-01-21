@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:mantis_beast", {
+nssm:register_mob("nssm:mantis_beast", "Mantis Beast", {
     type = "monster",
     hp_max = 30,
     hp_min = 27,
@@ -60,5 +60,4 @@ mobs:register_mob("nssm:mantis_beast", {
         punch_start = 140,
         punch_end = 165,
     },
-    on_die=  __NSSM_kill_count,
 })

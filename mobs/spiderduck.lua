@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:spiderduck", {
+nssm:register_mob("nssm:spiderduck", "Spider-duck", {
     type = "monster",
     hp_max = 35,
     hp_min = 24,
@@ -71,5 +71,4 @@ mobs:register_mob("nssm:spiderduck", {
         shoot_start = 150,
         shoot_end = 200,
     },
-    on_die=  __NSSM_kill_count,
 })

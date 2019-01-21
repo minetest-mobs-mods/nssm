@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:black_widow", {
+nssm:register_mob("nssm:black_widow", "Black Widow", {
     type = "monster",
     hp_max = 26,
     hp_min = 19,
@@ -64,5 +64,4 @@ mobs:register_mob("nssm:black_widow", {
     do_custom = function(self)
         webber_ability(self, "nssm:web", 2)
     end,
-    on_die=  __NSSM_kill_count,
 })

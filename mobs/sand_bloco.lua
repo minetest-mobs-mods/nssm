@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:sand_bloco", {
+nssm:register_mob("nssm:sand_bloco", "Sand Bloco", {
     type = "monster",
     hp_max = 24,
     hp_min = 17,
@@ -56,5 +56,4 @@ mobs:register_mob("nssm:sand_bloco", {
         punch_start = 100,
         punch_end = 130,
     },
-    on_die=  __NSSM_kill_count,
 })

@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:kraken", {
+nssm:register_mob("nssm:kraken", "Kraken", {
     type = "monster",
     hp_max = 350,
     hp_min = 350,
@@ -60,5 +60,4 @@ mobs:register_mob("nssm:kraken", {
         punch_start = 120,
         punch_end = 150,
     },
-    on_die=  __NSSM_kill_count,
 })

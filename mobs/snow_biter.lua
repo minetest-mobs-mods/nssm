@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:snow_biter", {
+nssm:register_mob("nssm:snow_biter", "Snow Biter", {
     type = "monster",
     hp_max = 30,
     hp_min = 15,
@@ -69,5 +69,4 @@ mobs:register_mob("nssm:snow_biter", {
     do_custom = function(self)
         putting_ability(self, "default:ice", self.run_velocity)
     end,
-    on_die=  __NSSM_kill_count,
 })

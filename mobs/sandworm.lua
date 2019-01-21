@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:sandworm", {
+nssm:register_mob("nssm:sandworm", "Sandworm", {
     type = "monster",
     hp_max = 40,
     hp_min = 25,
@@ -61,5 +61,4 @@ mobs:register_mob("nssm:sandworm", {
     do_custom = function(self)
         digging_attack(self, "sand", self.run_velocity, {x=0, y=3, z=0})
     end,
-    on_die=  __NSSM_kill_count,
 })
