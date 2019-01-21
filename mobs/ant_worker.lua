@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:ant_worker", {
+nssm:register_mob("nssm:ant_worker", "Ant Worker", {
     type = "monster",
     passive = true,
     hp_max = 24,
@@ -13,7 +13,7 @@ mobs:register_mob("nssm:ant_worker", {
     fear_height = 4,
     walk_velocity = 0.5,
     run_velocity = 2,
-      rotate = 270,
+    rotate = 270,
     sounds = {
         random = "ant",
     },
@@ -60,5 +60,5 @@ mobs:register_mob("nssm:ant_worker", {
         run_end = 160,
         punch_start = 50,
         punch_end = 70,
-    }
+    },
 })

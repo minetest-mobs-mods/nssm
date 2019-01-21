@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:phoenix", {
+nssm:register_mob("nssm:phoenix", "Phoenix", {
     type = "monster",
     hp_max = 160,
     hp_min = 160,
@@ -64,5 +64,5 @@ mobs:register_mob("nssm:phoenix", {
         punch_end = 110,
         shoot_start = 80,
         shoot_end = 110,
-    }
+    },
 })

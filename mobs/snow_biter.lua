@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:snow_biter", {
+nssm:register_mob("nssm:snow_biter", "Snow Biter", {
     type = "monster",
     hp_max = 30,
     hp_min = 15,

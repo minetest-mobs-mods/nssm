@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:signosigno", {
+nssm:register_mob("nssm:signosigno", "Signo-Signo", {
     type = "monster",
     hp_max = 20,
     hp_min = 8,
@@ -52,5 +52,5 @@ mobs:register_mob("nssm:signosigno", {
         run_end = 220,
         punch_start = 160,
         punch_end = 190,
-    }
+    },
 })

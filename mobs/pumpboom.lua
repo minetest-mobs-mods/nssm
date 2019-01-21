@@ -1,5 +1,5 @@
 local function register_pumpboom(sizename, params)
-    mobs:register_mob("nssm:pumpboom_"..sizename, {
+    nssm:register_mob("nssm:pumpboom_"..sizename, "Pumpboom ("..sizename..")", {
         type = "monster",
         hp_min = params.hp_min,
         hp_max = params.hp_max,
@@ -44,7 +44,7 @@ local function register_pumpboom(sizename, params)
             run_end = 97,
             punch_start = 70,
             punch_end = 80,
-        }
+        },
     })
 end
 

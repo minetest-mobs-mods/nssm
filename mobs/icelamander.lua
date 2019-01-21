@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:icelamander", {
+nssm:register_mob("nssm:icelamander", "Icelamander", {
     type = "monster",
     hp_max = 230,
     hp_min = 230,

@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:morde", {
+nssm:register_mob("nssm:morde", "Morde", {
     type = "monster",
     hp_max = 47,
     hp_min = 37,
@@ -139,6 +139,7 @@ minetest.register_entity("nssm:mortick", {
           name == "default:lava_flowing" then
 
             self.object:remove()
+            __NSSM_kill_count(self,s)
         end
 
         --Find player to attack:

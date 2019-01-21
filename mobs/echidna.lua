@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:echidna", {
+nssm:register_mob("nssm:echidna", "Echidna", {
     type = "monster",
     hp_max = 240,
     hp_min = 240,
@@ -59,5 +59,5 @@ mobs:register_mob("nssm:echidna", {
         punch_end = 190,
         shoot_start = 200,
         shoot_end = 240,
-    }
+    },
 })

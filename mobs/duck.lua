@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:duck", {
+nssm:register_mob("nssm:duck", "Duck", {
     type = "monster",
     hp_max = 12,
     hp_min = 7,
@@ -59,6 +59,6 @@ mobs:register_mob("nssm:duck", {
         run_end = 40,
         punch_start = 40,
         punch_end = 60,
-    }
+    },
     --pathfinding = 1,
 })

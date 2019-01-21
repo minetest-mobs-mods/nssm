@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:werewolf", {
+nssm:register_mob("nssm:werewolf", "Werewolf", {
     type = "monster",
     hp_max = 40,
     hp_min = 25,
@@ -54,5 +54,5 @@ mobs:register_mob("nssm:werewolf", {
         run_end = 160,
         punch_start = 170,
         punch_end = 193,
-    }
+    },
 })

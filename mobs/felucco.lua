@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:felucco", {
+nssm:register_mob("nssm:felucco", "Felucco", {
     type = "monster",
     hp_max = 36,
     hp_min = 27,
@@ -58,5 +58,5 @@ mobs:register_mob("nssm:felucco", {
         run_end = 160,
         punch_start = 200,
         punch_end = 240,
-    }
+    },
 })

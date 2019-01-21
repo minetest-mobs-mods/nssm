@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:ant_queen", {
+nssm:register_mob("nssm:ant_queen", "Ant Queen", {
     type = "monster",
     hp_max = 220,
     hp_min = 220,
@@ -101,5 +101,5 @@ mobs:register_mob("nssm:ant_queen", {
                 end
             end
         end
-    end
+    end,
 })

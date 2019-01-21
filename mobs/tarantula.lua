@@ -77,7 +77,7 @@ mobs:register_mob("nssm:tarantula", {
 })
 
 
-mobs:register_mob("nssm:tarantula_propower", {
+nssm:register_mob("nssm:tarantula_propower", "Tarantula", {
     type = "monster",
     hp_max = 90,
     hp_min = 90,
@@ -141,5 +141,5 @@ mobs:register_mob("nssm:tarantula_propower", {
         run_end = 160,
         punch_start = 180,
         punch_end = 200,
-    }
+    },
 })

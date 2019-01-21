@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:black_widow", {
+nssm:register_mob("nssm:black_widow", "Black Widow", {
     type = "monster",
     hp_max = 26,
     hp_min = 19,

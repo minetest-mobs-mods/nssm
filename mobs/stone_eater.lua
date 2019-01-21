@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:stone_eater", {
+nssm:register_mob("nssm:stone_eater", "Stone Eater", {
     type = "monster",
     hp_max = 27,
     hp_min = 19,

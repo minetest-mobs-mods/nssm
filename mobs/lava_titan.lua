@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:lava_titan", {
+nssm:register_mob("nssm:lava_titan", "Lava Titan", {
     type = "monster",
     hp_max = 180,
     hp_min = 180,

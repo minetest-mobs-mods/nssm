@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:crocodile", {
+nssm:register_mob("nssm:crocodile", "Crocodile", {
     type = "monster",
     hp_max = 30,
     hp_min = 15,
@@ -57,5 +57,5 @@ mobs:register_mob("nssm:crocodile", {
         punch_end = 220,
         --swim_start = 100,
         --swim_end = 140,
-    }
+    },
 })

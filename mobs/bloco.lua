@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:bloco", {
+nssm:register_mob("nssm:bloco", "Bloco", {
     type = "monster",
     hp_max = 24,
     hp_min = 14,
@@ -61,5 +61,5 @@ mobs:register_mob("nssm:bloco", {
         run_end = 160,
         punch_start = 170,
         punch_end = 190,
-    }
+    },
 })

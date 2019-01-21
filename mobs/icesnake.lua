@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:icesnake", {
+nssm:register_mob("nssm:icesnake", "Ice Snake", {
     type = "monster",
     hp_max = 27,
     hp_min = 17,

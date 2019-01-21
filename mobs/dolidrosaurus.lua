@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:dolidrosaurus", {
+nssm:register_mob("nssm:dolidrosaurus", "Dolidrosaurus", {
     type = "monster",
     hp_max = 46,
     hp_min = 23,
@@ -54,5 +54,5 @@ mobs:register_mob("nssm:dolidrosaurus", {
         run_end = 180,
         punch_start = 190,
         punch_end = 220,
-    }
+    },
 })

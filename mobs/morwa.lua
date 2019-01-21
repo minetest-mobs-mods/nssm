@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:morwa", {
+nssm:register_mob("nssm:morwa", "Morwa", {
     type = "monster",
     hp_max = 56,
     hp_min = 49,

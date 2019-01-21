@@ -757,7 +757,7 @@ mobs:register_mob("nssm:morvalar1", {
     end,
 })
 
-mobs:register_mob("nssm:morvalar0", {
+nssm:register_mob("nssm:morvalar0", "Mor Valar", {
     type = "monster",
     hp_max = 100,
     hp_min = 100,
@@ -837,6 +837,7 @@ mobs:register_mob("nssm:morvalar0", {
     on_die = function(self)
         local pos = self.object:getpos()
         self.object:remove()
+
         minetest.add_particlespawner({
             amount = 500,
             time = 2,

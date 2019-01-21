@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:uloboros", {
+nssm:register_mob("nssm:uloboros", "Uloboros", {
     type = "monster",
     hp_max = 28,
     hp_min = 17,

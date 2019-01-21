@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:enderduck", {
+nssm:register_mob("nssm:enderduck", "Enderduck", {
     type = "monster",
     hp_max = 28,
     hp_min = 18,
@@ -62,5 +62,5 @@ mobs:register_mob("nssm:enderduck", {
         run_end = 130,
         punch_start = 60,
         punch_end = 90,
-    }
+    },
 })

@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:octopus", {
+nssm:register_mob("nssm:octopus", "Octopus", {
     type = "monster",
     hp_max = 32,
     hp_min = 25,
@@ -54,10 +54,10 @@ mobs:register_mob("nssm:octopus", {
         run_end = 100,
         punch_start = 120,
         punch_end = 160,
-    }
+    },
 })
 
-mobs:register_mob("nssm:xgaloctopus", {
+nssm:register_mob("nssm:xgaloctopus", "Mini Octopus", {
     type = "monster",
     hp_max = 30,
     hp_min = 27,

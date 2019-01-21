@@ -1,4 +1,4 @@
-mobs:register_mob("nssm:crab", {
+nssm:register_mob("nssm:crab", "Crab", {
     type = "monster",
     hp_max = 32,
     hp_min = 19,
@@ -61,5 +61,5 @@ mobs:register_mob("nssm:crab", {
         run_end = 140,
         punch_start = 90,
         punch_end = 110,
-    }
+    },
 })
