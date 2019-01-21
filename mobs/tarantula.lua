@@ -141,5 +141,6 @@ mobs:register_mob("nssm:tarantula_propower", {
         run_end = 160,
         punch_start = 180,
         punch_end = 200,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

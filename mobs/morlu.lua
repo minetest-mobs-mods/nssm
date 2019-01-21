@@ -240,5 +240,6 @@ mobs:register_mob("nssm:morlu", {
             end
         end
         self.object:remove()
+        __NSSM_kill_count(self,pos)
     end,
 })

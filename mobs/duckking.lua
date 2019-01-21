@@ -74,5 +74,6 @@ mobs:register_mob("nssm:duckking", {
         punch_end = 220,
         shoot_start = 160,
         shoot_end = 180,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

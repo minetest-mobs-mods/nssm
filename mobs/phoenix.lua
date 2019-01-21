@@ -64,5 +64,6 @@ mobs:register_mob("nssm:phoenix", {
         punch_end = 110,
         shoot_start = 80,
         shoot_end = 110,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

@@ -51,5 +51,6 @@ mobs:register_mob("nssm:moonheron", {
         run_end = 60,
         punch_start = 80,
         punch_end = 120,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

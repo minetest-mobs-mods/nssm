@@ -118,4 +118,5 @@ mobs:register_mob("nssm:xgaloctopus", {
     replace_what = {"default:torch"},
     replace_with = "default:water_source",
     replace_offset = 0,
+    on_die=  __NSSM_kill_count,
 })

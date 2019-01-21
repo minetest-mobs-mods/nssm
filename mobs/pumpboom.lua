@@ -44,7 +44,8 @@ local function register_pumpboom(sizename, params)
             run_end = 97,
             punch_start = 70,
             punch_end = 80,
-        }
+        },
+        on_die=  __NSSM_kill_count,
     })
 end
 

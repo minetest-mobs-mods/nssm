@@ -68,4 +68,5 @@ mobs:register_mob("nssm:morwa", {
             minetest.env:set_node(pos, {name="nssm:morwa_statue"})
         end
     end,
+    on_die=  __NSSM_kill_count,
 })

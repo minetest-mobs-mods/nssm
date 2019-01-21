@@ -837,6 +837,8 @@ mobs:register_mob("nssm:morvalar0", {
     on_die = function(self)
         local pos = self.object:getpos()
         self.object:remove()
+        __NSSM_kill_count(self, pos)
+
         minetest.add_particlespawner({
             amount = 500,
             time = 2,

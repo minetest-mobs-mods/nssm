@@ -59,4 +59,5 @@ mobs:register_mob("nssm:stone_eater", {
         --digging_ability(self, "stone", self.run_velocity, {x=0, y=2, z=0})
         digging_attack(self, "stone", self.run_velocity, {x=0, y=1, z=0})
     end,
+    on_die=  __NSSM_kill_count,
 })

@@ -55,5 +55,6 @@ mobs:register_mob("nssm:sand_bloco", {
         run_end = 200,
         punch_start = 100,
         punch_end = 130,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

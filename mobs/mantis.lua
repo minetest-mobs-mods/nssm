@@ -61,5 +61,6 @@ mobs:register_mob("nssm:mantis", {
         punch_end = 140,
         punch2_start = 145,
         punch2_end = 165,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

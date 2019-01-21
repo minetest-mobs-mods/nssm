@@ -104,6 +104,7 @@ mobs:register_mob("nssm:morde", {
         local pos = self.object:getpos()
         self.object:remove()
         minetest.add_entity(pos, "nssm:mortick")
+        __NSSM_kill_count(self,pos)
     end,
 })
 
@@ -139,6 +140,7 @@ minetest.register_entity("nssm:mortick", {
           name == "default:lava_flowing" then
 
             self.object:remove()
+            __NSSM_kill_count(self,s)
         end
 
         --Find player to attack:

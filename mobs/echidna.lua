@@ -59,5 +59,6 @@ mobs:register_mob("nssm:echidna", {
         punch_end = 190,
         shoot_start = 200,
         shoot_end = 240,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

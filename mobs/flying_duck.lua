@@ -59,5 +59,6 @@ mobs:register_mob("nssm:flying_duck", {
         run_end = 220,
         punch_start = 110,
         punch_end = 140,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

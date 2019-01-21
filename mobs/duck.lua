@@ -59,6 +59,7 @@ mobs:register_mob("nssm:duck", {
         run_end = 40,
         punch_start = 40,
         punch_end = 60,
-    }
+    },
+    on_die=  __NSSM_kill_count,
     --pathfinding = 1,
 })

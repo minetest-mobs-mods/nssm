@@ -61,4 +61,5 @@ mobs:register_mob("nssm:sandworm", {
     do_custom = function(self)
         digging_attack(self, "sand", self.run_velocity, {x=0, y=3, z=0})
     end,
+    on_die=  __NSSM_kill_count,
 })

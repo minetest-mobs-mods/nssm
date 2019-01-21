@@ -61,6 +61,8 @@ mobs:register_mob("nssm:masticone", {
     },
     on_die = function(self, pos)
         self.object:remove()
+        __NSSM_kill_count(self,pos)
+
         core.after(2, function()
             minetest.add_particlespawner({
                 amount = 200,

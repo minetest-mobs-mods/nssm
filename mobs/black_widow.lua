@@ -64,4 +64,5 @@ mobs:register_mob("nssm:black_widow", {
     do_custom = function(self)
         webber_ability(self, "nssm:web", 2)
     end,
+    on_die=  __NSSM_kill_count,
 })

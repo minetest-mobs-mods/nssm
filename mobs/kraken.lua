@@ -59,5 +59,6 @@ mobs:register_mob("nssm:kraken", {
         run_end = 100,
         punch_start = 120,
         punch_end = 150,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

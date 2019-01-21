@@ -112,5 +112,6 @@ mobs:register_mob("nssm:mese_dragon", {
                 end
             end
         end
-    end
+    end,
+    on_die=  __NSSM_kill_count,
 })

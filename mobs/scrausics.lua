@@ -52,5 +52,6 @@ mobs:register_mob("nssm:scrausics", {
         run_end = 210,
         punch_start = 20,
         punch_end = 50,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

@@ -54,5 +54,6 @@ mobs:register_mob("nssm:dolidrosaurus", {
         run_end = 180,
         punch_start = 190,
         punch_end = 220,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

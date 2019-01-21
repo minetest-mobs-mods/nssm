@@ -73,4 +73,5 @@ mobs:register_mob("nssm:icelamander", {
     do_custom = function(self)
         midas_ability(self, "default:ice", self.run_velocity,1, 3)
     end,
+    on_die=  __NSSM_kill_count,
 })

@@ -70,5 +70,6 @@ mobs:register_mob("nssm:spiderduck", {
         punch_end = 46,
         shoot_start = 150,
         shoot_end = 200,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

@@ -55,5 +55,6 @@ mobs:register_mob("nssm:daddy_long_legs", {
         run_end = 120,
         punch_start = 140,
         punch_end = 165,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

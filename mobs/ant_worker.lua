@@ -60,5 +60,6 @@ mobs:register_mob("nssm:ant_worker", {
         run_end = 160,
         punch_start = 50,
         punch_end = 70,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

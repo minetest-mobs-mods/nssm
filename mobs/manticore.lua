@@ -61,5 +61,6 @@ mobs:register_mob("nssm:manticore", {
         punch_end = 143,
         shoot_start =180,
         shoot_end=230,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

@@ -186,5 +186,6 @@ mobs:register_mob("nssm:night_master_1", {
         run_end = 50,
         punch_start = 130,
         punch_end = 160,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

@@ -52,5 +52,6 @@ mobs:register_mob("nssm:signosigno", {
         run_end = 220,
         punch_start = 160,
         punch_end = 190,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

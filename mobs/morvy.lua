@@ -276,5 +276,6 @@ mobs:register_mob("nssm:morbat3", {
         run_end = 50,
         punch_start = 100,
         punch_end = 115,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

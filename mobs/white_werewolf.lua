@@ -54,5 +54,6 @@ mobs:register_mob("nssm:white_werewolf", {
         run_end = 160,
         punch_start = 170,
         punch_end = 193,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

@@ -59,5 +59,6 @@ mobs:register_mob("nssm:mantis_beast", {
         run_end = 110,
         punch_start = 140,
         punch_end = 165,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

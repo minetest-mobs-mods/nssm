@@ -83,5 +83,6 @@ mobs:register_mob("nssm:larva", {
             end
             return
         end
-    end
+    end,
+    on_die=  __NSSM_kill_count,
 })

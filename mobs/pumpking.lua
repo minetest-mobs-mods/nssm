@@ -55,6 +55,8 @@ mobs:register_mob("nssm:pumpking", {
     },
     on_die=function(self,pos)
         self.object:remove()
+        __NSSM_kill_count(self, pos)
+
         minetest.after(0.2, function(pos)
             tnt.boom(pos, {damage_radius=5,radius=4,ignore_protection=false})
         end, pos)

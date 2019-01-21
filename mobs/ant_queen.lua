@@ -101,5 +101,6 @@ mobs:register_mob("nssm:ant_queen", {
                 end
             end
         end
-    end
+    end,
+    on_die=  __NSSM_kill_count,
 })

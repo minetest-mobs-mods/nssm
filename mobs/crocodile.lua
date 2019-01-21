@@ -57,5 +57,6 @@ mobs:register_mob("nssm:crocodile", {
         punch_end = 220,
         --swim_start = 100,
         --swim_end = 140,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

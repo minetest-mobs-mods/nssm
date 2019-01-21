@@ -53,5 +53,6 @@ mobs:register_mob("nssm:morgre", {
         run_end = 140,
         punch_start = 100,
         punch_end = 110,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })

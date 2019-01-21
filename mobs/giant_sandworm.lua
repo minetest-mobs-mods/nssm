@@ -56,4 +56,5 @@ mobs:register_mob("nssm:giant_sandworm", {
         punch_start = 150,
         punch_end = 180,
     },
+    on_die=  __NSSM_kill_count,
 })

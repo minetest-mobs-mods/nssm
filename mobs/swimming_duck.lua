@@ -59,5 +59,6 @@ mobs:register_mob("nssm:swimming_duck", {
         run_end = 120,
         punch_start = 140,
         punch_end = 160,
-    }
+    },
+    on_die=  __NSSM_kill_count,
 })
