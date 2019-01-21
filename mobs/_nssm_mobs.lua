@@ -46,7 +46,8 @@ function __NSSM_kill_count(self, pos)
         nssm.leaderboard[playername] = playerstats -- in case new stat
 
         minetest.log("action", playername.." defeated "..self.name)
-        minetest.chat_send_player(playername, "    (killed: "..mob_descriptions[self.name]..")")
+        -- TODO separate kills hud, or switch on/off kill-messages
+        --minetest.chat_send_player(playername, "    (killed: "..mob_descriptions[self.name]..")")
     end
 end
 
