@@ -9,7 +9,7 @@ nssm = {
 local mobs_version_required = 20181220
 
 if mobs then
-    if not (mobs.version and mobs.version > mobs_version_required) then
+    if not (mobs.version and tonumber(mobs.version) > mobs_version_required) then
         minetest.log("error",
             "Incompatible mobs library (version "..
             tostring(mobs.version)..
