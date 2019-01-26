@@ -46,12 +46,17 @@ function __NSSM_kill_count(self, pos)
         nssm.leaderboard[playername] = playerstats -- in case new stat
 
         minetest.log("action", playername.." defeated "..self.name)
+        save_leaderboard()
         -- TODO separate kills hud, or switch on/off kill-messages
         --minetest.chat_send_player(playername, "    (killed: "..mob_descriptions[self.name]..")")
     end
 end
 
 local function list_kills(playername)
+    if not nssm.leaderboard[playername] then
+        return "No stats for "..playername
+    end
+
     local killslist = "Kill stats for "..playername.." :"
     for mob,count in pairs(nssm.leaderboard[playername] or {}) do
         killslist = killslist.."\n"..count.."  "..mob_descriptions[mob]
@@ -59,21 +64,15 @@ local function list_kills(playername)
     return killslist
 end
 
-minetest.register_globalstep(function(dtime)
-    if steptime < 15 then
-        steptime = steptime + dtime
-        return
-    end
-
-    steptime = 0
-
-    save_leaderboard()
-end)
-
 minetest.register_chatcommand("killstats", {
-    description = "See your kill stats",
+    description = "See your kill stats, or that of other players",
+    params = "[<playername>]",
     func = function(playername, params)
-        minetest.chat_send_player(playername, list_kills(playername))
+        if params ~= "" then
+            minetest.chat_send_player(playername, list_kills(params))
+        else
+            minetest.chat_send_player(playername, list_kills(playername))
+        end
     end
 })
 
