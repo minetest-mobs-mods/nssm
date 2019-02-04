@@ -1,6 +1,6 @@
 # Not So Simple Mobs
 
-(C) 2016 NPX Team and Contributors , LGPLv2.1
+(C) 2016 NPX Team and Contributors , GPLv3
 
 NSSM adds a wide variety of very hostile mobs, as well as new weapons, armours and foods.
 
@@ -8,7 +8,7 @@ This mod is a continuation of NPX Team's Not So Simple Mobs. Notes from the orig
 
 ## License
 
-* License for the code: `LGPLv2.1 or later`
+* License for the code: GPLv3
     * see [LICENSE.txt](LICENSE.txt) and [license_notes.md](license_notes.md) for info on the license update
     * Copyright NPX Team and contributors
 * License for non-code assets: see `LICENSE_MEDIA.txt`
