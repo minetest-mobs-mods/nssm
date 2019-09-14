@@ -225,7 +225,7 @@ if mm ~= 0 then
     -- CAVES
 
     mobs:spawn_specific("nssm:bloco", {"default:stone", "default:desert_stone"}, {"default:stone", "default:desert_stone"},
-		0, 20, 30, 500000/mm, 3, -31000, -20)
+		0, 20, 30, 500000/mm, 3, -31000, -120)
 
     mobs:spawn_specific("nssm:lava_titan", {"default:stone", "default:desert_stone"}, {"air"},
 		0, 120, 12, 22000000/mm, 1, -31000, -100)
