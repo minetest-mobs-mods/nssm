@@ -6,12 +6,12 @@ mobs:register_arrow("nssm:duck_father", {
     velocity = 8,
     -- direct hit
     hit_player = function(self, player)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         duck_explosion(pos)
     end,
 
     hit_mob = function(self, player)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         duck_explosion(pos)
     end,
 
@@ -76,12 +76,12 @@ mobs:register_arrow("nssm:snow_arrow", {
     velocity =20,
     -- direct hit
     hit_player = function(self, player)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         ice_explosion(pos)
     end,
 
     hit_mob = function(self, player)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         ice_explosion(pos)
     end,
     hit_node = function(self, pos, node)
@@ -94,7 +94,7 @@ function ice_explosion(pos)
         for j=pos.y-1, pos.y+4, 1 do
             for k=pos.z-math.random(0, 1), pos.z+math.random(0, 1), 1 do
                 local p = {x=i, y=j, z=k}
-                local n = minetest.env:get_node(p).name
+                local n = minetest.get_node(p).name
                 if not nssm.unswappable_node(p) then
                     minetest.set_node(p, {name="default:ice"})
                 end
@@ -152,7 +152,7 @@ mobs:register_arrow("nssm:webball", {
     velocity = 8,
     -- direct hit
     hit_player = function(self, player)
-        local p = player:getpos()
+        local p = player:get_pos()
         explosion_web(p, "nssm:web")
     end,
 
@@ -176,8 +176,8 @@ function explosion_web(pos, webtype)
                 -- TODO 0 check, why are we operating on two positions?
                 local p = {x=i,y=j,z=k}
                 local k = {x=i,y=j+1,z=k}
-                local current = minetest.env:get_node(p).name
-                local ontop  = minetest.env:get_node(k).name
+                local current = minetest.get_node(p).name
+                local ontop  = minetest.get_node(k).name
                 if current == "air" then
                 --if not nssm.unswappable_node(p) then -- replaces to many nodes
                     minetest.set_node(p, {name=webtype})
@@ -196,7 +196,7 @@ mobs:register_arrow("nssm:thickwebball", {
     velocity = 8,
     -- direct hit
     hit_player = function(self, player)
-        local p = player:getpos()
+        local p = player:get_pos()
         explosion_web(p, "nssm:thick_web")
     end,
 
@@ -224,12 +224,12 @@ mobs:register_arrow("nssm:phoenix_arrow", {
 
     on_step = function(self, dtime)
 
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         if minetest.is_protected(pos, "") then
             return
         end
 
-        local n = minetest.env:get_node(pos).name
+        local n = minetest.get_node(pos).name
 
         if self.timer == 0 then
             self.timer = os.time()
@@ -243,7 +243,7 @@ mobs:register_arrow("nssm:phoenix_arrow", {
         -- Randomly decide to place phoenix fire at current location
         if math.random(1,2)==2 then
             if not nssm.unswappable_node(pos) then
-                minetest.env:set_node(pos, {name="nssm:phoenix_fire"})
+                minetest.set_node(pos, {name="nssm:phoenix_fire"})
             end
         end
 
@@ -253,9 +253,9 @@ mobs:register_arrow("nssm:phoenix_arrow", {
             dy = math.random(-1,1)
             dz = math.random(-1,1)
             local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-            local n = minetest.env:get_node(p).name
+            local n = minetest.get_node(p).name
             if n=="air" and not nssm.unswappable_node(p) then
-                minetest.env:set_node(p, {name="nssm:phoenix_fire"})
+                minetest.set_node(p, {name="nssm:phoenix_fire"})
             end
         end
 
@@ -271,7 +271,7 @@ mobs:register_arrow("nssm:super_gas", {
     velocity = 8,
     -- direct hit
     hit_player = function(self, player)
-        local p = player:getpos()
+        local p = player:get_pos()
         gas_explosion(p)
     end,
 
@@ -292,7 +292,7 @@ function gas_explosion(pos)
                 if minetest.is_protected(p, "") then
                     return
                 end
-                local n = minetest.env:get_node(p).name
+                local n = minetest.get_node(p).name
                 if n == "air" and not nssm.unswappable_node(p) then
                     minetest.set_node(p, {name="nssm:venomous_gas"})
                 end
@@ -310,9 +310,9 @@ mobs:register_arrow("nssm:roar_of_the_dragon", {
 
     on_step = function(self, dtime)
 
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
 
-        local n = minetest.env:get_node(pos).name
+        local n = minetest.get_node(pos).name
 
         if self.timer == 0 then
             self.timer = os.time()
@@ -322,7 +322,7 @@ mobs:register_arrow("nssm:roar_of_the_dragon", {
             self.object:remove()
         end
 
-        local objects = minetest.env:get_objects_inside_radius(pos, 1)
+        local objects = minetest.get_objects_inside_radius(pos, 1)
         for _,obj in ipairs(objects) do
             local name = obj:get_entity_name()
             if name ~= "nssm:roar_of_the_dragon" and name ~= "nssm:mese_dragon" then
@@ -335,7 +335,7 @@ mobs:register_arrow("nssm:roar_of_the_dragon", {
             end
         end
 
-        minetest.env:set_node(pos, {name="air"})
+        minetest.set_node(pos, {name="air"})
         if math.random(1,2)==1 then
             dx = math.random(-1,1)
             dy = math.random(-1,1)
@@ -344,7 +344,7 @@ mobs:register_arrow("nssm:roar_of_the_dragon", {
                 return
             end
             local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-            minetest.env:set_node(p, {name="air"})
+            minetest.set_node(p, {name="air"})
         end
     end
 })
@@ -357,7 +357,7 @@ mobs:register_arrow("nssm:lava_arrow", {
     velocity = 10,
     -- direct hit
     hit_player = function(self, player)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         if minetest.is_protected(pos, "") then
             return
         end
@@ -365,7 +365,7 @@ mobs:register_arrow("nssm:lava_arrow", {
             for dx=-1, 1, 2 do
                 for dz=-1, 1, 2 do
                     local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-                    local n = minetest.env:get_node(p).name
+                    local n = minetest.get_node(p).name
                     if n~="default:lava_flowing" and not nssm.unswappable_node(p) then
                         minetest.set_node(p, {name="default:lava_flowing"})
                     end

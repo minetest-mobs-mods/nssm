@@ -74,11 +74,11 @@ nssm:register_mob("nssm:mese_dragon", "Mese Dragon", {
             self.timer = 0
             self.attack_rip = self.attack_rip+1
 
-            local s = self.object:getpos()
+            local s = self.object:get_pos()
             if minetest.is_protected(s, "") then
                 return
             end
-            local p = self.attack:getpos()
+            local p = self.attack:get_pos()
 
             p.y = p.y + 1.5
             s.y = s.y + 1.5
@@ -103,9 +103,9 @@ nssm:register_mob("nssm:mese_dragon", "Mese Dragon", {
                 for dx = -17,17 do
                     for dz= -17,17 do
                         local k = {x = s.x+dx, y=s.y+20, z=s.z+dz}
-                        local n = minetest.env:get_node(k).name
+                        local n = minetest.get_node(k).name
                         if n=="air" and math.random(1,23)==1 then
-                            minetest.env:set_node(k, {name="nssm:mese_meteor"})
+                            minetest.set_node(k, {name="nssm:mese_meteor"})
                             nodeupdate(k)
                         end
                     end

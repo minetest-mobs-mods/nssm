@@ -59,8 +59,8 @@ nssm:register_mob("nssm:morde", "Morde", {
         if (os.time() - self.morde_timer) > 1 then
             self.morde_timer = os.time()
 
-            local s = self.object:getpos()
-            local p = self.attack:getpos()
+            local s = self.object:get_pos()
+            local p = self.attack:get_pos()
 
             mobs:set_animation(self, "punch")
 
@@ -101,7 +101,7 @@ nssm:register_mob("nssm:morde", "Morde", {
         end
     end,
     on_die = function(self)
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         self.object:remove()
         minetest.add_entity(pos, "nssm:mortick")
     end,
@@ -122,7 +122,7 @@ minetest.register_entity("nssm:mortick", {
         self.mortick_timer = self.mortick_timer or os.time()
         self.timer = self.timer or 0
         self.timer = self.timer+dtime
-        local s = self.object:getpos()
+        local s = self.object:get_pos()
         local s1 = {x=s.x, y = s.y-1, z = s.z}
 
         --[[
@@ -131,7 +131,7 @@ minetest.register_entity("nssm:mortick", {
         end
         ]]
         --The mortick dies when he finds himself in fire
-        local name = minetest.env:get_node(s1).name
+        local name = minetest.get_node(s1).name
         if name == "fire:basic_flame" or
           name == "fire:permanent_flame" or
           name == "nssm:phoenix_fire" or
@@ -145,7 +145,7 @@ minetest.register_entity("nssm:mortick", {
         --Find player to attack:
         self.attack = (self.attack or 0)
 
-        local objects = minetest.env:get_objects_inside_radius(s, 8)
+        local objects = minetest.get_objects_inside_radius(s, 8)
         for _,obj in ipairs(objects) do
             if (obj:is_player()) then
                 self.attack = obj
@@ -154,7 +154,7 @@ minetest.register_entity("nssm:mortick", {
 
         --If found a player follow him
         if self.attack ~= 0 then
-            local p = self.attack:getpos()
+            local p = self.attack:get_pos()
             local yawp = self.attack:get_look_horizontal()+math.pi/2
             local pi = math.pi
 
@@ -166,7 +166,7 @@ minetest.register_entity("nssm:mortick", {
             local yaws = yawp +pi
 
             --stay attached to players back:
-            self.object:setvelocity(v)
+            self.object:set_velocity(v)
             self.object:setyaw(yaws)
 
             --damage player every ten seconds:

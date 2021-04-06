@@ -62,8 +62,8 @@ nssm:register_mob("nssm:morvy", "Morvy", {
             self.morvy_counter = 0
             local counter = 0
 
-            local s = self.object:getpos()
-            local p = self.attack:getpos()
+            local s = self.object:get_pos()
+            local p = self.attack:get_pos()
 
             p.y = p.y + 1.5
             s.y = s.y + 1.5
@@ -77,14 +77,14 @@ nssm:register_mob("nssm:morvy", "Morvy", {
                 end]]
                 local pos1 = {x=s.x+math.random(-0.5,0.5), y=s.y+0.2, z=s.z+math.random(-0.5,0.5)}
 
-                local objects = minetest.env:get_objects_inside_radius(s, 10)
+                local objects = minetest.get_objects_inside_radius(s, 10)
                 for _,obj in ipairs(objects) do
                     if (obj:get_luaentity() and ((obj:get_luaentity().name == "nssm:morbat1") or (obj:get_luaentity().name == "nssm:morbat2") or (obj:get_luaentity().name == "nssm:morbat3"))) then
                         counter = counter + 1
                     end
                 end
 
-                if (minetest.env:get_node(pos1).name == "air")
+                if (minetest.get_node(pos1).name == "air")
                 and (counter < 5)
                 then
                     local bat

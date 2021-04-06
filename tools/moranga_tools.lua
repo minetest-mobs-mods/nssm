@@ -160,7 +160,7 @@ minetest.register_tool("nssm:axe_of_pride", {
         damage_groups = {fleshy=16},
     },
     on_drop = function(itemstack, dropper, pos)
-        local objects = minetest.env:get_objects_inside_radius(pos, 10)
+        local objects = minetest.get_objects_inside_radius(pos, 10)
         local dropfuel = {name="nssm:energy_globe", description="energy sphere", quantity=1}
         local part = 0
 
@@ -198,8 +198,8 @@ minetest.register_tool("nssm:axe_of_pride", {
                 end
 
                 if part == 1 then
-                    local s = dropper:getpos()
-                    local p = obj:getpos()
+                    local s = dropper:get_pos()
+                    local p = obj:get_pos()
                     local m = 2
 
                     minetest.add_particlespawner({
@@ -240,10 +240,10 @@ minetest.register_tool("nssm:gratuitousness_battleaxe", {
     },
     on_drop = function(itemstack, dropper, pos)
         local epicenter_distance = 10
-        local objects = minetest.env:get_objects_inside_radius(pos, 10)
+        local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
         local vec = dropper:get_look_dir()
-        local pos = dropper:getpos()
+        local pos = dropper:get_pos()
         --vec.y = 0
         local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
 
@@ -278,7 +278,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
         damage_groups = {fleshy=14},
     },
     on_drop = function(itemstack, dropper, pos)
-        local objects = minetest.env:get_objects_inside_radius(pos, 10)
+        local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
         local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
 
@@ -291,7 +291,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
                 if not find_dropfuel(dropper, dropfuel) then
                     return
                 else
-                    local pos = obj:getpos()
+                    local pos = obj:get_pos()
                     pos.y = pos.y + 15
                     if (obj:is_player()) then
                         if (obj:get_player_name()~=dropper:get_player_name()) then
@@ -353,7 +353,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
     },
     on_drop = function(itemstack, dropper, pos)
         local vec = dropper:get_look_dir()
-        local pos_destination = dropper:getpos()
+        local pos_destination = dropper:get_pos()
         --vec.y = 0
         local dropfuel = {name = "nssm:life_energy", description = "life energy", quantity = 5}
 
@@ -375,7 +375,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
                 return
 
             else
-                local pos_particles = dropper:getpos()
+                local pos_particles = dropper:get_pos()
                 minetest.add_particlespawner({
                     amount = 25,
                     time = 0.3,
@@ -444,7 +444,7 @@ minetest.register_tool("nssm:sword_of_envy", {
         damage_groups = {fleshy=14},
     },
     on_drop = function(itemstack, dropper, pos)
-        local objects = minetest.env:get_objects_inside_radius(pos, 10)
+        local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
         local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
 
@@ -510,7 +510,7 @@ minetest.register_tool("nssm:sword_of_gluttony", {
         damage_groups = {fleshy=14},
     },
     on_drop = function(itemstack, dropper, pos)
-        local objects = minetest.env:get_objects_inside_radius(pos, 10)
+        local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
         local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
 
@@ -535,7 +535,7 @@ minetest.register_tool("nssm:sword_of_gluttony", {
                         else
                             if (obj:get_luaentity().health) then
                                 if obj:get_luaentity().health <= 32 then
-                                    local pos = obj:getpos()
+                                    local pos = obj:get_pos()
                                     obj:remove()
 
                                     -- We don't use check_for_death, as that would cause it to put regular drops
@@ -550,8 +550,8 @@ minetest.register_tool("nssm:sword_of_gluttony", {
                                         nssm.drops(drop)
                                     end
 
-                                    local s = obj:getpos()
-                                    local p = dropper:getpos()
+                                    local s = obj:get_pos()
+                                    local p = dropper:get_pos()
                                     local m = 3
 
                                     minetest.add_particlespawner({
@@ -597,7 +597,7 @@ minetest.register_tool("nssm:death_scythe", {
     },
     groups ={not_in_creative_inventory=1},
     on_drop = function(itemstack, dropper, pos)
-        local objects = minetest.env:get_objects_inside_radius(pos, 10)
+        local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
 
         dropper:set_hp(math.ceil(dropper:get_hp()/2) )
@@ -623,7 +623,7 @@ minetest.register_tool("nssm:death_scythe", {
                     drop = minetest.add_item(pos, "nssm:energy_globe 1")
 
                     if drop then
-                        drop:setvelocity({
+                        drop:set_velocity({
                             x = math.random(-10, 10) / 9,
                             y = 5,
                             z = math.random(-10, 10) / 9,
@@ -632,7 +632,7 @@ minetest.register_tool("nssm:death_scythe", {
                 end
             end
         end
-        local pos = dropper:getpos()
+        local pos = dropper:get_pos()
         local vec = {x=5,y=5,z=5}
         local poslist = minetest.find_nodes_in_area(vector.subtract(pos, vec), vector.add(pos,vec), "default:dirt_with_grass")
         for _,v in pairs(poslist) do

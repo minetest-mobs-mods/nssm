@@ -50,11 +50,11 @@ local function spears_shot(itemstack, player)
     end
     local drag = base_drag * statmodifier
 
-    local playerpos = player:getpos()
+    local playerpos = player:get_pos()
     local obj = minetest.add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, spear)
     local dir = player:get_look_dir()
 
-    obj:setvelocity({x=dir.x*speed, y=dir.y*speed, z=dir.z*speed})
+    obj:set_velocity({x=dir.x*speed, y=dir.y*speed, z=dir.z*speed})
     obj:setacceleration({x=-dir.x*drag, y=-gravity, z=-dir.z*drag})
     obj:setyaw(player:get_look_horizontal()+(math.pi*1.5))
     minetest.sound_play("spears_sound", {pos=playerpos})
@@ -99,7 +99,7 @@ local function spears_set_entity(kind, eq, toughness, breadth)
     SPEAR_ENTITY.on_step = function(self, dtime)
         self.timer = self.timer+dtime
 
-        local pos = self.object:getpos()
+        local pos = self.object:get_pos()
         local node = minetest.get_node(pos)
 
         if not self.wear then
@@ -127,7 +127,7 @@ local function spears_set_entity(kind, eq, toughness, breadth)
                     if obj:get_luaentity() ~= nil then
                         if obj:get_luaentity().name ~= spearentityname and obj:get_luaentity().name ~= "__builtin:item" then
                             if not (obj:is_player() and obj:get_luaentity().shooter:get_player_name() == obj:get_player_name() ) then
-                                local speed = vector.length(self.object:getvelocity()) / statmodifier
+                                local speed = vector.length(self.object:get_velocity()) / statmodifier
                                 local damage = (speed + eq)^1.12-20
 
                                 obj:punch(self.object, 1.0, {
