@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:daddy_long_legs", "Daddy Long Legs", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:daddy_long_legs", S("Daddy Long Legs"), {
     type = "monster",
     hp_max = 22,
     hp_min = 16,

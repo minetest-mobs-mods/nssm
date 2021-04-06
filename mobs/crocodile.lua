@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:crocodile", "Crocodile", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:crocodile", S("Crocodile"), {
     type = "monster",
     hp_max = 30,
     hp_min = 15,

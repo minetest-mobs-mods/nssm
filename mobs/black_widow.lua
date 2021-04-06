@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:black_widow", "Black Widow", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:black_widow", S("Black Widow"), {
     type = "monster",
     hp_max = 26,
     hp_min = 19,

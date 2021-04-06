@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:phoenix", "Phoenix", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:phoenix", S("Phoenix"), {
     type = "monster",
     hp_max = 160,
     hp_min = 160,

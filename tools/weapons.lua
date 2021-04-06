@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 --Parameters used by some weapons
 local default_dir = {
     x = 1,
@@ -366,7 +368,7 @@ nssm_register_weapon("kamehameha", {
         tnt.boom(pos, {damage_radius=10,radius=6,ignore_protection=false})
     end,
     material = "default:diamondblock",
-    description = "Gret Wave Energy Release",
+    description = S("Gret Wave Energy Release"),
 
 })
 
@@ -378,7 +380,7 @@ nssm_register_weapon("kienzan", {
     hit_node = function(self, pos, node)
     end,
     material = "default:bronzeblock",
-    description = "Destructo Disc",
+    description = S("Destructo Disc"),
 })
 
 nssm_register_weapon("spirit_ball", {
@@ -392,7 +394,7 @@ nssm_register_weapon("spirit_ball", {
     end,
 
     material = "default:goldblock",
-    description = "Winding Energy Bullet",
+    description = S("Winding Energy Bullet"),
 })
 
 nssm_register_weapon("hellzone_grenade", {
@@ -410,6 +412,6 @@ nssm_register_weapon("hellzone_grenade", {
         activate_balls(pos)
     end,
     material = "default:mese",
-    description = "Demon Air Beseiging Bullet (press Q to activate)",
+    description = S("Demon Air Beseiging Bullet (press Q to activate)"),
 })
 

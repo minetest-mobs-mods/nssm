@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:ant_worker", "Ant Worker", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:ant_worker", S("Ant Worker"), {
     type = "monster",
     passive = true,
     hp_max = 24,

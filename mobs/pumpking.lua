@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:pumpking", "PumpKing", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:pumpking", S("PumpKing"), {
     type = "monster",
     hp_max = 220,
     hp_min = 220,

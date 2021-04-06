@@ -1,6 +1,7 @@
 local nssmleadersfile = minetest.get_worldpath().."/nssm_leaderboard.lua.ser"
 local steptime = 0
 local mob_descriptions = {}
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local function save_leaderboard()
 	local serdata = minetest.serialize(nssm.leaderboard)
@@ -54,10 +55,10 @@ end
 
 local function list_kills(playername)
     if not nssm.leaderboard[playername] then
-        return "No stats for "..playername
+        return S("No stats for @1", playername)
     end
 
-    local killslist = "Kill stats for "..playername.." :"
+    local killslist = S("Kill stats for @1:", playername)
     for mob,count in pairs(nssm.leaderboard[playername] or {}) do
         killslist = killslist.."\n"..count.."  "..mob_descriptions[mob]
     end
@@ -65,7 +66,7 @@ local function list_kills(playername)
 end
 
 minetest.register_chatcommand("killstats", {
-    description = "See your kill stats, or that of other players",
+    description = S("See your kill stats, or that of other players"),
     params = "[<playername>]",
     func = function(playername, params)
         if params ~= "" then

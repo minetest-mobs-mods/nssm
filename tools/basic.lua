@@ -1,7 +1,9 @@
 -- Basic NSSM Tools
 
+local S = minetest.get_translator(minetest.get_current_modname())
+
 minetest.register_node("nssm:rope", {
-    description = "Rope",
+    description = S("Rope"),
     paramtype = "light",
     walkable = false,
     climbable = true,
@@ -16,7 +18,7 @@ minetest.register_node("nssm:rope", {
 -- Good sword, sets things on fire...
 
 minetest.register_tool('nssm:sun_sword', {
-    description = 'Sun Sword',
+    description = S('Sun Sword'),
     inventory_image = 'sun_sword.png',
     tool_capabilities = {
         full_punch_interval = 0.6,
@@ -40,7 +42,7 @@ end)
 -- Swords
 
 minetest.register_tool("nssm:ant_sword", {
-    description = "Ant Sword",
+    description = S("Ant Sword"),
     inventory_image = "ant_sword.png",
     tool_capabilities = {
         full_punch_interval = 0.8,
@@ -53,7 +55,7 @@ minetest.register_tool("nssm:ant_sword", {
 })
 
 minetest.register_tool("nssm:mantis_sword", {
-    description = "Mantis Sword",
+    description = S("Mantis Sword"),
     inventory_image = "mantis_sword.png",
     tool_capabilities = {
         full_punch_interval =0.7 ,
@@ -67,7 +69,7 @@ minetest.register_tool("nssm:mantis_sword", {
 })
 
 minetest.register_tool("nssm:masticone_fang_sword", {
-    description = "Masticone Fang Sword",
+    description = S("Masticone Fang Sword"),
     inventory_image = "masticone_fang_sword.png",
     tool_capabilities = {
         full_punch_interval =0.7 ,
@@ -81,7 +83,7 @@ minetest.register_tool("nssm:masticone_fang_sword", {
 })
 
 minetest.register_tool("nssm:night_sword", {
-    description = "Night Sword",
+    description = S("Night Sword"),
     inventory_image = "night_sword.png",
     tool_capabilities = {
         full_punch_interval =0.4 ,
@@ -97,7 +99,7 @@ minetest.register_tool("nssm:night_sword", {
 -- Axes
 
 minetest.register_tool("nssm:mantis_battleaxe", {
-    description = "Mantis Battleaxe",
+    description = S("Mantis Battleaxe"),
     inventory_image = "mantis_battleaxe.png",
     tool_capabilities = {
         full_punch_interval =3 ,
@@ -110,7 +112,7 @@ minetest.register_tool("nssm:mantis_battleaxe", {
 })
 
 minetest.register_tool("nssm:mantis_axe", {
-    description = "Mantis Axe",
+    description = S("Mantis Axe"),
     inventory_image = "mantis_axe.png",
     tool_capabilities = {
         full_punch_interval = 0.8,
@@ -125,7 +127,7 @@ minetest.register_tool("nssm:mantis_axe", {
 -- Picks
 
 minetest.register_tool("nssm:duck_beak_pick",{
-    description = "Duck Beak Pickaxe",
+    description = S("Duck Beak Pickaxe"),
     inventory_image = "duck_beak_pick.png",
     tool_capabilities = {
         full_punch_interval = 0.6,
@@ -138,7 +140,7 @@ minetest.register_tool("nssm:duck_beak_pick",{
 })
 
 minetest.register_tool("nssm:ant_pick", {
-    description = "Ant Pickaxe",
+    description = S("Ant Pickaxe"),
     inventory_image = "ant_pick.png",
     tool_capabilities = {
         full_punch_interval = 1.2,
@@ -151,7 +153,7 @@ minetest.register_tool("nssm:ant_pick", {
 })
 
 minetest.register_tool("nssm:mantis_pick", {
-    description = "Mantis Pickaxe",
+    description = S("Mantis Pickaxe"),
     inventory_image = "mantis_pick.png",
     tool_capabilities = {
         full_punch_interval = 1,
@@ -164,7 +166,7 @@ minetest.register_tool("nssm:mantis_pick", {
 })
 
 minetest.register_tool("nssm:stoneater_pick", {
-    description = "Stoneater Pickaxe",
+    description = S("Stoneater Pickaxe"),
     inventory_image = "stoneater_pick.png",
     tool_capabilities = {
         full_punch_interval = 0.9,
@@ -179,7 +181,7 @@ minetest.register_tool("nssm:stoneater_pick", {
 -- Knives
 
 minetest.register_tool("nssm:little_ice_tooth_knife", {
-    description = "Little Ice Tooth Knife",
+    description = S("Little Ice Tooth Knife"),
     inventory_image = "little_ice_tooth_knife.png",
     tool_capabilities = {
         full_punch_interval =0.3 ,
@@ -193,7 +195,7 @@ minetest.register_tool("nssm:little_ice_tooth_knife", {
 })
 
 minetest.register_tool("nssm:manticore_spine_knife", {
-    description = "Manticore Spine Knife",
+    description = S("Manticore Spine Knife"),
     inventory_image = "manticore_spine_knife.png",
     tool_capabilities = {
         full_punch_interval =0.4 ,
@@ -207,7 +209,7 @@ minetest.register_tool("nssm:manticore_spine_knife", {
 })
 
 minetest.register_tool("nssm:felucco_knife", {
-    description = "Felucco Knife",
+    description = S("Felucco Knife"),
     inventory_image = "felucco_knife.png",
     tool_capabilities = {
         full_punch_interval =0.4 ,
@@ -223,7 +225,7 @@ minetest.register_tool("nssm:felucco_knife", {
 -- Shovels
 
 minetest.register_tool("nssm:ant_shovel", {
-    description = "Ant Shovel",
+    description = S("Ant Shovel"),
     inventory_image = "ant_shovel.png",
     wield_image = "ant_shovel.png^[transformR90",
     tool_capabilities = {
@@ -237,7 +239,7 @@ minetest.register_tool("nssm:ant_shovel", {
 })
 
 minetest.register_tool("nssm:duck_beak_shovel", {
-    description = "Duck Beak Shovel",
+    description = S("Duck Beak Shovel"),
     inventory_image = "duck_beak_shovel.png",
     wield_image = "duck_beak_shovel.png^[transformR90",
     tool_capabilities = {
@@ -253,7 +255,7 @@ minetest.register_tool("nssm:duck_beak_shovel", {
 -- Misc
 
 minetest.register_tool("nssm:ant_billhook", {
-    description = "Ant Billhook",
+    description = S("Ant Billhook"),
     inventory_image = "ant_billhook.png",
     tool_capabilities = {
         full_punch_interval = 0.8,
@@ -267,7 +269,7 @@ minetest.register_tool("nssm:ant_billhook", {
     })
 
 minetest.register_tool("nssm:tarantula_warhammer", {
-    description = "Tarantula Warhammer",
+    description = S("Tarantula Warhammer"),
     inventory_image = "tarantula_warhammer.png",
     wield_scale= {x=2,y=2,z=1.5},
     tool_capabilities = {
@@ -282,7 +284,7 @@ minetest.register_tool("nssm:tarantula_warhammer", {
 })
 
 minetest.register_tool("nssm:crab_light_mace", {
-    description = "Light Crab Mace",
+    description = S("Light Crab Mace"),
     inventory_image = "crab_light_mace.png",
     tool_capabilities = {
         full_punch_interval =2 ,
@@ -295,7 +297,7 @@ minetest.register_tool("nssm:crab_light_mace", {
 })
 
 minetest.register_tool("nssm:crab_heavy_mace", {
-    description = "Heavy Crab Mace",
+    description = S("Heavy Crab Mace"),
     inventory_image = "crab_heavy_mace.png",
     tool_capabilities = {
         full_punch_interval =4 ,
@@ -311,7 +313,7 @@ minetest.register_tool("nssm:crab_heavy_mace", {
 
 local function register_nssm_scickle(name, description, material, diggerlevel)
     minetest.register_tool("nssm:"..name.."_scickle", {
-        description = description.." Scickle",
+        description = S("@1 Sickle", description),
         inventory_image = "nssm_"..name.."_scickle.png",
         groups = {webdigger = diggerlevel},
         tool_capabilities = {
@@ -336,6 +338,6 @@ local function register_nssm_scickle(name, description, material, diggerlevel)
     minetest.register_alias("nssm:"..name.."_hoe", "nssm:"..name.."_scickle")
 end
 
-register_nssm_scickle("ant", "Ant", "nssm:ant_mandible", 1)
-register_nssm_scickle("felucco", "Felucco", "nssm:felucco_horn", 2)
+register_nssm_scickle("ant", S("Ant"), "nssm:ant_mandible", 1)
+register_nssm_scickle("felucco", S("Felucco"), "nssm:felucco_horn", 2)
 

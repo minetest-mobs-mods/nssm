@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:stone_eater", "Stone Eater", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:stone_eater", S("Stone Eater"), {
     type = "monster",
     hp_max = 27,
     hp_min = 19,

@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:morvy", "Morvy", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:morvy", S("Morvy"), {
     type = "monster",
     hp_max = 39,
     hp_min = 21,
@@ -125,7 +127,7 @@ nssm:register_mob("nssm:morvy", "Morvy", {
 
 --Morbats
 
-nssm:register_mob("nssm:morbat1", "Morbat I", {
+nssm:register_mob("nssm:morbat1", S("Morbat I"), {
     type = "monster",
     hp_max = 15,
     hp_min = 13,
@@ -175,7 +177,7 @@ nssm:register_mob("nssm:morbat1", "Morbat I", {
     }
 })
 
-nssm:register_mob("nssm:morbat2", "Morbat II", {
+nssm:register_mob("nssm:morbat2", S("Morbat II"), {
     type = "monster",
     hp_max = 13,
     hp_min = 5,
@@ -227,7 +229,7 @@ nssm:register_mob("nssm:morbat2", "Morbat II", {
 })
 
 
-nssm:register_mob("nssm:morbat3", "Morbat III", {
+nssm:register_mob("nssm:morbat3", S("Morbat III"), {
     type = "monster",
     hp_max = 13,
     hp_min = 12,

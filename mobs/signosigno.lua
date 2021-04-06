@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:signosigno", "Signo-Signo", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:signosigno", S("Signo-Signo"), {
     type = "monster",
     hp_max = 20,
     hp_min = 8,

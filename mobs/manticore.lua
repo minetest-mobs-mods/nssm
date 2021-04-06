@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:manticore", "Manticore", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:manticore", S("Manticore"), {
     type = "monster",
     hp_max = 55,
     hp_min = 34,

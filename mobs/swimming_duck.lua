@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:swimming_duck", "Swimming Duck", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:swimming_duck", S("Swimming Duck"), {
     type = "monster",
     hp_max = 25,
     hp_min = 15,

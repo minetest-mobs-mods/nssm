@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 mobs:register_mob("nssm:tarantula", {
     type = "monster",
     hp_max = 50,
@@ -77,7 +79,7 @@ mobs:register_mob("nssm:tarantula", {
 })
 
 
-nssm:register_mob("nssm:tarantula_propower", "Tarantula", {
+nssm:register_mob("nssm:tarantula_propower", S("Tarantula"), {
     type = "monster",
     hp_max = 90,
     hp_min = 90,

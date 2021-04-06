@@ -1,6 +1,8 @@
 -- Moranga-based tools
 -- These can only be crafted with NSSB loaded
 
+local S = minetest.get_translator(minetest.get_current_modname())
+
 if minetest.get_modpath("nssb") then
 
     minetest.register_craft({
@@ -107,7 +109,7 @@ local function find_dropfuel(player, dropfuel_def)
         end
     end
 
-    minetest.chat_send_player(pname, "You do not have enough "..dropfuel_def.description)
+    minetest.chat_send_player(pname, S("You do not have enough @1", dropfuel_def.description))
     return false
 end
 
@@ -147,7 +149,7 @@ end
 
 minetest.register_tool("nssm:axe_of_pride", {
     -- Damage enemy, heal user by the same amount
-    description = "Axe of Pride",
+    description = S("Axe of Pride"),
     inventory_image = "axe_of_pride.png",
     wield_scale= {x=2,y=2,z=1.5},
     tool_capabilities = {
@@ -161,7 +163,7 @@ minetest.register_tool("nssm:axe_of_pride", {
     },
     on_drop = function(itemstack, dropper, pos)
         local objects = minetest.get_objects_inside_radius(pos, 10)
-        local dropfuel = {name="nssm:energy_globe", description="energy sphere", quantity=1}
+        local dropfuel = {name="nssm:energy_globe", description=S("energy sphere"), quantity=1}
         local part = 0
 
         for _,obj in ipairs(objects) do
@@ -226,7 +228,7 @@ minetest.register_tool("nssm:axe_of_pride", {
 
 minetest.register_tool("nssm:gratuitousness_battleaxe", {
     -- aka Battleaxe of Boom - causes and explosion at <epicenter_distance> nodes from player
-    description = "Gratuitousness Battleaxe",
+    description = S("Gratuitousness Battleaxe"),
     inventory_image = "gratuitousness_battleaxe.png",
     wield_scale= {x=2.2,y=2.2,z=1.5},
     tool_capabilities = {
@@ -245,7 +247,7 @@ minetest.register_tool("nssm:gratuitousness_battleaxe", {
         local vec = dropper:get_look_dir()
         local pos = dropper:get_pos()
         --vec.y = 0
-        local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
+        local dropfuel = {name = "nssm:energy_globe", description = S("energy globe"), quantity = 1}
 
         for i=1,epicenter_distance do
             pos = vector.add(pos, vec)
@@ -265,7 +267,7 @@ minetest.register_tool("nssm:gratuitousness_battleaxe", {
 
 minetest.register_tool("nssm:sword_of_eagerness", {
     -- Cause enemies to be sent upwards y+20
-    description = "Sword of Eagerness",
+    description = S("Sword of Eagerness"),
     inventory_image = "sword_of_eagerness.png",
     wield_scale= {x=2,y=2,z=1},
     tool_capabilities = {
@@ -280,7 +282,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
     on_drop = function(itemstack, dropper, pos)
         local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
-        local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
+        local dropfuel = {name = "nssm:energy_globe", description = S("energy globe"), quantity = 1}
 
         for _,obj in ipairs(objects) do
             local part = 0
@@ -339,7 +341,7 @@ minetest.register_tool("nssm:sword_of_eagerness", {
 
 minetest.register_tool("nssm:falchion_of_eagerness", {
     -- Sends player 16m in the direction in which they are pointing...
-    description = "Falchion of Eagerness",
+    description = S("Falchion of Eagerness"),
     inventory_image = "falchion_of_eagerness.png",
     wield_scale= {x=2,y=2,z=1},
     tool_capabilities = {
@@ -355,7 +357,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
         local vec = dropper:get_look_dir()
         local pos_destination = dropper:get_pos()
         --vec.y = 0
-        local dropfuel = {name = "nssm:life_energy", description = "life energy", quantity = 5}
+        local dropfuel = {name = "nssm:life_energy", description = S("life energy"), quantity = 5}
 
         for i=1,16 do
             pos_destination = vector.add(pos_destination, vec)
@@ -371,7 +373,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
                 return
 
             elseif minetest.is_protected(pos_destination, pname) or nssm.unswappable_node(pos_destination) then
-                minetest.chat_send_player(pname, "You cannot go to that protected space!")
+                minetest.chat_send_player(pname, S("You cannot go to that protected space!"))
                 return
 
             else
@@ -431,7 +433,7 @@ minetest.register_tool("nssm:falchion_of_eagerness", {
 minetest.register_tool("nssm:sword_of_envy", {
     -- Switch the health of the enemy with the health of the player
     -- Particularly useful when enemy's health is way over 20 -- this is pretty much a cheat item when facing a boss...
-    description = "Sword of Envy",
+    description = S("Sword of Envy"),
     inventory_image = "sword_of_envy.png",
     wield_scale= {x=2,y=2,z=1},
     tool_capabilities = {
@@ -446,7 +448,7 @@ minetest.register_tool("nssm:sword_of_envy", {
     on_drop = function(itemstack, dropper, pos)
         local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
-        local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
+        local dropfuel = {name = "nssm:energy_globe", description = S("energy globe"), quantity = 1}
 
         for _,obj in ipairs(objects) do
             if flag == 0 then
@@ -497,7 +499,7 @@ minetest.register_tool("nssm:sword_of_envy", {
 
 minetest.register_tool("nssm:sword_of_gluttony", {
     -- Kills nearby monsters and causes them to drop roasted duck legs! :D
-    description = "Sword of Gluttony",
+    description = S("Sword of Gluttony"),
     inventory_image = "sword_of_gluttony.png",
     wield_scale= {x=2,y=2,z=1},
     tool_capabilities = {
@@ -512,7 +514,7 @@ minetest.register_tool("nssm:sword_of_gluttony", {
     on_drop = function(itemstack, dropper, pos)
         local objects = minetest.get_objects_inside_radius(pos, 10)
         local flag = 0
-        local dropfuel = {name = "nssm:energy_globe", description = "energy globe", quantity = 1}
+        local dropfuel = {name = "nssm:energy_globe", description = S("energy globe"), quantity = 1}
 
         for _,obj in ipairs(objects) do
             if flag == 0 then
@@ -583,7 +585,7 @@ minetest.register_tool("nssm:sword_of_gluttony", {
 minetest.register_tool("nssm:death_scythe", {
     -- Kills everything around it, consumes user's life
     -- Casues dry grass, dry shrubs, and dead leaves, dropping lots of life eergy to drop too
-    description = "Death Scythe",
+    description = S("Death Scythe"),
     wield_scale= {x=3,y=3,z=1.3},
     inventory_image = "death_scythe.png",
     tool_capabilities = {

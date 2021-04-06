@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:larva", "Mantis Larva", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:larva", S("Mantis Larva"), {
     type = "monster",
     hp_max = 12,
     hp_min = 8,

@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 mobs:register_mob("nssm:night_master", {
     type = "monster",
     hp_max = 60,
@@ -130,7 +132,7 @@ mobs:register_mob("nssm:night_master_2", {
     end,
 })
 
-nssm:register_mob("nssm:night_master_1", "Night Master", {
+nssm:register_mob("nssm:night_master_1", S("Night Master"), {
     type = "monster",
     hp_max = 70,
     hp_min = 70,
