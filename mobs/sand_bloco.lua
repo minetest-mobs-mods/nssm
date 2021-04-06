@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:sand_bloco", "Sand Bloco", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:sand_bloco", S("Sand Bloco"), {
     type = "monster",
     hp_max = 24,
     hp_min = 17,

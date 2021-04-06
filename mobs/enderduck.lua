@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:enderduck", "Enderduck", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:enderduck", S("Enderduck"), {
     type = "monster",
     hp_max = 28,
     hp_min = 18,

@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:snow_biter", "Snow Biter", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:snow_biter", S("Snow Biter"), {
     type = "monster",
     hp_max = 30,
     hp_min = 15,

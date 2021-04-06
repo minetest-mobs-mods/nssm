@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:dolidrosaurus", "Dolidrosaurus", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:dolidrosaurus", S("Dolidrosaurus"), {
     type = "monster",
     hp_max = 46,
     hp_min = 23,

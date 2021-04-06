@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:morgre", "Morgre", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:morgre", S("Morgre"), {
     type = "monster",
     hp_max = 33,
     hp_min = 17,

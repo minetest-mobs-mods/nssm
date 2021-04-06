@@ -6,6 +6,8 @@
 -- The `nyancat` mod was removed in Minetest 0.4.16+
 -- The alternative blocks are used when this mod is not/no longer present
 
+local S = minetest.get_translator(minetest.get_current_modname())
+
 local head_block = "nyancat:nyancat"
 local tail_block = "nyancat:nyancat_rainbow"
 
@@ -69,7 +71,7 @@ if not nssm.server_rainbow_staff then
     })
 
     minetest.register_tool("nssm:rainbow_staff", {
-        description = "Rainbow Staff",
+        description = S("Rainbow Staff"),
         inventory_image = "rainbow_staff.png",
         groups = {not_in_creative_inventory=1,},
         on_use = function(itemstack, placer, pointed_thing)
@@ -86,7 +88,7 @@ if not nssm.server_rainbow_staff then
 
 else
     minetest.register_tool("nssm:rainbow_staff", {
-        description = "Rainbow Tool",
+        description = S("Rainbow Tool"),
         inventory_image = "rainbow_staff.png",
         tool_capabilities = {
             full_punch_interval = 0.2,

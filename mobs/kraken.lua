@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:kraken", "Kraken", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:kraken", S("Kraken"), {
     type = "monster",
     hp_max = 350,
     hp_min = 350,

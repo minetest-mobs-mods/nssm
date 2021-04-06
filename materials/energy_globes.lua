@@ -1,5 +1,7 @@
 -- Eat energy for a stats boost
 
+local S = minetest.get_translator(minetest.get_current_modname())
+
 local life_energy_ratings = {}
 local coefficients = {
     gravity = 1.4,
@@ -46,7 +48,7 @@ local function set_player_boost(user, duration, power)
     user:set_physics_override({speed = 2, gravity = 0.5})
     local remaining = stack_boost(user:get_player_name(), duration)
 
-    minetest.chat_send_player(user:get_player_name(), "You have "..(math.floor(remaining*10)/10).."s of boost")
+    minetest.chat_send_player(user:get_player_name(), S("You have @1s of boost", math.floor(remaining*10)/10))
 
     local userpos = user:get_pos()
     minetest.sound_play("nssm_energy_powerup", {
@@ -181,14 +183,14 @@ local function register_energy_craft(smaller,bigger)
     })
 end
 
-register_energy('life_energy', 'Life Energy', 6, 2, 1)
-register_energy('energy_globe', 'Energy Globe', 9, 5, 2.5)
-register_energy('great_energy_globe', 'Great Energy Globe', 12, 12, 5)
-register_energy('superior_energy_globe', 'Awesome Energy Globe', 15, 18, 10)
+register_energy('life_energy', S('Life Energy'), 6, 2, 1)
+register_energy('energy_globe', S('Energy Globe'), 9, 5, 2.5)
+register_energy('great_energy_globe', S('Great Energy Globe'), 12, 12, 5)
+register_energy('superior_energy_globe', S('Awesome Energy Globe'), 15, 18, 10)
 
 -- Always available
 -- never obtainable
-register_energy_light('light_energy', 'Light Energy', 12, 64, 1)
+register_energy_light('light_energy', S('Light Energy'), 12, 64, 1)
 
 register_energy_craft("nssm:life_energy", "nssm:energy_globe")
 register_energy_craft("nssm:energy_globe", "nssm:great_energy_globe")

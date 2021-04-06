@@ -1,5 +1,7 @@
-local function register_pumpboom(sizename, params)
-    nssm:register_mob("nssm:pumpboom_"..sizename, "Pumpboom ("..sizename..")", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+local function register_pumpboom(sizename, sizename_desc, params)
+    nssm:register_mob("nssm:pumpboom_"..sizename, S("Pumpboom (@1)", sizename_desc), {
         type = "monster",
         hp_min = params.hp_min,
         hp_max = params.hp_max,
@@ -48,7 +50,7 @@ local function register_pumpboom(sizename, params)
     })
 end
 
-register_pumpboom("small",{
+register_pumpboom("small", S("small"),{
     hp_min = 14,
     hp_max = 15,
     visual_size = {x=3, y=3},
@@ -67,7 +69,7 @@ register_pumpboom("small",{
     },
 })
 
-register_pumpboom("medium",{
+register_pumpboom("medium", S("medium"),{
     hp_min = 17,
     hp_max = 18,
     visual_size = {x=5, y=5},
@@ -86,7 +88,7 @@ register_pumpboom("medium",{
     },
 })
 
-register_pumpboom("large",{
+register_pumpboom("large", S("large"),{
     hp_min = 19,
     hp_max = 20,
     visual_size = {x=8, y=8},

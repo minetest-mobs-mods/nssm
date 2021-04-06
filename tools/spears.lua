@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 local creative_mode = minetest.settings:get_bool("creative_mode")
 
 -- Adjustable speed physics
@@ -15,13 +17,13 @@ The more lag, the slower the spear needs to move -- the move step of the mob and
 as it is locally.
 --]]
 minetest.register_chatcommand("setspearstat",{
-    description = "Set spear stats modifier - default 1 (somewhat fast)",
+    description = S("Set spear stats modifier - default 1 (somewhat fast)"),
     params = "<(float)>",
     privs = {server = 1},
     func = function(playername, params)
         statmodifier = tonumber(params) or 1
 
-        minetest.chat_send_player(playername, "Spear stat modifier set to "..tostring(statmodifier))
+        minetest.chat_send_player(playername, S("Spear stat modifier set to @1", tostring(statmodifier)))
     end,
 })
 
@@ -166,7 +168,7 @@ function spears_register_spear(kind, desc, eq, toughness, material, scale)
     scale = scale or 1
 
     minetest.register_tool("nssm:spear_" .. kind, {
-        description = desc .. " Spear",
+        description = S("@1 Spear", desc),
         wield_image = "spear_" .. kind .. ".png",
         inventory_image = "spear_" .. kind .. ".png^[transform4",
         wield_scale= {x=2*scale, y=1*scale, z=1*scale},
@@ -208,18 +210,18 @@ function spears_register_spear(kind, desc, eq, toughness, material, scale)
 end
 
 
-spears_register_spear('duck_beak', 'Duck Beak', 5, 12, 'nssm:duck_beak')
+spears_register_spear('duck_beak', S('Duck Beak'), 5, 12, 'nssm:duck_beak')
 
-spears_register_spear('manticore', 'Manticore', 8, 16, 'nssm:manticore_spine')
+spears_register_spear('manticore', S('Manticore'), 8, 16, 'nssm:manticore_spine')
 
-spears_register_spear('felucco_horn', 'Felucco Horn', 7, 18, 'nssm:felucco_horn')
+spears_register_spear('felucco_horn', S('Felucco Horn'), 7, 18, 'nssm:felucco_horn')
 
-spears_register_spear('mantis', 'Mantis', 6, 20, 'nssm:mantis_claw')
+spears_register_spear('mantis', S('Mantis'), 6, 20, 'nssm:mantis_claw')
 
-spears_register_spear('little_ice_tooth', 'Little Ice Tooth', 7, 20, 'nssm:little_ice_tooth')
+spears_register_spear('little_ice_tooth', S('Little Ice Tooth'), 7, 20, 'nssm:little_ice_tooth')
 
-spears_register_spear('ant', 'Ant', 6, 50, 'nssm:ant_mandible')
+spears_register_spear('ant', S('Ant'), 6, 50, 'nssm:ant_mandible')
 
-spears_register_spear('ice_tooth', 'Ice Tooth', 16, 200, 'nssm:ice_tooth')
+spears_register_spear('ice_tooth', S('Ice Tooth'), 16, 200, 'nssm:ice_tooth')
 
-spears_register_spear('of_peace', 'Serenity', 30, 300, 'nssm:wrathful_moranga', 2)
+spears_register_spear('of_peace', S('Serenity'), 30, 300, 'nssm:wrathful_moranga', 2)

@@ -2,22 +2,24 @@ nssm:load("materials/craft_items.lua")
 nssm:load("materials/ores.lua")
 nssm:load("materials/energy_globes.lua")
 
+local S = minetest.get_translator(minetest.get_current_modname())
+
 --nodes
 
 minetest.register_node("nssm:ant_dirt", {
-    description = "Ant Dirt",
+    description = S("Ant Dirt"),
     tiles = {"ant_dirt.png"},
     groups = {crumbly=3},
 })
 
 minetest.register_node("nssm:dead_leaves", {
-    description = "Dead leaves",
+    description = S("Dead leaves"),
     tiles = {"dead_leaves.png"},
     groups = {snappy=3,leaves=1},
 })
 
 minetest.register_node("nssm:invisible_light", {
-    description = "Invisible light source",
+    description = S("Invisible light source"),
     tiles = {"transparent.png"},
     paramtype = "light",
     drawtype = "airlike",
@@ -33,7 +35,7 @@ minetest.register_node("nssm:invisible_light", {
 })
 
 minetest.register_node("nssm:venomous_gas", {
-    description = "Venomous Gas",
+    description = S("Venomous Gas"),
     inventory_image = minetest.inventorycube("venomous_gas2.png"),
     drawtype = "firelike",
     tiles = {
@@ -53,14 +55,14 @@ minetest.register_node("nssm:venomous_gas", {
 })
 
 minetest.register_node("nssm:modders_block", {
-    description = "Modders Block",
+    description = S("Modders Block"),
     tiles = {"modders_block.png"},
     is_ground_content = true,
     groups = {crumbly=3, not_in_creative_inventory =1},
 })
 
 minetest.register_node("nssm:web", {
-    description = "Web",
+    description = S("Web"),
     inventory_image = "web.png",
     tiles = {"web.png"} ,
     drawtype = "plantlike",
@@ -105,7 +107,7 @@ minetest.register_node("nssm:web", {
 })
 
 minetest.register_node("nssm:thick_web", {
-    description = "Thick Web",
+    description = S("Thick Web"),
     inventory_image = "thick_web.png",
     tiles = {"thick_web.png"} ,
     drawtype = "firelike",
@@ -126,7 +128,7 @@ minetest.register_node("nssm:thick_web", {
 })
 
 minetest.register_node("nssm:ink", {
-    description = "Ink",
+    description = S("Ink"),
     inventory_image = minetest.inventorycube("ink.png"),
     drawtype = "liquid",
     tiles = {
@@ -160,7 +162,7 @@ minetest.register_node("nssm:ink", {
 })
 
 minetest.register_node("nssm:mese_meteor", {
-    description = "Mese Meteor",
+    description = S("Mese Meteor"),
     tiles = {"mese_meteor.png"} ,
     paramtype = "light",
     drop = "",
@@ -179,7 +181,7 @@ minetest.register_node("nssm:pumpbomb", {
 })
 
 minetest.register_node("nssm:dragons_mese", {
-    description = "Mese Dragon's Touch",
+    description = S("Mese Dragon's Touch"),
     tiles = {"default_mese_block.png"},
     paramtype = "light",
     drop = "default:mese_crystal",
@@ -189,7 +191,7 @@ minetest.register_node("nssm:dragons_mese", {
 })
 
 minetest.register_node("nssm:phoenix_fire", {
-    description = "Phoenix Fire",
+    description = S("Phoenix Fire"),
     drawtype = "firelike",
     tiles = {{
         name = "phoenix_fire_animated.png",
@@ -473,7 +475,7 @@ minetest.register_craft({
 
 function nssm_register_egg (name, descr)
     minetest.register_craftitem("nssm:".. name, {
-        description = descr .. " Egg",
+        description = S("@1 Egg", descr),
         image = name.."_egg.png",
         on_place = function(itemstack, placer, pointed_thing)
             local pos1=minetest.get_pointed_thing_position(pointed_thing, true)
@@ -489,7 +491,7 @@ end
 
 function nssm_register_egg2 (name, descr)                --mobs you can't catch
     minetest.register_craftitem("nssm:".. name.."_egg", {
-        description = descr .. " Egg",
+        description = S("@1 Egg", descr),
         image = name.."_egg.png",
         on_place = function(itemstack, placer, pointed_thing)
             local pos1=minetest.get_pointed_thing_position(pointed_thing, true)
@@ -503,63 +505,63 @@ function nssm_register_egg2 (name, descr)                --mobs you can't catch
     })
 end
 
-nssm_register_egg ('flying_duck', 'Flying Duck')
-nssm_register_egg ('stone_eater', 'Stoneater')
-nssm_register_egg ('signosigno', 'Signosigno')
-nssm_register_egg ('bloco', 'Bloco')
-nssm_register_egg ('sand_bloco', 'Sand Bloco')
-nssm_register_egg ('swimming_duck', 'Swimming Duck')
-nssm_register_egg ('duck', 'Duck')
-nssm_register_egg2 ('duckking', 'Duckking')
-nssm_register_egg ('enderduck', 'Enderduck')
-nssm_register_egg ('spiderduck', 'Spiderduck')
-nssm_register_egg2 ('echidna', 'Echidna')
-nssm_register_egg ('werewolf', 'Werewolf')
-nssm_register_egg ('white_werewolf', 'White Werewolf')
-nssm_register_egg ('snow_biter', 'Snow Biter')
-nssm_register_egg2 ('icelamander', 'Icelamander')
-nssm_register_egg ('icesnake', 'Icesnake')
-nssm_register_egg2 ('lava_titan', 'Lava Titan')
-nssm_register_egg ('masticone', 'Masticone')
-nssm_register_egg ('mantis_beast', 'Mantis Beast')
-nssm_register_egg ('mantis', 'Mantis')
-nssm_register_egg ('larva', 'Larva')
-nssm_register_egg2 ('phoenix', 'Phoenix')
-nssm_register_egg2 ('night_master', 'Night Master')
-nssm_register_egg ('scrausics', 'Scrausics')
-nssm_register_egg ('moonheron', 'Moonheron')
-nssm_register_egg ('sandworm', 'Sandworm')
-nssm_register_egg2 ('giant_sandworm', 'Giant Sandworm')
-nssm_register_egg2 ('ant_queen', 'Ant Queen')
-nssm_register_egg ('ant_soldier', 'Ant Soldier')
-nssm_register_egg ('ant_worker', 'Ant Worker')
-nssm_register_egg ('crocodile', 'Crocodile')
-nssm_register_egg ('dolidrosaurus', 'Dolidrosaurus')
-nssm_register_egg ('crab', 'Crab')
-nssm_register_egg ('octopus', 'Octopus')
-nssm_register_egg ('xgaloctopus', 'Xgaloctopus')
-nssm_register_egg ('black_widow', 'Black Widow')
-nssm_register_egg ('uloboros', 'Uloboros')
-nssm_register_egg2 ('tarantula', 'Tarantula')
-nssm_register_egg ('daddy_long_legs', 'Daddy Long Legs')
-nssm_register_egg2 ('kraken', 'Kraken')
-nssm_register_egg2 ('pumpking', 'Pumpking')
-nssm_register_egg ('manticore', 'Manticore')
-nssm_register_egg ('felucco', 'Felucco')
-nssm_register_egg ('pumpboom_large', 'Large Pumpboom')
-nssm_register_egg ('pumpboom_small', 'Small Pumpboom')
-nssm_register_egg ('pumpboom_medium', 'Medium Pumpboom')
-nssm_register_egg2 ('mordain', 'Mordain')
-nssm_register_egg2 ('morgre', 'Morgre')
-nssm_register_egg2 ('morvy', 'Morvy')
-nssm_register_egg2 ('morgut', 'Morgut')
-nssm_register_egg2 ('morde', 'Morde')
-nssm_register_egg2 ('morlu', 'Morlu')
-nssm_register_egg2 ('morwa', 'Morwa')
-nssm_register_egg ('morvalar', 'Morvalar')
+nssm_register_egg ('flying_duck', S('Flying Duck'))
+nssm_register_egg ('stone_eater', S('Stoneater'))
+nssm_register_egg ('signosigno', S('Signosigno'))
+nssm_register_egg ('bloco', S('Bloco'))
+nssm_register_egg ('sand_bloco', S('Sand Bloco'))
+nssm_register_egg ('swimming_duck', S('Swimming Duck'))
+nssm_register_egg ('duck', S('Duck'))
+nssm_register_egg2 ('duckking', S('Duckking'))
+nssm_register_egg ('enderduck', S('Enderduck'))
+nssm_register_egg ('spiderduck', S('Spiderduck'))
+nssm_register_egg2 ('echidna', S('Echidna'))
+nssm_register_egg ('werewolf', S('Werewolf'))
+nssm_register_egg ('white_werewolf', S('White Werewolf'))
+nssm_register_egg ('snow_biter', S('Snow Biter'))
+nssm_register_egg2 ('icelamander', S('Icelamander'))
+nssm_register_egg ('icesnake', S('Icesnake'))
+nssm_register_egg2 ('lava_titan', S('Lava Titan'))
+nssm_register_egg ('masticone', S('Masticone'))
+nssm_register_egg ('mantis_beast', S('Mantis Beast'))
+nssm_register_egg ('mantis', S('Mantis'))
+nssm_register_egg ('larva', S('Larva'))
+nssm_register_egg2 ('phoenix', S('Phoenix'))
+nssm_register_egg2 ('night_master', S('Night Master'))
+nssm_register_egg ('scrausics', S('Scrausics'))
+nssm_register_egg ('moonheron', S('Moonheron'))
+nssm_register_egg ('sandworm', S('Sandworm'))
+nssm_register_egg2 ('giant_sandworm', S('Giant Sandworm'))
+nssm_register_egg2 ('ant_queen', S('Ant Queen'))
+nssm_register_egg ('ant_soldier', S('Ant Soldier'))
+nssm_register_egg ('ant_worker', S('Ant Worker'))
+nssm_register_egg ('crocodile', S('Crocodile'))
+nssm_register_egg ('dolidrosaurus', S('Dolidrosaurus'))
+nssm_register_egg ('crab', S('Crab'))
+nssm_register_egg ('octopus', S('Octopus'))
+nssm_register_egg ('xgaloctopus', S('Xgaloctopus'))
+nssm_register_egg ('black_widow', S('Black Widow'))
+nssm_register_egg ('uloboros', S('Uloboros'))
+nssm_register_egg2 ('tarantula', S('Tarantula'))
+nssm_register_egg ('daddy_long_legs', S('Daddy Long Legs'))
+nssm_register_egg2 ('kraken', S('Kraken'))
+nssm_register_egg2 ('pumpking', S('Pumpking'))
+nssm_register_egg ('manticore', S('Manticore'))
+nssm_register_egg ('felucco', S('Felucco'))
+nssm_register_egg ('pumpboom_large', S('Large Pumpboom'))
+nssm_register_egg ('pumpboom_small', S('Small Pumpboom'))
+nssm_register_egg ('pumpboom_medium', S('Medium Pumpboom'))
+nssm_register_egg2 ('mordain', S('Mordain'))
+nssm_register_egg2 ('morgre', S('Morgre'))
+nssm_register_egg2 ('morvy', S('Morvy'))
+nssm_register_egg2 ('morgut', S('Morgut'))
+nssm_register_egg2 ('morde', S('Morde'))
+nssm_register_egg2 ('morlu', S('Morlu'))
+nssm_register_egg2 ('morwa', S('Morwa'))
+nssm_register_egg ('morvalar', S('Morvalar'))
 
 minetest.register_craftitem("nssm:mese_egg", {
-    description = "Mese Egg",
+    description = S("Mese Egg"),
     image = "mese_egg.png",
     on_place = function(itemstack, placer, pointed_thing)
         local pos1=minetest.get_pointed_thing_position(pointed_thing, true)
@@ -592,7 +594,7 @@ minetest.register_craftitem("nssm:mese_egg", {
 
 --experimental morwa statue
 minetest.register_node("nssm:morwa_statue", {
-    description = 'Morwa Statue',
+    description = S('Morwa Statue'),
     drawtype = 'mesh',
     mesh = 'morwa_statue.b3d',
     tiles = {'morwa_statue.png'},

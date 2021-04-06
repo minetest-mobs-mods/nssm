@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:giant_sandworm", "Giant Sandworm", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:giant_sandworm", S("Giant Sandworm"), {
     type = "monster",
     hp_max = 330,
     hp_min = 330,

@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:mese_dragon", "Mese Dragon", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:mese_dragon", S("Mese Dragon"), {
     type = "monster",
     hp_max = 666,
     hp_min = 666,

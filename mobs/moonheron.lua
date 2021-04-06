@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:moonheron", "Moon Heron", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:moonheron", S("Moon Heron"), {
     type = "monster",
     hp_max = 33,
     hp_min = 22,

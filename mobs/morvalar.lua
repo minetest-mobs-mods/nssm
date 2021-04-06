@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 local first_hit_timelimit = 120
 posmorvalarblock = {x=827, y=-30094, z=-817}
 
@@ -13,7 +15,7 @@ local function initiation_timeout(self)
     else
         if os.time() - self.stop_timer > first_hit_timelimit then
             local shout_distance = 64
-            local message = "Summon me ... when you are ready to fight ..."
+            local message = S("Summon me ... when you are ready to fight ...")
             local pos = self.object:get_pos()
             local objs = minetest.get_objects_inside_radius(pos, shout_distance)
 
@@ -757,7 +759,7 @@ mobs:register_mob("nssm:morvalar1", {
     end,
 })
 
-nssm:register_mob("nssm:morvalar0", "Mor Valar", {
+nssm:register_mob("nssm:morvalar0", S("Mor Valar"), {
     type = "monster",
     hp_max = 100,
     hp_min = 100,

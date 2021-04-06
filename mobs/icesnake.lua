@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:icesnake", "Ice Snake", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:icesnake", S("Ice Snake"), {
     type = "monster",
     hp_max = 27,
     hp_min = 17,

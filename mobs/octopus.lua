@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:octopus", "Octopus", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:octopus", S("Octopus"), {
     type = "monster",
     hp_max = 32,
     hp_min = 25,
@@ -57,7 +59,7 @@ nssm:register_mob("nssm:octopus", "Octopus", {
     },
 })
 
-nssm:register_mob("nssm:xgaloctopus", "Mini Octopus", {
+nssm:register_mob("nssm:xgaloctopus", S("Mini Octopus"), {
     type = "monster",
     hp_max = 30,
     hp_min = 27,

@@ -1,4 +1,6 @@
-nssm:register_mob("nssm:duckking", "Duck King", {
+local S = minetest.get_translator(minetest.get_current_modname())
+
+nssm:register_mob("nssm:duckking", S("Duck King"), {
     type = "monster",
     hp_max = 180,
     hp_min = 180,
