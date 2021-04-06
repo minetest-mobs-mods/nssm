@@ -52,12 +52,12 @@ nssm:register_mob("nssm:lava_titan", "Lava Titan", {
       shoot_offset = 0,
     --[[
     on_dist_attack = function(self, player)
-        local pos = player:getpos()
+        local pos = player:get_pos()
         for dy=-1, 6, 1 do
             for dx=-1, 1, 2 do
                 for dz=-1, 1, 2 do
                     local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-                    local n = minetest.env:get_node(p).name
+                    local n = minetest.get_node(p).name
                     if n~="default:lava_flowing" and not minetest.is_protected(p, "") then
                         minetest.set_node(p, {name="default:lava_flowing"})
                     end

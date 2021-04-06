@@ -57,8 +57,8 @@ nssm:register_mob("nssm:mordain", "Mordain", {
         self.mordain_timer = (self.mordain_timer or os.time())
         if (os.time() - self.mordain_timer) > 1 then
             self.mordain_timer = os.time()
-            local s = self.object:getpos()
-            local p = self.attack:getpos()
+            local s = self.object:get_pos()
+            local p = self.attack:get_pos()
 
             mobs:set_animation(self, "punch")
 
@@ -89,8 +89,8 @@ nssm:register_mob("nssm:mordain", "Mordain", {
 
                 for j = -3,3 do
                     ty = d.y + j
-                    local current = minetest.env:get_node({x = d.x, y = ty, z = d.z}).name
-                    local up = minetest.env:get_node({x = d.x, y = ty+1, z = d.z}).name
+                    local current = minetest.get_node({x = d.x, y = ty, z = d.z}).name
+                    local up = minetest.get_node({x = d.x, y = ty+1, z = d.z}).name
                     if up == "air" and current ~= "air" then
                         d.y = d.y + j+1.5
                         flag = 1
@@ -106,8 +106,8 @@ nssm:register_mob("nssm:mordain", "Mordain", {
                     if dist>=2 then
                         for j = -3,3 do
                             ty = d.y + j
-                            local current = minetest.env:get_node({x = d.x, y = ty, z = d.z}).name
-                            local up = minetest.env:get_node({x = d.x, y = ty+1, z = d.z}).name
+                            local current = minetest.get_node({x = d.x, y = ty, z = d.z}).name
+                            local up = minetest.get_node({x = d.x, y = ty+1, z = d.z}).name
                             if up == "air" and current ~= "air" then
                                 d.y = d.y + j+1.5
                                 flag = 1

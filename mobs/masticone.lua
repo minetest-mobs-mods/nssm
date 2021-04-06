@@ -84,7 +84,7 @@ nssm:register_mob("nssm:masticone", "Masticone", {
                 local chance = math.random(1,math.ceil(respawn_count * 1.5))
                 if chance == 1 then
                     local pos = {x=pos.x+math.random(-1,1), y=pos.y+0.5, z=pos.z+math.random(-1,1)}
-                    local n = minetest.env:get_node(pos).name
+                    local n = minetest.get_node(pos).name
                     if n == "air" then
                         minetest.add_entity(pos, "nssm:masticone")
                     end
@@ -94,8 +94,8 @@ nssm:register_mob("nssm:masticone", "Masticone", {
     end,
 
     do_custom = function (self)
-        local pos = self.object:getpos()
-        local n = minetest.env:get_node(pos).name
+        local pos = self.object:get_pos()
+        local n = minetest.get_node(pos).name
 
         if n == "default:lava_source" or n == "default:lava_flowing" then
             self.object:set_hp(self.object:get_hp()-5)
@@ -111,7 +111,7 @@ nssm:register_mob("nssm:masticone", "Masticone", {
 
                         if obj then
 
-                            obj:setvelocity({
+                            obj:set_velocity({
                                 x = math.random(-1, 1),
                                 y = 6,
                                 z = math.random(-1, 1)

@@ -8,10 +8,10 @@ local default_dir = {
 --Function used to shoot:
 local function weapons_shot(itemstack, placer, pointed_thing, velocity, name)
     local dir = placer:get_look_dir();
-    local playerpos = placer:getpos();
-    local obj = minetest.env:add_entity({x=playerpos.x+0+dir.x,y=playerpos.y+2+dir.y,z=playerpos.z+0+dir.z}, "nssm:"..name)
+    local playerpos = placer:get_pos();
+    local obj = minetest.add_entity({x=playerpos.x+0+dir.x,y=playerpos.y+2+dir.y,z=playerpos.z+0+dir.z}, "nssm:"..name)
     local vec = {x=dir.x*velocity,y=dir.y*velocity,z=dir.z*velocity}
-    obj:setvelocity(vec)
+    obj:set_velocity(vec)
     return itemstack
 end
 
@@ -24,7 +24,7 @@ end
 
 local function activate_balls(pos)
     local radius = 50
-    local objects = minetest.env:get_objects_inside_radius(pos, radius)
+    local objects = minetest.get_objects_inside_radius(pos, radius)
     for _,obj in ipairs(objects) do
         if (obj:get_luaentity() and obj:get_luaentity().name == "nssm:hellzone_grenade") then
             obj:get_luaentity().move = 1
@@ -39,7 +39,7 @@ local function search_on_step2(
     radius,     --radius in which look for entities to follow
     vel)        --velocity of the projectile
 
-    local pos = self.object:getpos()
+    local pos = self.object:get_pos()
 
     --Disappear after a certain time
     if self.life_time == 0 then
@@ -51,7 +51,7 @@ local function search_on_step2(
     end
 
     --Look for an entity to follow
-    local objects = minetest.env:get_objects_inside_radius(pos, radius)
+    local objects = minetest.get_objects_inside_radius(pos, radius)
     local min_dist = 100
     local obj_min = nil
     local obj_p = nil
@@ -59,7 +59,7 @@ local function search_on_step2(
     for _,obj in ipairs(objects) do
         if (obj:is_player()) then
         elseif (obj:get_luaentity() and obj:get_luaentity().name ~= "__builtin:item" and obj:get_luaentity().name ~= self.object:get_luaentity().name) then
-            obj_p = obj:getpos()
+            obj_p = obj:get_pos()
             local vec = {x=obj_p.x-pos.x, y=obj_p.y-pos.y, z=obj_p.z-pos.z}
             local dist = (vec.x^2+vec.y^2+vec.z^2)^0.5
             if (dist<min_dist) then
@@ -93,19 +93,19 @@ local function search_on_step2(
         vec_min.x = (vec_min.x/max_diff)*vel
         vec_min.y = (vec_min.y/max_diff)*vel
         vec_min.z = (vec_min.z/max_diff)*vel
-        obj_p = obj_min:getpos()
+        obj_p = obj_min:get_pos()
         if min_dist <=8 and self.move==0 then
-            self.object:setvelocity({x=0, y=0, z=0})
+            self.object:set_velocity({x=0, y=0, z=0})
 
             --hit(pos,self)
         elseif min_dist<=1 and self.move==1 then
             hit(pos,self)
         else
-            self.object:setvelocity(vec_min)
+            self.object:set_velocity(vec_min)
         end
     end
 
-    local n = minetest.env:get_node(pos).name
+    local n = minetest.get_node(pos).name
     if n ~= "air" and n ~= "default:water_source" and n ~= "default:water_flowing" then
         hit(pos,self)
     end
@@ -120,7 +120,7 @@ local function search_on_step(
     vel)        --velocity of the projectile
 
 
-    local pos = self.object:getpos()
+    local pos = self.object:get_pos()
 
     --Disappear after a certain time
     if self.life_time == 0 then
@@ -133,7 +133,7 @@ local function search_on_step(
 
 
     --Look for an entity to follow
-    local objects = minetest.env:get_objects_inside_radius(pos, radius)
+    local objects = minetest.get_objects_inside_radius(pos, radius)
     local min_dist = 100
     local obj_min = nil
     local obj_p = nil
@@ -141,7 +141,7 @@ local function search_on_step(
     for _,obj in ipairs(objects) do
         if (obj:is_player()) then
         elseif (obj:get_luaentity() and obj:get_luaentity().name ~= "__builtin:item" and obj:get_luaentity().name ~= self.object:get_luaentity().name) then
-            obj_p = obj:getpos()
+            obj_p = obj:get_pos()
             local vec = {x=obj_p.x-pos.x, y=obj_p.y-pos.y, z=obj_p.z-pos.z}
             local dist = (vec.x^2+vec.y^2+vec.z^2)^0.5
             if (dist<min_dist) then
@@ -175,17 +175,17 @@ local function search_on_step(
         vec_min.x = (vec_min.x/max_diff)*vel
         vec_min.y = (vec_min.y/max_diff)*vel
         vec_min.z = (vec_min.z/max_diff)*vel
-        obj_p = obj_min:getpos()
+        obj_p = obj_min:get_pos()
         if min_dist < 1 then
             local node = node_ok(pos).name
             self.hit_node(self, pos, node)
             self.object:remove()
             return
         else
-            self.object:setvelocity(vec_min)
+            self.object:set_velocity(vec_min)
         end
     end
-    local n = minetest.env:get_node(pos).name
+    local n = minetest.get_node(pos).name
     if n ~= "air" and n ~= "default:water_source" and n ~= "default:water_flowing" then
         local node = node_ok(pos).name
         self.hit_node(self, pos, node)
@@ -205,7 +205,7 @@ local function default_on_step(
     vel)                --velocity of the projectile
 
 
-    local pos = self.object:getpos()
+    local pos = self.object:get_pos()
 
     if self.life_time == 0 then
         self.life_time = os.time()
@@ -223,7 +223,7 @@ local function default_on_step(
     --minetest.chat_send_all("Timer: "..self.timer)
 
     --while going around it damages entities
-    local objects = minetest.env:get_objects_inside_radius(pos, 2)
+    local objects = minetest.get_objects_inside_radius(pos, 2)
     if self.timer > 0.1 then
         self.timer = 0
         for _,obj in ipairs(objects) do
@@ -244,14 +244,14 @@ local function default_on_step(
         end
     end
 
-    local n = minetest.env:get_node(pos).name
+    local n = minetest.get_node(pos).name
     if n==not_transparent or minetest.get_item_group(n, not_transparent)==1 then
         local node = node_ok(pos).name
         self.hit_node(self, pos, node)
         self.object:remove()
         return
     else
-        local vec = self.object:getvelocity()
+        local vec = self.object:get_velocity()
         local c=vel/10
         --calculate how many blocks around need to be removed
         local max = 0
@@ -300,7 +300,7 @@ local function default_on_step(
                 for dz = -k,k do
                     local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
                     if not minetest.is_protected(p, "") or not minetest.get_item_group(n, "unbreakable") == 1 then
-                        minetest.env:remove_node(p)
+                        minetest.remove_node(p)
                     end
                 end
             end
@@ -406,7 +406,7 @@ nssm_register_weapon("hellzone_grenade", {
     end,
 
     on_drop = function(itemstack, user, pointed_thing)
-        local pos = user:getpos()
+        local pos = user:get_pos()
         activate_balls(pos)
     end,
     material = "default:mese",

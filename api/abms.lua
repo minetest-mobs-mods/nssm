@@ -10,7 +10,7 @@ minetest.register_abm({
             return
         end
         --local under = {x=pos.x, y=pos.y-1, z=pos.z}
-        --local n = minetest.env:get_node(under).name
+        --local n = minetest.get_node(under).name
         --if n~= "air" then
         minetest.set_node({x=pos.x+1, y=pos.y, z=pos.z}, {name = "fire:basic_flame"})
         minetest.set_node({x=pos.x-1, y=pos.y, z=pos.z}, {name = "fire:basic_flame"})
@@ -27,7 +27,7 @@ minetest.register_abm({
     interval = 20.0,
     chance = 20,
     action = function(pos, node, active_object_count, active_object_count_wider)
-        local n = minetest.env:get_node(pos).name
+        local n = minetest.get_node(pos).name
         if n== "air" then
             minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z}, {name = "nssm:web"})
         end
@@ -40,7 +40,7 @@ minetest.register_abm({
     interval = 20.0,
     chance = 20,
     action = function(pos, node, active_object_count, active_object_count_wider)
-        local n = minetest.env:get_node(pos).name
+        local n = minetest.get_node(pos).name
         if n== "air" then
             minetest.set_node({x = pos.x + 1, y = pos.y, z = pos.z}, {name = "nssm:web"})
         end
@@ -53,7 +53,7 @@ minetest.register_abm({
     interval = 20.0,
     chance = 20,
     action = function(pos, node, active_object_count, active_object_count_wider)
-        local n = minetest.env:get_node(pos).name
+        local n = minetest.get_node(pos).name
         if n == "air" then
             minetest.set_node({x = pos.x - 1, y = pos.y, z = pos.z}, {name = "nssm:web"})
         end
@@ -89,7 +89,7 @@ minetest.register_abm({
     action =
     function(pos, node)
         local pos1 = {x=pos.x, y=pos.y+1, z=pos.z}
-        local n = minetest.env:get_node(pos1).name
+        local n = minetest.get_node(pos1).name
         if n ~= "air" then
             return
         end

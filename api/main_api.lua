@@ -19,7 +19,7 @@ end
 -- Return true if the original_node should not be swapped
 nssm.unswappable_node = function (pos, node_list)
     local _, node, original_node
-    original_node = minetest.env:get_node(pos).name
+    original_node = minetest.get_node(pos).name
 
     if original_node ~= "air" and not minetest.registered_nodes[original_node] then
         -- remnant unknown block
@@ -55,7 +55,7 @@ end
 
 nssm.drops = function(drop)
     if drop then
-        drop:setvelocity({
+        drop:set_velocity({
             x = math.random(-10, 10) / 9,
             y = 5,
             z = math.random(-10, 10) / 9,
@@ -153,8 +153,8 @@ function digging_attack(
     )
 
     if self.attack and self.attack:is_player() then
-        local s = self.object:getpos()
-        local p = self.attack:getpos()
+        local s = self.object:get_pos()
+        local p = self.attack:get_pos()
 
         local dir = vector.subtract(p,s)
         dir = vector.normalize(dir)
@@ -172,9 +172,9 @@ function digging_attack(
             local pos_to_dig = posp
 
             for i = 0,dim.y do -- from 0 to dy between mob and player altitude?
-                local target_node = minetest.env:get_node(pos_to_dig).name
+                local target_node = minetest.get_node(pos_to_dig).name
                 if not nssm.unswappable_node(pos_to_dig) then
-                    local nodename = minetest.env:get_node(posp).name
+                    local nodename = minetest.get_node(posp).name
                     local nodedef = minetest.registered_nodes[nodename]
                     if nodedef.groups and nodedef.groups[group] then
                         minetest.remove_node(pos_to_dig)
@@ -202,11 +202,11 @@ local function safely_put_block(self, pos_under_mob, original_node, putting_bloc
             minetest.registered_nodes[original_node].drawtype == "liquid"
             or minetest.registered_nodes[original_node].drawtype == "flowingliquid"
           ) then
-            minetest.env:set_node(pos_under_mob, {name = putting_block})
+            minetest.set_node(pos_under_mob, {name = putting_block})
 
         -- buildable to (snow, torch)
         elseif minetest.registered_nodes[original_node].buildable_to then
-            minetest.env:set_node(pos_under_mob, {name = "air"})
+            minetest.set_node(pos_under_mob, {name = "air"})
             minetest.add_item(pos_under_mob, {name = original_node})
 
         end
@@ -219,7 +219,7 @@ function putting_ability(        --sets 'putting_block' under the mob, as well a
     max_vel    -- max velocity of the mob
     )
 
-    local v = self.object:getvelocity()
+    local v = self.object:get_velocity()
 
     local dx = 0
     local dz = 0
@@ -238,7 +238,7 @@ function putting_ability(        --sets 'putting_block' under the mob, as well a
         end
     end
 
-    local pos_under_mob = self.object:getpos()
+    local pos_under_mob = self.object:get_pos()
     local pos_under_frontof_mob
 
     pos_under_mob.y=pos_under_mob.y - 1
@@ -248,8 +248,8 @@ function putting_ability(        --sets 'putting_block' under the mob, as well a
         z = pos_under_mob.z + dz
     }
 
-    local node_under_mob = minetest.env:get_node(pos_under_mob).name
-    local node_under_frontof_mob = minetest.env:get_node(pos_under_frontof_mob).name
+    local node_under_mob = minetest.get_node(pos_under_mob).name
+    local node_under_frontof_mob = minetest.get_node(pos_under_frontof_mob).name
 
     local oldmetainf = {
         minetest.get_meta(pos_under_mob):to_table(),
@@ -266,16 +266,16 @@ function webber_ability(        --puts randomly around the block defined as w_bl
     radius        --max distance the block can be put
     )
 
-    local pos = self.object:getpos()
+    local pos = self.object:get_pos()
     if (math.random(1,55)==1) then
         local dx=math.random(1,radius)
         local dz=math.random(1,radius)
         --local p = {x=pos.x+dx, y=pos.y-1, z=pos.z+dz}
         local t = {x=pos.x+dx, y=pos.y, z=pos.z+dz}
-        --local n = minetest.env:get_node(p).name
-        local k = minetest.env:get_node(t).name
+        --local n = minetest.get_node(p).name
+        local k = minetest.get_node(t).name
         if k == "air" and not nssm.unswappable_node(t) then
-            minetest.env:set_node(t, {name=w_block})
+            minetest.set_node(t, {name=w_block})
         end
     end
 end
@@ -288,15 +288,15 @@ function midas_ability(        --ability to transform every blocks it touches in
     height         --height of the mob
     )
 
-    local v = self.object:getvelocity()
-    local pos = self.object:getpos()
+    local v = self.object:get_velocity()
+    local pos = self.object:get_pos()
 --[[
     if minetest.is_protected(pos, "") then
         return
     end
 --]]
     local max = 0
-    local yaw = (self.object:getyaw() + self.rotate) or 0
+    local yaw = (self.object:get_yaw() + self.rotate) or 0
     local x = math.sin(yaw)*-1
     local z = math.cos(yaw)
 
@@ -323,10 +323,10 @@ function midas_ability(        --ability to transform every blocks it touches in
         for dy = -1, height do
             for dz = k1, k do
                 local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
-                local n = minetest.env:get_node(p).name
+                local n = minetest.get_node(p).name
 
                 if not nssm.unswappable_node(p, {"air"}) then
-                    minetest.env:set_node(p, {name=m_block})
+                    minetest.set_node(p, {name=m_block})
                 end
             end
         end
@@ -449,7 +449,7 @@ local function eject_drops(drops, pos, radius)
             if obj then
                 obj:get_luaentity().collect = true
                 obj:setacceleration({x = 0, y = -10, z = 0})
-                obj:setvelocity({x = math.random(-3, 3),
+                obj:set_velocity({x = math.random(-3, 3),
                         y = math.random(0, 10),
                         z = math.random(-3, 3)})
             end
@@ -494,7 +494,7 @@ end
 local function entity_physics(pos, radius, drops)
     local objs = minetest.get_objects_inside_radius(pos, radius)
     for _, obj in pairs(objs) do
-        local obj_pos = obj:getpos()
+        local obj_pos = obj:get_pos()
         local dist = math.max(1, vector.distance(pos, obj_pos))
 
         local damage = (4 / dist) * radius
@@ -527,8 +527,8 @@ local function entity_physics(pos, radius, drops)
             end
 
             if do_knockback then
-                local obj_vel = obj:getvelocity()
-                obj:setvelocity(calc_velocity(pos, obj_pos,
+                local obj_vel = obj:get_velocity()
+                obj:set_velocity(calc_velocity(pos, obj_pos,
                         obj_vel, radius * 10))
             end
             if do_damage then
